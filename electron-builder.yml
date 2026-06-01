@@ -1,0 +1,24 @@
+appId: com.codehelper.app
+productName: CodeHelper
+directories:
+  output: dist-release
+  buildResources: resources
+win:
+  target: nsis
+  icon: resources/icons/icon.png
+  signAndEditExecutable: false
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  shortcutName: CodeHelper
+files:
+  - "out/**"
+  - "!node_modules/**/*.{md,ts,map}"
+  - node_modules/better-sqlite3/**
+extraResources:
+  - from: resources/problems
+    to: problems
+  - from: electron/db/schema.sql
+    to: db/schema.sql
+asar: true

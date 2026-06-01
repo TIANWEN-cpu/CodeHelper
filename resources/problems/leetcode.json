@@ -1,0 +1,1647 @@
+[
+  {
+    "title": "两数之和",
+    "description": "给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出和为目标值 target 的那两个整数，并返回它们的数组下标。你可以假设每种输入只会对应一个答案，且同一个元素不能使用两遍。",
+    "difficulty": "easy",
+    "tags": ["数组", "哈希表"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "4\n2 7 11 15\n9", "output": "0 1"}
+    ],
+    "test_cases": [
+      {"input": "4\n2 7 11 15\n9", "expected": "0 1"},
+      {"input": "3\n3 2 4\n6", "expected": "1 2"},
+      {"input": "2\n3 3\n6", "expected": "0 1"}
+    ],
+    "starter_code": {
+      "python": "# 两数之和\n# 第一行输入数组长度n，第二行输入n个整数，第三行输入目标值target\n# 输出两个下标，用空格分隔\nn = int(input())\nnums = list(map(int, input().split()))\ntarget = int(input())\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "回文数",
+    "description": "给你一个整数 x，如果 x 是一个回文整数，返回 true；否则，返回 false。回文数是指正序和倒序读都是一样的整数。",
+    "difficulty": "easy",
+    "tags": ["数学"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "121", "output": "true"}
+    ],
+    "test_cases": [
+      {"input": "121", "expected": "true"},
+      {"input": "-121", "expected": "false"},
+      {"input": "10", "expected": "false"},
+      {"input": "0", "expected": "true"}
+    ],
+    "starter_code": {
+      "python": "# 回文数\n# 输入一个整数x，输出true或false\nx = int(input())\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "罗马数字转整数",
+    "description": "罗马数字包含以下七种字符: I(1), V(5), X(10), L(50), C(100), D(500), M(1000)。给定一个罗马数字字符串，将其转换成整数。",
+    "difficulty": "easy",
+    "tags": ["字符串", "哈希表"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "III", "output": "3"}
+    ],
+    "test_cases": [
+      {"input": "III", "expected": "3"},
+      {"input": "IV", "expected": "4"},
+      {"input": "IX", "expected": "9"},
+      {"input": "LVIII", "expected": "58"},
+      {"input": "MCMXCIV", "expected": "1994"}
+    ],
+    "starter_code": {
+      "python": "# 罗马数字转整数\n# 输入一个罗马数字字符串，输出对应的整数\ns = input().strip()\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "最长公共前缀",
+    "description": "编写一个函数来查找字符串数组中的最长公共前缀。如果不存在公共前缀，返回空字符串。",
+    "difficulty": "easy",
+    "tags": ["字符串"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "3\nflower flow flight", "output": "fl"}
+    ],
+    "test_cases": [
+      {"input": "3\nflower flow flight", "expected": "fl"},
+      {"input": "3\ndog racecar car", "expected": ""},
+      {"input": "1\na", "expected": "a"}
+    ],
+    "starter_code": {
+      "python": "# 最长公共前缀\n# 第一行输入字符串个数n，第二行输入n个字符串用空格分隔\n# 输出最长公共前缀，如果没有则输出空行\nn = int(input())\nstrs = input().split()\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "有效的括号",
+    "description": "给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串 s，判断字符串是否有效。有效字符串需满足：左括号必须用相同类型的右括号闭合，左括号必须以正确的顺序闭合。",
+    "difficulty": "easy",
+    "tags": ["栈", "字符串"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "()", "output": "true"}
+    ],
+    "test_cases": [
+      {"input": "()", "expected": "true"},
+      {"input": "()[]{}", "expected": "true"},
+      {"input": "(]", "expected": "false"},
+      {"input": "([)]", "expected": "false"},
+      {"input": "{[]}", "expected": "true"}
+    ],
+    "starter_code": {
+      "python": "# 有效的括号\n# 输入一个括号字符串，输出true或false\ns = input().strip()\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "合并两个有序数组",
+    "description": "给你两个按非递减顺序排列的整数数组 nums1 和 nums2，将 nums2 合并到 nums1 中，使合并后的数组同样按非递减顺序排列。输出合并后的数组。",
+    "difficulty": "easy",
+    "tags": ["数组", "排序"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "3\n1 2 3\n3\n2 5 6", "output": "1 2 2 3 5 6"}
+    ],
+    "test_cases": [
+      {"input": "3\n1 2 3\n3\n2 5 6", "expected": "1 2 2 3 5 6"},
+      {"input": "1\n1\n0", "expected": "1"},
+      {"input": "0\n\n1\n1", "expected": "1"}
+    ],
+    "starter_code": {
+      "python": "# 合并两个有序数组\n# 第一行输入m，第二行输入nums1的m个元素，第三行输入n，第四行输入nums2的n个元素\n# 输出合并后的数组，用空格分隔\nm = int(input())\nnums1 = list(map(int, input().split())) if m > 0 else []\nn = int(input())\nnums2 = list(map(int, input().split())) if n > 0 else []\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "买卖股票的最佳时机",
+    "description": "给定一个数组 prices，它的第 i 个元素 prices[i] 表示一支给定股票第 i 天的价格。你只能选择某一天买入这只股票，并选择在未来的某一个不同的日子卖出该股票。设计一个算法来计算你所能获取的最大利润。如果你不能获取任何利润，返回 0。",
+    "difficulty": "easy",
+    "tags": ["数组", "动态规划"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "6\n7 1 5 3 6 4", "output": "5"}
+    ],
+    "test_cases": [
+      {"input": "6\n7 1 5 3 6 4", "expected": "5"},
+      {"input": "5\n7 6 4 3 1", "expected": "0"},
+      {"input": "3\n2 4 1", "expected": "2"}
+    ],
+    "starter_code": {
+      "python": "# 买卖股票的最佳时机\n# 第一行输入数组长度n，第二行输入n个价格\n# 输出最大利润\nn = int(input())\nprices = list(map(int, input().split()))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "只出现一次的数字",
+    "description": "给你一个非空整数数组 nums，除了某个元素只出现一次以外，其余每个元素均出现两次。找出那个只出现了一次的元素。",
+    "difficulty": "easy",
+    "tags": ["位运算", "数组"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "3\n2 2 1", "output": "1"}
+    ],
+    "test_cases": [
+      {"input": "3\n2 2 1", "expected": "1"},
+      {"input": "5\n4 1 2 1 2", "expected": "4"},
+      {"input": "1\n1", "expected": "1"}
+    ],
+    "starter_code": {
+      "python": "# 只出现一次的数字\n# 第一行输入数组长度n，第二行输入n个整数\n# 输出只出现一次的数字\nn = int(input())\nnums = list(map(int, input().split()))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "多数元素",
+    "description": "给定一个大小为 n 的数组 nums，返回其中的多数元素。多数元素是指在数组中出现次数大于 n/2 的元素。你可以假设数组是非空的，并且给定的数组总是存在多数元素。",
+    "difficulty": "easy",
+    "tags": ["数组", "哈希表"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "3\n3 2 3", "output": "3"}
+    ],
+    "test_cases": [
+      {"input": "3\n3 2 3", "expected": "3"},
+      {"input": "7\n2 2 1 1 1 2 2", "expected": "2"},
+      {"input": "1\n1", "expected": "1"}
+    ],
+    "starter_code": {
+      "python": "# 多数元素\n# 第一行输入数组长度n，第二行输入n个整数\n# 输出多数元素\nn = int(input())\nnums = list(map(int, input().split()))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "移动零",
+    "description": "给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。必须在不复制数组的情况下原地对数组进行操作。",
+    "difficulty": "easy",
+    "tags": ["数组", "双指针"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "5\n0 1 0 3 12", "output": "1 3 12 0 0"}
+    ],
+    "test_cases": [
+      {"input": "5\n0 1 0 3 12", "expected": "1 3 12 0 0"},
+      {"input": "1\n0", "expected": "0"},
+      {"input": "3\n1 2 3", "expected": "1 2 3"}
+    ],
+    "starter_code": {
+      "python": "# 移动零\n# 第一行输入数组长度n，第二行输入n个整数\n# 输出移动零后的数组，用空格分隔\nn = int(input())\nnums = list(map(int, input().split()))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "反转字符串",
+    "description": "编写一个函数，其作用是将输入的字符串反转过来。",
+    "difficulty": "easy",
+    "tags": ["字符串", "双指针"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "hello", "output": "olleh"}
+    ],
+    "test_cases": [
+      {"input": "hello", "expected": "olleh"},
+      {"input": "Hannah", "expected": "hannaH"},
+      {"input": "a", "expected": "a"}
+    ],
+    "starter_code": {
+      "python": "# 反转字符串\n# 输入一个字符串，输出反转后的字符串\ns = input().strip()\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "反转整数",
+    "description": "给你一个 32 位的有符号整数 x，返回将 x 中的数字部分反转后的结果。如果反转后整数超过 32 位的有符号整数的范围 [-2^31, 2^31-1]，就返回 0。",
+    "difficulty": "easy",
+    "tags": ["数学"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "123", "output": "321"}
+    ],
+    "test_cases": [
+      {"input": "123", "expected": "321"},
+      {"input": "-123", "expected": "-321"},
+      {"input": "120", "expected": "21"},
+      {"input": "0", "expected": "0"},
+      {"input": "1534236469", "expected": "0"}
+    ],
+    "starter_code": {
+      "python": "# 反转整数\n# 输入一个整数x，输出反转后的整数\nx = int(input())\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "爬楼梯",
+    "description": "假设你正在爬楼梯。需要 n 阶你才能到达楼顶。每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？",
+    "difficulty": "easy",
+    "tags": ["动态规划"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "2", "output": "2"}
+    ],
+    "test_cases": [
+      {"input": "2", "expected": "2"},
+      {"input": "3", "expected": "3"},
+      {"input": "4", "expected": "5"},
+      {"input": "10", "expected": "89"}
+    ],
+    "starter_code": {
+      "python": "# 爬楼梯\n# 输入台阶数n，输出爬到楼顶的方法数\nn = int(input())\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "最大子数组和",
+    "description": "给你一个整数数组 nums，请你找出一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。",
+    "difficulty": "easy",
+    "tags": ["数组", "动态规划"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "9\n-2 1 -3 4 -1 2 1 -5 4", "output": "6"}
+    ],
+    "test_cases": [
+      {"input": "9\n-2 1 -3 4 -1 2 1 -5 4", "expected": "6"},
+      {"input": "1\n1", "expected": "1"},
+      {"input": "5\n5 4 -1 7 8", "expected": "23"},
+      {"input": "1\n-1", "expected": "-1"}
+    ],
+    "starter_code": {
+      "python": "# 最大子数组和\n# 第一行输入数组长度n，第二行输入n个整数\n# 输出最大子数组和\nn = int(input())\nnums = list(map(int, input().split()))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "加一",
+    "description": "给定一个由整数组成的非空数组所表示的非负整数，在该数的基础上加一。最高位数字存放在数组的首位，数组中每个元素只存储单个数字。",
+    "difficulty": "easy",
+    "tags": ["数组", "数学"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "3\n1 2 3", "output": "1 2 4"}
+    ],
+    "test_cases": [
+      {"input": "3\n1 2 3", "expected": "1 2 4"},
+      {"input": "3\n4 3 2", "expected": "4 3 3"},
+      {"input": "1\n9", "expected": "1 0"},
+      {"input": "3\n9 9 9", "expected": "1 0 0 0"}
+    ],
+    "starter_code": {
+      "python": "# 加一\n# 第一行输入数组长度n，第二行输入n个数字\n# 输出加一后的数组，用空格分隔\nn = int(input())\ndigits = list(map(int, input().split()))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "搜索插入位置",
+    "description": "给定一个排序数组和一个目标值，在数组中找到目标值并返回其索引。如果目标值不存在于数组中，返回它将会被按顺序插入的位置。请必须使用时间复杂度为 O(log n) 的算法。",
+    "difficulty": "easy",
+    "tags": ["数组", "二分查找"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "4\n1 3 5 6\n5", "output": "2"}
+    ],
+    "test_cases": [
+      {"input": "4\n1 3 5 6\n5", "expected": "2"},
+      {"input": "4\n1 3 5 6\n2", "expected": "1"},
+      {"input": "4\n1 3 5 6\n7", "expected": "4"},
+      {"input": "4\n1 3 5 6\n0", "expected": "0"}
+    ],
+    "starter_code": {
+      "python": "# 搜索插入位置\n# 第一行输入数组长度n，第二行输入n个有序整数，第三行输入目标值\n# 输出目标值的索引或插入位置\nn = int(input())\nnums = list(map(int, input().split()))\ntarget = int(input())\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "二进制求和",
+    "description": "给你两个二进制字符串 a 和 b，以二进制字符串的形式返回它们的和。",
+    "difficulty": "easy",
+    "tags": ["字符串", "数学"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "11\n1", "output": "100"}
+    ],
+    "test_cases": [
+      {"input": "11\n1", "expected": "100"},
+      {"input": "1010\n1011", "expected": "10101"},
+      {"input": "0\n0", "expected": "0"}
+    ],
+    "starter_code": {
+      "python": "# 二进制求和\n# 第一行输入二进制字符串a，第二行输入二进制字符串b\n# 输出它们的二进制和\na = input().strip()\nb = input().strip()\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "x的平方根",
+    "description": "给你一个非负整数 x，计算并返回 x 的算术平方根。由于返回类型是整数，结果只保留整数部分，小数部分将被舍去。",
+    "difficulty": "easy",
+    "tags": ["数学", "二分查找"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "4", "output": "2"}
+    ],
+    "test_cases": [
+      {"input": "4", "expected": "2"},
+      {"input": "8", "expected": "2"},
+      {"input": "0", "expected": "0"},
+      {"input": "1", "expected": "1"},
+      {"input": "16", "expected": "4"}
+    ],
+    "starter_code": {
+      "python": "# x的平方根\n# 输入一个非负整数x，输出x的算术平方根的整数部分\nx = int(input())\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "删除有序数组中的重复项",
+    "description": "给你一个升序排列的数组 nums，请你原地删除重复出现的元素，使每个元素只出现一次，返回删除后数组的新长度以及去重后的数组。",
+    "difficulty": "easy",
+    "tags": ["数组", "双指针"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "3\n1 1 2", "output": "2\n1 2"}
+    ],
+    "test_cases": [
+      {"input": "3\n1 1 2", "expected": "2\n1 2"},
+      {"input": "10\n0 0 1 1 1 2 2 3 3 4", "expected": "5\n0 1 2 3 4"},
+      {"input": "1\n1", "expected": "1\n1"}
+    ],
+    "starter_code": {
+      "python": "# 删除有序数组中的重复项\n# 第一行输入数组长度n，第二行输入n个有序整数\n# 第一行输出去重后的长度，第二行输出去重后的数组\nn = int(input())\nnums = list(map(int, input().split()))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "快乐数",
+    "description": "编写一个算法来判断一个数 n 是不是快乐数。快乐数定义为：对于一个正整数，每一次将该数替换为它每个位置上的数字的平方和。然后重复这个过程直到这个数变为 1，也可能是无限循环但始终变不到 1。如果这个过程结果为 1，那么这个数就是快乐数。",
+    "difficulty": "easy",
+    "tags": ["哈希表", "数学"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "19", "output": "true"}
+    ],
+    "test_cases": [
+      {"input": "19", "expected": "true"},
+      {"input": "2", "expected": "false"},
+      {"input": "1", "expected": "true"},
+      {"input": "7", "expected": "true"}
+    ],
+    "starter_code": {
+      "python": "# 快乐数\n# 输入一个正整数n，输出true或false\nn = int(input())\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "同构字符串",
+    "description": "给定两个字符串 s 和 t，判断它们是否是同构的。如果 s 中的字符可以按某种映射关系替换得到 t，那么这两个字符串是同构的。每个出现的字符都应当映射到另一个字符，同时不改变字符的顺序。不同字符不能映射到同一个字符上，相同字符只能映射到同一个字符上。",
+    "difficulty": "easy",
+    "tags": ["哈希表", "字符串"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "egg\nadd", "output": "true"}
+    ],
+    "test_cases": [
+      {"input": "egg\nadd", "expected": "true"},
+      {"input": "foo\nbar", "expected": "false"},
+      {"input": "paper\ntitle", "expected": "true"},
+      {"input": "ab\naa", "expected": "false"}
+    ],
+    "starter_code": {
+      "python": "# 同构字符串\n# 第一行输入字符串s，第二行输入字符串t\n# 输出true或false\ns = input().strip()\nt = input().strip()\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "存在重复元素",
+    "description": "给你一个整数数组 nums。如果任一值在数组中出现至少两次，返回 true；如果数组中每个元素互不相同，返回 false。",
+    "difficulty": "easy",
+    "tags": ["数组", "哈希表"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "4\n1 2 3 1", "output": "true"}
+    ],
+    "test_cases": [
+      {"input": "4\n1 2 3 1", "expected": "true"},
+      {"input": "4\n1 2 3 4", "expected": "false"},
+      {"input": "10\n1 1 1 3 3 4 3 2 4 2", "expected": "true"}
+    ],
+    "starter_code": {
+      "python": "# 存在重复元素\n# 第一行输入数组长度n，第二行输入n个整数\n# 输出true或false\nn = int(input())\nnums = list(map(int, input().split()))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "丢失的数字",
+    "description": "给定一个包含 [0, n] 中 n 个数的数组 nums，找出 [0, n] 这个范围内没有出现在数组中的那个数。",
+    "difficulty": "easy",
+    "tags": ["数组", "数学", "位运算"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "3\n3 0 1", "output": "2"}
+    ],
+    "test_cases": [
+      {"input": "3\n3 0 1", "expected": "2"},
+      {"input": "2\n0 1", "expected": "2"},
+      {"input": "9\n9 6 4 2 3 5 7 0 1", "expected": "8"},
+      {"input": "1\n0", "expected": "1"}
+    ],
+    "starter_code": {
+      "python": "# 丢失的数字\n# 第一行输入数组长度n，第二行输入n个整数\n# 输出丢失的数字\nn = int(input())\nnums = list(map(int, input().split()))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "2的幂",
+    "description": "给你一个整数 n，请你判断该整数是否是 2 的幂次方。如果是，返回 true；否则，返回 false。",
+    "difficulty": "easy",
+    "tags": ["位运算", "数学"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "1", "output": "true"}
+    ],
+    "test_cases": [
+      {"input": "1", "expected": "true"},
+      {"input": "16", "expected": "true"},
+      {"input": "3", "expected": "false"},
+      {"input": "0", "expected": "false"},
+      {"input": "1024", "expected": "true"}
+    ],
+    "starter_code": {
+      "python": "# 2的幂\n# 输入一个整数n，输出true或false\nn = int(input())\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "计数质数",
+    "description": "给定整数 n，返回所有小于非负整数 n 的质数的数量。",
+    "difficulty": "easy",
+    "tags": ["数学", "数组"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "10", "output": "4"}
+    ],
+    "test_cases": [
+      {"input": "10", "expected": "4"},
+      {"input": "0", "expected": "0"},
+      {"input": "1", "expected": "0"},
+      {"input": "2", "expected": "0"},
+      {"input": "20", "expected": "8"}
+    ],
+    "starter_code": {
+      "python": "# 计数质数\n# 输入一个整数n，输出小于n的质数个数\nn = int(input())\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "三数之和",
+    "description": "给你一个整数数组 nums，判断是否存在三元组 [nums[i], nums[j], nums[k]] 满足 i != j、i != k 且 j != k，同时还满足 nums[i] + nums[j] + nums[k] == 0。请你返回所有和为 0 且不重复的三元组。按升序排列每个三元组，三元组之间按字典序排列，每行输出一个三元组。",
+    "difficulty": "medium",
+    "tags": ["数组", "双指针", "排序"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "6\n-1 0 1 2 -1 -4", "output": "-1 -1 2\n-1 0 1"}
+    ],
+    "test_cases": [
+      {"input": "6\n-1 0 1 2 -1 -4", "expected": "-1 -1 2\n-1 0 1"},
+      {"input": "3\n0 1 1", "expected": ""},
+      {"input": "3\n0 0 0", "expected": "0 0 0"}
+    ],
+    "starter_code": {
+      "python": "# 三数之和\n# 第一行输入数组长度n，第二行输入n个整数\n# 每行输出一个三元组，用空格分隔，无结果则输出空行\nn = int(input())\nnums = list(map(int, input().split()))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "无重复字符的最长子串",
+    "description": "给定一个字符串 s，请你找出其中不含有重复字符的最长子串的长度。",
+    "difficulty": "medium",
+    "tags": ["字符串", "哈希表", "滑动窗口"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "abcabcbb", "output": "3"}
+    ],
+    "test_cases": [
+      {"input": "abcabcbb", "expected": "3"},
+      {"input": "bbbbb", "expected": "1"},
+      {"input": "pwwkew", "expected": "3"},
+      {"input": "", "expected": "0"}
+    ],
+    "starter_code": {
+      "python": "# 无重复字符的最长子串\n# 输入一个字符串s，输出最长无重复字符子串的长度\ns = input().strip()\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "最长回文子串",
+    "description": "给你一个字符串 s，找到 s 中最长的回文子串。如果有多个答案，返回任意一个即可。",
+    "difficulty": "medium",
+    "tags": ["字符串", "动态规划"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "babad", "output": "bab"}
+    ],
+    "test_cases": [
+      {"input": "babad", "expected": "bab"},
+      {"input": "cbbd", "expected": "bb"},
+      {"input": "a", "expected": "a"}
+    ],
+    "starter_code": {
+      "python": "# 最长回文子串\n# 输入一个字符串s，输出最长回文子串\ns = input().strip()\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "盛最多水的容器",
+    "description": "给定一个长度为 n 的整数数组 height。有 n 条垂线，第 i 条线的两个端点是 (i, 0) 和 (i, height[i])。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。返回容器可以储存的最大水量。",
+    "difficulty": "medium",
+    "tags": ["数组", "双指针", "贪心"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "9\n1 8 6 2 5 4 8 3 7", "output": "49"}
+    ],
+    "test_cases": [
+      {"input": "9\n1 8 6 2 5 4 8 3 7", "expected": "49"},
+      {"input": "2\n1 1", "expected": "1"},
+      {"input": "3\n4 3 2", "expected": "4"}
+    ],
+    "starter_code": {
+      "python": "# 盛最多水的容器\n# 第一行输入数组长度n，第二行输入n个整数表示高度\n# 输出最大水量\nn = int(input())\nheight = list(map(int, input().split()))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "电话号码的字母组合",
+    "description": "给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。数字到字母的映射与电话按键相同。答案可以按任意顺序返回。",
+    "difficulty": "medium",
+    "tags": ["字符串", "回溯"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "23", "output": "ad ae af bd be bf cd ce cf"}
+    ],
+    "test_cases": [
+      {"input": "23", "expected": "ad ae af bd be bf cd ce cf"},
+      {"input": "2", "expected": "a b c"},
+      {"input": "", "expected": ""}
+    ],
+    "starter_code": {
+      "python": "# 电话号码的字母组合\n# 输入一个数字字符串，输出所有字母组合用空格分隔\ndigits = input().strip()\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "括号生成",
+    "description": "数字 n 代表生成括号的对数，请你设计一个函数，用于能够生成所有可能的并且有效的括号组合。",
+    "difficulty": "medium",
+    "tags": ["字符串", "回溯"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "3", "output": "((()))\n(()())\n(())()\n()(())\n()()()"}
+    ],
+    "test_cases": [
+      {"input": "3", "expected": "((()))\n(()())\n(())()\n()(())\n()()()"},
+      {"input": "1", "expected": "()"},
+      {"input": "2", "expected": "(())\n()()"}
+    ],
+    "starter_code": {
+      "python": "# 括号生成\n# 输入括号对数n，每行输出一个有效括号组合\nn = int(input())\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "下一个排列",
+    "description": "整数数组的一个排列就是将其所有成员以序列或线性顺序排列。实现获取下一个排列的函数，算法需要将给定数字序列重新排列成字典序中下一个更大的排列。如果不存在下一个更大的排列，则将数字重新排列成最小的排列。",
+    "difficulty": "medium",
+    "tags": ["数组", "双指针"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "3\n1 2 3", "output": "1 3 2"}
+    ],
+    "test_cases": [
+      {"input": "3\n1 2 3", "expected": "1 3 2"},
+      {"input": "3\n3 2 1", "expected": "1 2 3"},
+      {"input": "3\n1 1 5", "expected": "1 5 1"},
+      {"input": "4\n1 3 5 4", "expected": "1 4 3 5"}
+    ],
+    "starter_code": {
+      "python": "# 下一个排列\n# 第一行输入数组长度n，第二行输入n个整数\n# 输出下一个排列，用空格分隔\nn = int(input())\nnums = list(map(int, input().split()))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "搜索旋转排序数组",
+    "description": "整数数组 nums 按升序排列，数组中的值互不相同。在传递给函数之前，nums 在预先未知的某个下标 k 上进行了旋转。给你旋转后的数组 nums 和一个整数 target，如果 nums 中存在这个目标值，则返回它的下标，否则返回 -1。",
+    "difficulty": "medium",
+    "tags": ["数组", "二分查找"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "7\n4 5 6 7 0 1 2\n0", "output": "4"}
+    ],
+    "test_cases": [
+      {"input": "7\n4 5 6 7 0 1 2\n0", "expected": "4"},
+      {"input": "7\n4 5 6 7 0 1 2\n3", "expected": "-1"},
+      {"input": "1\n1\n0", "expected": "-1"}
+    ],
+    "starter_code": {
+      "python": "# 搜索旋转排序数组\n# 第一行输入数组长度n，第二行输入n个整数，第三行输入目标值\n# 输出目标值的下标，不存在则输出-1\nn = int(input())\nnums = list(map(int, input().split()))\ntarget = int(input())\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "在排序数组中查找元素",
+    "description": "给你一个按照非递减顺序排列的整数数组 nums，和一个目标值 target。请你找出给定目标值在数组中的开始位置和结束位置。如果数组中不存在目标值 target，返回 [-1, -1]。",
+    "difficulty": "medium",
+    "tags": ["数组", "二分查找"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "6\n5 7 7 8 8 10\n8", "output": "3 4"}
+    ],
+    "test_cases": [
+      {"input": "6\n5 7 7 8 8 10\n8", "expected": "3 4"},
+      {"input": "6\n5 7 7 8 8 10\n6", "expected": "-1 -1"},
+      {"input": "0\n\n0", "expected": "-1 -1"}
+    ],
+    "starter_code": {
+      "python": "# 在排序数组中查找元素的第一个和最后一个位置\n# 第一行输入数组长度n，第二行输入n个有序整数，第三行输入目标值\n# 输出开始位置和结束位置，用空格分隔\nn = int(input())\nnums = list(map(int, input().split())) if n > 0 else []\ntarget = int(input())\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "组合总和",
+    "description": "给你一个无重复元素的整数数组 candidates 和一个目标整数 target，找出 candidates 中可以使数字和为目标数 target 的所有不同组合。candidates 中的同一个数字可以无限制重复被选取。",
+    "difficulty": "medium",
+    "tags": ["数组", "回溯"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "4\n2 3 6 7\n7", "output": "2 2 3\n7"}
+    ],
+    "test_cases": [
+      {"input": "4\n2 3 6 7\n7", "expected": "2 2 3\n7"},
+      {"input": "3\n2 3 5\n8", "expected": "2 2 2 2\n2 3 3\n3 5"},
+      {"input": "1\n2\n1", "expected": ""}
+    ],
+    "starter_code": {
+      "python": "# 组合总和\n# 第一行输入数组长度n，第二行输入n个整数，第三行输入目标值\n# 每行输出一个组合用空格分隔，无结果则输出空行\nn = int(input())\ncandidates = list(map(int, input().split()))\ntarget = int(input())\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "全排列",
+    "description": "给定一个不含重复数字的数组 nums，返回其所有可能的全排列。你可以按任意顺序返回答案。",
+    "difficulty": "medium",
+    "tags": ["数组", "回溯"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "3\n1 2 3", "output": "1 2 3\n1 3 2\n2 1 3\n2 3 1\n3 1 2\n3 2 1"}
+    ],
+    "test_cases": [
+      {"input": "3\n1 2 3", "expected": "1 2 3\n1 3 2\n2 1 3\n2 3 1\n3 1 2\n3 2 1"},
+      {"input": "1\n1", "expected": "1"},
+      {"input": "2\n0 1", "expected": "0 1\n1 0"}
+    ],
+    "starter_code": {
+      "python": "# 全排列\n# 第一行输入数组长度n，第二行输入n个不重复整数\n# 每行输出一个排列，用空格分隔\nn = int(input())\nnums = list(map(int, input().split()))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "旋转图像",
+    "description": "给定一个 n x n 的二维矩阵 matrix 表示一个图像。请你将图像顺时针旋转 90 度。你必须在原地旋转图像。",
+    "difficulty": "medium",
+    "tags": ["数组", "矩阵"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "3\n1 2 3\n4 5 6\n7 8 9", "output": "7 4 1\n8 5 2\n9 6 3"}
+    ],
+    "test_cases": [
+      {"input": "3\n1 2 3\n4 5 6\n7 8 9", "expected": "7 4 1\n8 5 2\n9 6 3"},
+      {"input": "2\n1 2\n3 4", "expected": "3 1\n4 2"}
+    ],
+    "starter_code": {
+      "python": "# 旋转图像\n# 第一行输入矩阵大小n，接下来n行每行n个整数\n# 输出旋转90度后的矩阵\nn = int(input())\nmatrix = []\nfor _ in range(n):\n    matrix.append(list(map(int, input().split())))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "字母异位词分组",
+    "description": "给你一个字符串数组，请你将字母异位词组合在一起。字母异位词是由重新排列源单词的所有字母得到的一个新单词。每组内按字典序排列，组间按首个单词字典序排列。",
+    "difficulty": "medium",
+    "tags": ["字符串", "哈希表", "排序"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "6\neat tea tan ate nat bat", "output": "ate eat tea\nbat\nnat tan"}
+    ],
+    "test_cases": [
+      {"input": "6\neat tea tan ate nat bat", "expected": "ate eat tea\nbat\nnat tan"},
+      {"input": "1\na", "expected": "a"},
+      {"input": "1\n\"\"", "expected": "\"\""}
+    ],
+    "starter_code": {
+      "python": "# 字母异位词分组\n# 第一行输入字符串个数n，第二行输入n个字符串用空格分隔\n# 每行输出一组异位词用空格分隔\nn = int(input())\nstrs = input().split()\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "跳跃游戏",
+    "description": "给你一个非负整数数组 nums，你最初位于数组的第一个下标。数组中的每个元素代表你在该位置可以跳跃的最大长度。判断你是否能够到达最后一个下标。",
+    "difficulty": "medium",
+    "tags": ["数组", "贪心", "动态规划"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "5\n2 3 1 1 4", "output": "true"}
+    ],
+    "test_cases": [
+      {"input": "5\n2 3 1 1 4", "expected": "true"},
+      {"input": "5\n3 2 1 0 4", "expected": "false"},
+      {"input": "1\n0", "expected": "true"}
+    ],
+    "starter_code": {
+      "python": "# 跳跃游戏\n# 第一行输入数组长度n，第二行输入n个非负整数\n# 输出true或false\nn = int(input())\nnums = list(map(int, input().split()))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "合并区间",
+    "description": "以数组 intervals 表示若干个区间的集合，其中单个区间为 intervals[i] = [starti, endi]。请你合并所有重叠的区间，并返回一个不重叠的区间数组，该数组需恰好覆盖输入中的所有区间。",
+    "difficulty": "medium",
+    "tags": ["数组", "排序"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "4\n1 3\n2 6\n8 10\n15 18", "output": "1 6\n8 10\n15 18"}
+    ],
+    "test_cases": [
+      {"input": "4\n1 3\n2 6\n8 10\n15 18", "expected": "1 6\n8 10\n15 18"},
+      {"input": "2\n1 4\n4 5", "expected": "1 5"},
+      {"input": "1\n1 1", "expected": "1 1"}
+    ],
+    "starter_code": {
+      "python": "# 合并区间\n# 第一行输入区间个数n，接下来n行每行两个整数表示一个区间\n# 每行输出一个合并后的区间\nn = int(input())\nintervals = []\nfor _ in range(n):\n    intervals.append(list(map(int, input().split())))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "不同路径",
+    "description": "一个机器人位于一个 m x n 网格的左上角。机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角。问总共有多少条不同的路径？",
+    "difficulty": "medium",
+    "tags": ["动态规划", "数学"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "3 7", "output": "28"}
+    ],
+    "test_cases": [
+      {"input": "3 7", "expected": "28"},
+      {"input": "3 2", "expected": "3"},
+      {"input": "7 3", "expected": "28"},
+      {"input": "3 3", "expected": "6"}
+    ],
+    "starter_code": {
+      "python": "# 不同路径\n# 输入m和n，用空格分隔\n# 输出不同路径数\nm, n = map(int, input().split())\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "最小路径和",
+    "description": "给定一个包含非负整数的 m x n 网格 grid，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。每次只能向下或者向右移动一步。",
+    "difficulty": "medium",
+    "tags": ["数组", "动态规划", "矩阵"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "3 3\n1 3 1\n1 5 1\n4 2 1", "output": "7"}
+    ],
+    "test_cases": [
+      {"input": "3 3\n1 3 1\n1 5 1\n4 2 1", "expected": "7"},
+      {"input": "2 3\n1 2 3\n4 5 6", "expected": "12"}
+    ],
+    "starter_code": {
+      "python": "# 最小路径和\n# 第一行输入m和n，接下来m行每行n个整数\n# 输出最小路径和\nm, n = map(int, input().split())\ngrid = []\nfor _ in range(m):\n    grid.append(list(map(int, input().split())))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "单词搜索",
+    "description": "给定一个 m x n 二维字符网格 board 和一个字符串单词 word。如果 word 存在于网格中，返回 true；否则，返回 false。单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中相邻单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母不允许被重复使用。",
+    "difficulty": "medium",
+    "tags": ["数组", "回溯", "矩阵"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "3 4\nABCE\nSFCS\nADEE\nABCCED", "output": "true"}
+    ],
+    "test_cases": [
+      {"input": "3 4\nABCE\nSFCS\nADEE\nABCCED", "expected": "true"},
+      {"input": "3 4\nABCE\nSFCS\nADEE\nSEE", "expected": "true"},
+      {"input": "3 4\nABCE\nSFCS\nADEE\nABCB", "expected": "false"}
+    ],
+    "starter_code": {
+      "python": "# 单词搜索\n# 第一行输入m和n，接下来m行每行一个字符串，最后一行输入目标单词\n# 输出true或false\nm, n = map(int, input().split())\nboard = []\nfor _ in range(m):\n    board.append(list(input().strip()))\nword = input().strip()\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "子集",
+    "description": "给你一个整数数组 nums，数组中的元素互不相同。返回该数组所有可能的子集（幂集）。解集不能包含重复的子集。按子集大小排列，同大小按字典序排列。",
+    "difficulty": "medium",
+    "tags": ["数组", "回溯", "位运算"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "3\n1 2 3", "output": "\n1\n2\n3\n1 2\n1 3\n2 3\n1 2 3"}
+    ],
+    "test_cases": [
+      {"input": "3\n1 2 3", "expected": "\n1\n2\n3\n1 2\n1 3\n2 3\n1 2 3"},
+      {"input": "1\n0", "expected": "\n0"}
+    ],
+    "starter_code": {
+      "python": "# 子集\n# 第一行输入数组长度n，第二行输入n个不重复整数\n# 每行输出一个子集用空格分隔，空集输出空行\nn = int(input())\nnums = list(map(int, input().split()))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "零钱兑换",
+    "description": "给你一个整数数组 coins，表示不同面额的硬币；以及一个整数 amount，表示总金额。计算并返回可以凑成总金额所需的最少的硬币个数。如果没有任何一种硬币组合能组成总金额，返回 -1。",
+    "difficulty": "medium",
+    "tags": ["数组", "动态规划"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "3\n1 2 5\n11", "output": "3"}
+    ],
+    "test_cases": [
+      {"input": "3\n1 2 5\n11", "expected": "3"},
+      {"input": "1\n2\n3", "expected": "-1"},
+      {"input": "1\n1\n0", "expected": "0"}
+    ],
+    "starter_code": {
+      "python": "# 零钱兑换\n# 第一行输入硬币种数n，第二行输入n个面额，第三行输入总金额\n# 输出最少硬币个数，无法凑成输出-1\nn = int(input())\ncoins = list(map(int, input().split()))\namount = int(input())\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "打家劫舍",
+    "description": "你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。给定一个代表每个房屋存放金额的非负整数数组，计算你不触动警报装置的情况下，一夜之内能够偷窃到的最高金额。",
+    "difficulty": "medium",
+    "tags": ["数组", "动态规划"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "4\n1 2 3 1", "output": "4"}
+    ],
+    "test_cases": [
+      {"input": "4\n1 2 3 1", "expected": "4"},
+      {"input": "5\n2 7 9 3 1", "expected": "12"},
+      {"input": "1\n5", "expected": "5"}
+    ],
+    "starter_code": {
+      "python": "# 打家劫舍\n# 第一行输入数组长度n，第二行输入n个非负整数\n# 输出能偷窃到的最高金额\nn = int(input())\nnums = list(map(int, input().split()))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "岛屿数量",
+    "description": "给你一个由 '1'（陆地）和 '0'（水）组成的的二维网格，请你计算网格中岛屿的数量。岛屿总是被水包围，并且每座岛屿只能由水平方向和/或垂直方向上相邻的陆地连接形成。",
+    "difficulty": "medium",
+    "tags": ["深度优先搜索", "广度优先搜索", "矩阵"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "4 5\n11110\n11010\n11000\n00000", "output": "1"}
+    ],
+    "test_cases": [
+      {"input": "4 5\n11110\n11010\n11000\n00000", "expected": "1"},
+      {"input": "4 5\n11000\n11000\n00100\n00011", "expected": "3"}
+    ],
+    "starter_code": {
+      "python": "# 岛屿数量\n# 第一行输入m和n，接下来m行每行一个长度为n的01字符串\n# 输出岛屿数量\nm, n = map(int, input().split())\ngrid = []\nfor _ in range(m):\n    grid.append(list(input().strip()))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "课程表",
+    "description": "你这个学期必须选修 numCourses 门课程，记为 0 到 numCourses - 1。在选修某些课程之前需要一些先修课程。先修课程按数组 prerequisites 给出，其中 prerequisites[i] = [ai, bi] 表示如果要学习课程 ai 则必须先学习课程 bi。判断是否可能完成所有课程的学习。",
+    "difficulty": "medium",
+    "tags": ["图", "拓扑排序", "广度优先搜索"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "2 1\n1 0", "output": "true"}
+    ],
+    "test_cases": [
+      {"input": "2 1\n1 0", "expected": "true"},
+      {"input": "2 2\n1 0\n0 1", "expected": "false"},
+      {"input": "3 2\n1 0\n2 1", "expected": "true"}
+    ],
+    "starter_code": {
+      "python": "# 课程表\n# 第一行输入课程数numCourses和先修课对数n\n# 接下来n行每行两个整数表示先修关系\n# 输出true或false\nnumCourses, n = map(int, input().split())\nprerequisites = []\nfor _ in range(n):\n    prerequisites.append(list(map(int, input().split())))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "最长递增子序列",
+    "description": "给你一个整数数组 nums，找到其中最长严格递增子序列的长度。子序列是由数组派生而来的序列，删除（或不删除）数组中的元素而不改变其余元素的顺序。",
+    "difficulty": "medium",
+    "tags": ["数组", "动态规划", "二分查找"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "8\n10 9 2 5 3 7 101 18", "output": "4"}
+    ],
+    "test_cases": [
+      {"input": "8\n10 9 2 5 3 7 101 18", "expected": "4"},
+      {"input": "4\n0 1 0 3", "expected": "3"},
+      {"input": "6\n7 7 7 7 7 7", "expected": "1"}
+    ],
+    "starter_code": {
+      "python": "# 最长递增子序列\n# 第一行输入数组长度n，第二行输入n个整数\n# 输出最长严格递增子序列的长度\nn = int(input())\nnums = list(map(int, input().split()))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "每日温度",
+    "description": "给定一个整数数组 temperatures 表示每天的温度，返回一个数组 answer，其中 answer[i] 是指对于第 i 天，下一个更高温度出现在几天后。如果气温在这之后都不会升高，请在该位置用 0 来代替。",
+    "difficulty": "medium",
+    "tags": ["栈", "数组"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "8\n73 74 75 71 69 72 76 73", "output": "1 1 4 2 1 1 0 0"}
+    ],
+    "test_cases": [
+      {"input": "8\n73 74 75 71 69 72 76 73", "expected": "1 1 4 2 1 1 0 0"},
+      {"input": "3\n30 40 50", "expected": "1 1 0"},
+      {"input": "3\n30 60 90", "expected": "1 1 0"}
+    ],
+    "starter_code": {
+      "python": "# 每日温度\n# 第一行输入数组长度n，第二行输入n个整数表示温度\n# 输出等待天数数组，用空格分隔\nn = int(input())\ntemperatures = list(map(int, input().split()))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "任务调度器",
+    "description": "给你一个用字符数组 tasks 表示的 CPU 需要执行的任务列表，用字母 A 到 Z 表示，以及一个冷却时间 n。每个周期或每个时间单位可以完成一个任务。任务可以按任意顺序完成，但有一个限制条件：两个相同种类的任务之间必须有长度为整数 n 的冷却时间。返回完成所有任务所需要的最短时间。",
+    "difficulty": "medium",
+    "tags": ["数组", "贪心", "哈希表"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "6\nA A A B B B\n2", "output": "8"}
+    ],
+    "test_cases": [
+      {"input": "6\nA A A B B B\n2", "expected": "8"},
+      {"input": "5\nA A A B B\n2", "expected": "7"},
+      {"input": "6\nA A A A A A\n2", "expected": "16"}
+    ],
+    "starter_code": {
+      "python": "# 任务调度器\n# 第一行输入任务数n，第二行输入n个任务字母用空格分隔，第三行输入冷却时间\n# 输出完成所有任务所需的最短时间\nn = int(input())\ntasks = input().split()\ncooldown = int(input())\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "前K个高频元素",
+    "description": "给你一个整数数组 nums 和一个整数 k，请你返回其中出现频率前 k 高的元素。你可以按任意顺序返回答案。",
+    "difficulty": "medium",
+    "tags": ["数组", "哈希表", "堆"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "6\n1 1 1 2 2 3\n2", "output": "1 2"}
+    ],
+    "test_cases": [
+      {"input": "6\n1 1 1 2 2 3\n2", "expected": "1 2"},
+      {"input": "1\n1\n1", "expected": "1"},
+      {"input": "5\n4 4 4 3 3\n1", "expected": "4"}
+    ],
+    "starter_code": {
+      "python": "# 前K个高频元素\n# 第一行输入数组长度n，第二行输入n个整数，第三行输入k\n# 输出前k个高频元素，用空格分隔，按频率从高到低\nn = int(input())\nnums = list(map(int, input().split()))\nk = int(input())\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "最长连续序列",
+    "description": "给定一个未排序的整数数组 nums，找出数字连续的最长序列（不要求序列元素在原数组中连续）的长度。请你设计并实现时间复杂度为 O(n) 的算法解决此问题。",
+    "difficulty": "medium",
+    "tags": ["数组", "哈希表"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "6\n100 4 200 1 3 2", "output": "4"}
+    ],
+    "test_cases": [
+      {"input": "6\n100 4 200 1 3 2", "expected": "4"},
+      {"input": "10\n0 3 7 2 5 8 4 6 0 1", "expected": "9"},
+      {"input": "0", "expected": "0"}
+    ],
+    "starter_code": {
+      "python": "# 最长连续序列\n# 第一行输入数组长度n，第二行输入n个整数（n为0时无第二行）\n# 输出最长连续序列的长度\nn = int(input())\nnums = list(map(int, input().split())) if n > 0 else []\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "乘积最大子数组",
+    "description": "给你一个整数数组 nums，请你找出数组中乘积最大的非空连续子数组（该子数组中至少包含一个数字），并返回该子数组所对应的乘积。",
+    "difficulty": "medium",
+    "tags": ["数组", "动态规划"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "4\n2 3 -2 4", "output": "6"}
+    ],
+    "test_cases": [
+      {"input": "4\n2 3 -2 4", "expected": "6"},
+      {"input": "3\n-2 0 -1", "expected": "0"},
+      {"input": "3\n-2 3 -4", "expected": "24"}
+    ],
+    "starter_code": {
+      "python": "# 乘积最大子数组\n# 第一行输入数组长度n，第二行输入n个整数\n# 输出最大乘积\nn = int(input())\nnums = list(map(int, input().split()))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "单词拆分",
+    "description": "给你一个字符串 s 和一个字符串列表 wordDict 作为字典。如果可以利用字典中出现的一个或多个单词拼接出 s 则返回 true。注意：字典中的单词可以重复使用。",
+    "difficulty": "medium",
+    "tags": ["字符串", "动态规划", "哈希表"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "leetcode\n2\nleet code", "output": "true"}
+    ],
+    "test_cases": [
+      {"input": "leetcode\n2\nleet code", "expected": "true"},
+      {"input": "applepenapple\n2\napple pen", "expected": "true"},
+      {"input": "catsandog\n5\ncats dog sand and cat", "expected": "false"}
+    ],
+    "starter_code": {
+      "python": "# 单词拆分\n# 第一行输入字符串s，第二行输入字典大小n，第三行输入n个单词用空格分隔\n# 输出true或false\ns = input().strip()\nn = int(input())\nwordDict = input().split()\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "排序链表(数组模拟)",
+    "description": "给你一个整数数组（模拟链表），请将其按升序排序并输出。要求时间复杂度为 O(n log n)。",
+    "difficulty": "medium",
+    "tags": ["数组", "排序", "归并排序"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "5\n4 2 1 3 5", "output": "1 2 3 4 5"}
+    ],
+    "test_cases": [
+      {"input": "5\n4 2 1 3 5", "expected": "1 2 3 4 5"},
+      {"input": "4\n-1 5 3 4", "expected": "-1 3 4 5"},
+      {"input": "1\n0", "expected": "0"}
+    ],
+    "starter_code": {
+      "python": "# 排序链表(数组模拟)\n# 第一行输入数组长度n，第二行输入n个整数\n# 输出排序后的数组，用空格分隔\nn = int(input())\nnums = list(map(int, input().split()))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "颜色分类",
+    "description": "给定一个包含红色、白色和蓝色共 n 个元素的数组 nums，原地对它们进行排序，使得相同颜色的元素相邻，并按照红色(0)、白色(1)、蓝色(2)的顺序排列。",
+    "difficulty": "medium",
+    "tags": ["数组", "双指针", "排序"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "6\n2 0 2 1 1 0", "output": "0 0 1 1 2 2"}
+    ],
+    "test_cases": [
+      {"input": "6\n2 0 2 1 1 0", "expected": "0 0 1 1 2 2"},
+      {"input": "2\n2 0", "expected": "0 2"},
+      {"input": "3\n1 0 2", "expected": "0 1 2"}
+    ],
+    "starter_code": {
+      "python": "# 颜色分类\n# 第一行输入数组长度n，第二行输入n个整数(0,1,2)\n# 输出排序后的数组，用空格分隔\nn = int(input())\nnums = list(map(int, input().split()))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "寻找峰值",
+    "description": "峰值元素是指其值严格大于左右相邻值的元素。给你一个整数数组 nums，找到峰值元素并返回其索引。数组可能包含多个峰值，在这种情况下，返回任何一个峰值所在位置即可。你可以假设 nums[-1] = nums[n] = -∞。",
+    "difficulty": "medium",
+    "tags": ["数组", "二分查找"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "4\n1 2 3 1", "output": "2"}
+    ],
+    "test_cases": [
+      {"input": "4\n1 2 3 1", "expected": "2"},
+      {"input": "5\n1 2 1 3 5", "expected": "4"},
+      {"input": "1\n1", "expected": "0"}
+    ],
+    "starter_code": {
+      "python": "# 寻找峰值\n# 第一行输入数组长度n，第二行输入n个整数\n# 输出任一峰值的索引\nn = int(input())\nnums = list(map(int, input().split()))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "旋转数组",
+    "description": "给定一个整数数组 nums，将数组中的元素向右轮转 k 个位置，其中 k 是非负数。",
+    "difficulty": "medium",
+    "tags": ["数组", "数学"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "7\n1 2 3 4 5 6 7\n3", "output": "5 6 7 1 2 3 4"}
+    ],
+    "test_cases": [
+      {"input": "7\n1 2 3 4 5 6 7\n3", "expected": "5 6 7 1 2 3 4"},
+      {"input": "4\n-1 -100 3 99\n2", "expected": "3 99 -1 -100"},
+      {"input": "3\n1 2 3\n4", "expected": "3 1 2"}
+    ],
+    "starter_code": {
+      "python": "# 旋转数组\n# 第一行输入数组长度n，第二行输入n个整数，第三行输入旋转步数k\n# 输出旋转后的数组，用空格分隔\nn = int(input())\nnums = list(map(int, input().split()))\nk = int(input())\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "除自身以外数组的乘积",
+    "description": "给你一个整数数组 nums，返回数组 answer，其中 answer[i] 等于 nums 中除 nums[i] 之外其余各元素的乘积。请不要使用除法，且在 O(n) 时间复杂度内完成此题。",
+    "difficulty": "medium",
+    "tags": ["数组", "前缀和"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "4\n1 2 3 4", "output": "24 12 8 6"}
+    ],
+    "test_cases": [
+      {"input": "4\n1 2 3 4", "expected": "24 12 8 6"},
+      {"input": "5\n-1 1 0 -3 3", "expected": "0 0 9 0 0"}
+    ],
+    "starter_code": {
+      "python": "# 除自身以外数组的乘积\n# 第一行输入数组长度n，第二行输入n个整数\n# 输出结果数组，用空格分隔\nn = int(input())\nnums = list(map(int, input().split()))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "接雨水",
+    "description": "给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。",
+    "difficulty": "hard",
+    "tags": ["数组", "双指针", "栈", "动态规划"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "12\n0 1 0 2 1 0 1 3 2 1 2 1", "output": "6"}
+    ],
+    "test_cases": [
+      {"input": "12\n0 1 0 2 1 0 1 3 2 1 2 1", "expected": "6"},
+      {"input": "6\n4 2 0 3 2 5", "expected": "9"},
+      {"input": "3\n1 0 1", "expected": "1"}
+    ],
+    "starter_code": {
+      "python": "# 接雨水\n# 第一行输入数组长度n，第二行输入n个非负整数\n# 输出能接的雨水量\nn = int(input())\nheight = list(map(int, input().split()))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "N皇后",
+    "description": "n 皇后问题研究的是如何将 n 个皇后放置在 n×n 的棋盘上，并且使皇后彼此之间不能相互攻击。给你一个整数 n，返回 n 皇后问题的解的数量。",
+    "difficulty": "hard",
+    "tags": ["回溯", "数组"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "4", "output": "2"}
+    ],
+    "test_cases": [
+      {"input": "4", "expected": "2"},
+      {"input": "1", "expected": "1"},
+      {"input": "8", "expected": "92"}
+    ],
+    "starter_code": {
+      "python": "# N皇后\n# 输入棋盘大小n，输出解的数量\nn = int(input())\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "最小覆盖子串",
+    "description": "给你一个字符串 s、一个字符串 t。返回 s 中涵盖 t 所有字符的最小子串。如果 s 中不存在涵盖 t 所有字符的子串，则返回空字符串。",
+    "difficulty": "hard",
+    "tags": ["字符串", "哈希表", "滑动窗口"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "ADOBECODEBANC\nABC", "output": "BANC"}
+    ],
+    "test_cases": [
+      {"input": "ADOBECODEBANC\nABC", "expected": "BANC"},
+      {"input": "a\na", "expected": "a"},
+      {"input": "a\naa", "expected": ""}
+    ],
+    "starter_code": {
+      "python": "# 最小覆盖子串\n# 第一行输入字符串s，第二行输入字符串t\n# 输出最小覆盖子串，不存在则输出空行\ns = input().strip()\nt = input().strip()\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "柱状图中最大矩形",
+    "description": "给定 n 个非负整数，用来表示柱状图中各个柱子的高度。每个柱子彼此相邻，且宽度为 1。求在该柱状图中，能够勾勒出来的矩形的最大面积。",
+    "difficulty": "hard",
+    "tags": ["栈", "数组"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "6\n2 1 5 6 2 3", "output": "10"}
+    ],
+    "test_cases": [
+      {"input": "6\n2 1 5 6 2 3", "expected": "10"},
+      {"input": "2\n2 4", "expected": "4"},
+      {"input": "1\n1", "expected": "1"}
+    ],
+    "starter_code": {
+      "python": "# 柱状图中最大矩形\n# 第一行输入数组长度n，第二行输入n个非负整数\n# 输出最大矩形面积\nn = int(input())\nheights = list(map(int, input().split()))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "最长有效括号",
+    "description": "给你一个只包含 '(' 和 ')' 的字符串，找出最长有效（格式正确且连续）括号子串的长度。",
+    "difficulty": "hard",
+    "tags": ["字符串", "栈", "动态规划"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "(()", "output": "2"}
+    ],
+    "test_cases": [
+      {"input": "(()", "expected": "2"},
+      {"input": ")()())", "expected": "4"},
+      {"input": "", "expected": "0"},
+      {"input": "()(())", "expected": "6"}
+    ],
+    "starter_code": {
+      "python": "# 最长有效括号\n# 输入一个括号字符串，输出最长有效括号子串的长度\ns = input().strip()\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "编辑距离",
+    "description": "给你两个单词 word1 和 word2，请返回将 word1 转换成 word2 所使用的最少操作数。你可以对一个单词进行如下三种操作：插入一个字符、删除一个字符、替换一个字符。",
+    "difficulty": "hard",
+    "tags": ["字符串", "动态规划"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "horse\nros", "output": "3"}
+    ],
+    "test_cases": [
+      {"input": "horse\nros", "expected": "3"},
+      {"input": "intention\nexecution", "expected": "5"},
+      {"input": "\na", "expected": "1"}
+    ],
+    "starter_code": {
+      "python": "# 编辑距离\n# 第一行输入word1，第二行输入word2\n# 输出最少操作数\nword1 = input().strip()\nword2 = input().strip()\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "滑动窗口最大值",
+    "description": "给你一个整数数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。返回滑动窗口中的最大值。",
+    "difficulty": "hard",
+    "tags": ["数组", "队列", "滑动窗口"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "8\n1 3 -1 -3 5 3 6 7\n3", "output": "3 3 5 5 6 7"}
+    ],
+    "test_cases": [
+      {"input": "8\n1 3 -1 -3 5 3 6 7\n3", "expected": "3 3 5 5 6 7"},
+      {"input": "1\n1\n1", "expected": "1"},
+      {"input": "4\n9 11 8 7\n2", "expected": "11 11 8"}
+    ],
+    "starter_code": {
+      "python": "# 滑动窗口最大值\n# 第一行输入数组长度n，第二行输入n个整数，第三行输入窗口大小k\n# 输出每个窗口的最大值，用空格分隔\nn = int(input())\nnums = list(map(int, input().split()))\nk = int(input())\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "正则表达式匹配",
+    "description": "给你一个字符串 s 和一个字符规律 p，请你来实现一个支持 '.' 和 '*' 的正则表达式匹配。'.' 匹配任意单个字符，'*' 匹配零个或多个前面的那一个元素。所谓匹配，是要涵盖整个字符串 s。",
+    "difficulty": "hard",
+    "tags": ["字符串", "动态规划", "递归"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "aa\na", "output": "false"}
+    ],
+    "test_cases": [
+      {"input": "aa\na", "expected": "false"},
+      {"input": "aa\na*", "expected": "true"},
+      {"input": "ab\n.*", "expected": "true"},
+      {"input": "aab\nc*a*b", "expected": "true"},
+      {"input": "mississippi\nmis*is*p*.", "expected": "false"}
+    ],
+    "starter_code": {
+      "python": "# 正则表达式匹配\n# 第一行输入字符串s，第二行输入模式p\n# 输出true或false\ns = input().strip()\np = input().strip()\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "合并K个升序链表(数组模拟)",
+    "description": "给你一个链表数组（用二维数组模拟），每个链表都已经按升序排列。请你将所有链表合并到一个升序链表中，返回合并后的链表。",
+    "difficulty": "hard",
+    "tags": ["数组", "排序", "堆"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "3\n3\n1 4 5\n3\n1 3 4\n2\n2 6", "output": "1 1 2 3 4 4 5 6"}
+    ],
+    "test_cases": [
+      {"input": "3\n3\n1 4 5\n3\n1 3 4\n2\n2 6", "expected": "1 1 2 3 4 4 5 6"},
+      {"input": "1\n0", "expected": ""},
+      {"input": "2\n1\n1\n1\n2", "expected": "1 2"}
+    ],
+    "starter_code": {
+      "python": "# 合并K个升序链表(数组模拟)\n# 第一行输入链表个数k，接下来每个链表先输入长度n，再输入n个整数\n# 输出合并后的升序数组，用空格分隔\nk = int(input())\nlists = []\nfor _ in range(k):\n    n = int(input())\n    if n > 0:\n        lists.append(list(map(int, input().split())))\n    else:\n        lists.append([])\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "寻找两个正序数组的中位数",
+    "description": "给定两个大小分别为 m 和 n 的正序（从小到大）数组 nums1 和 nums2。请你找出并返回这两个正序数组的中位数。算法的时间复杂度应该为 O(log(m+n))。",
+    "difficulty": "hard",
+    "tags": ["数组", "二分查找"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "2\n1 3\n2\n2 4", "output": "2.5"}
+    ],
+    "test_cases": [
+      {"input": "2\n1 3\n2\n2 4", "expected": "2.5"},
+      {"input": "2\n1 2\n1\n3", "expected": "2.0"},
+      {"input": "1\n1\n1\n2", "expected": "1.5"}
+    ],
+    "starter_code": {
+      "python": "# 寻找两个正序数组的中位数\n# 第一行输入m，第二行输入nums1，第三行输入n，第四行输入nums2\n# 输出中位数（保留一位小数）\nm = int(input())\nnums1 = list(map(int, input().split()))\nn = int(input())\nnums2 = list(map(int, input().split()))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "通配符匹配",
+    "description": "给你一个输入字符串 s 和一个字符模式 p，请你实现一个支持 '?' 和 '*' 匹配规则的通配符匹配。'?' 可以匹配任何单个字符，'*' 可以匹配任意字符序列（包括空字符序列）。判定匹配成功需要覆盖整个输入字符串。",
+    "difficulty": "hard",
+    "tags": ["字符串", "动态规划", "贪心"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "aa\na", "output": "false"}
+    ],
+    "test_cases": [
+      {"input": "aa\na", "expected": "false"},
+      {"input": "aa\n*", "expected": "true"},
+      {"input": "cb\n?a", "expected": "false"},
+      {"input": "adceb\n*a*b", "expected": "true"}
+    ],
+    "starter_code": {
+      "python": "# 通配符匹配\n# 第一行输入字符串s，第二行输入模式p\n# 输出true或false\ns = input().strip()\np = input().strip()\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "缺失的第一个正数",
+    "description": "给你一个未排序的整数数组 nums，请你找出其中没有出现的最小的正整数。请你实现时间复杂度为 O(n) 并且只使用常数级别额外空间的解决方案。",
+    "difficulty": "hard",
+    "tags": ["数组", "哈希表"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "4\n1 2 0 -1", "output": "3"}
+    ],
+    "test_cases": [
+      {"input": "4\n1 2 0 -1", "expected": "3"},
+      {"input": "3\n3 4 -1", "expected": "1"},
+      {"input": "3\n7 8 9", "expected": "1"},
+      {"input": "4\n1 2 3 4", "expected": "5"}
+    ],
+    "starter_code": {
+      "python": "# 缺失的第一个正数\n# 第一行输入数组长度n，第二行输入n个整数\n# 输出缺失的最小正整数\nn = int(input())\nnums = list(map(int, input().split()))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "分发糖果",
+    "description": "n 个孩子站成一排。给你一个整数数组 ratings 表示每个孩子的评分。你需要按照以下要求，给这些孩子分发糖果：每个孩子至少分配到 1 个糖果。相邻两个孩子评分更高的孩子会获得更多的糖果。请你给每个孩子分发糖果，计算并返回需要准备的最少糖果数目。",
+    "difficulty": "hard",
+    "tags": ["数组", "贪心"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "3\n1 0 2", "output": "5"}
+    ],
+    "test_cases": [
+      {"input": "3\n1 0 2", "expected": "5"},
+      {"input": "3\n1 2 2", "expected": "4"},
+      {"input": "5\n1 3 2 2 1", "expected": "7"}
+    ],
+    "starter_code": {
+      "python": "# 分发糖果\n# 第一行输入孩子数n，第二行输入n个评分\n# 输出最少糖果数目\nn = int(input())\nratings = list(map(int, input().split()))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "最长连续递增子序列",
+    "description": "给定一个未经排序的整数数组，找到最长且连续递增的子序列，并返回该序列的长度。连续递增的子序列可以由两个下标 l 和 r（l < r）确定，如果对于每个 l <= i < r，都有 nums[i] < nums[i + 1]，那么子序列 [nums[l], nums[l + 1], ..., nums[r - 1], nums[r]] 就是连续递增子序列。",
+    "difficulty": "hard",
+    "tags": ["数组"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "6\n1 3 5 4 7 8", "output": "3"}
+    ],
+    "test_cases": [
+      {"input": "6\n1 3 5 4 7 8", "expected": "3"},
+      {"input": "5\n2 2 2 2 2", "expected": "1"},
+      {"input": "7\n1 2 3 4 5 6 7", "expected": "7"}
+    ],
+    "starter_code": {
+      "python": "# 最长连续递增子序列\n# 第一行输入数组长度n，第二行输入n个整数\n# 输出最长连续递增子序列的长度\nn = int(input())\nnums = list(map(int, input().split()))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "数据流的中位数",
+    "description": "中位数是有序整数列表中间的数。设计一个数据结构来模拟数据流的中位数操作。给定一系列操作，add 表示添加数字，find 表示查找当前中位数。",
+    "difficulty": "hard",
+    "tags": ["设计", "堆", "排序"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "6\nadd 1\nadd 2\nfind\nadd 3\nfind\nfind", "output": "1.5\n2.0\n2.0"}
+    ],
+    "test_cases": [
+      {"input": "6\nadd 1\nadd 2\nfind\nadd 3\nfind\nfind", "expected": "1.5\n2.0\n2.0"},
+      {"input": "3\nadd 5\nfind\nadd 3", "expected": "5.0"},
+      {"input": "5\nadd 1\nadd 2\nadd 3\nadd 4\nfind", "expected": "2.5"}
+    ],
+    "starter_code": {
+      "python": "# 数据流的中位数\n# 第一行输入操作数n，接下来n行每行一个操作\n# add x 表示添加数字x，find 表示输出当前中位数（保留一位小数）\nn = int(input())\noperations = []\nfor _ in range(n):\n    operations.append(input().strip())\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "最大矩形",
+    "description": "给定一个仅包含 0 和 1、大小为 rows x cols 的二维二进制矩阵，找出只包含 1 的最大矩形，并返回其面积。",
+    "difficulty": "hard",
+    "tags": ["数组", "栈", "动态规划", "矩阵"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "4 5\n10100\n10111\n11111\n10010", "output": "6"}
+    ],
+    "test_cases": [
+      {"input": "4 5\n10100\n10111\n11111\n10010", "expected": "6"},
+      {"input": "1 1\n0", "expected": "0"},
+      {"input": "1 1\n1", "expected": "1"},
+      {"input": "2 2\n11\n11", "expected": "4"}
+    ],
+    "starter_code": {
+      "python": "# 最大矩形\n# 第一行输入rows和cols，接下来rows行每行一个01字符串\n# 输出最大矩形面积\nrows, cols = map(int, input().split())\nmatrix = []\nfor _ in range(rows):\n    matrix.append(list(input().strip()))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "戳气球",
+    "description": "有 n 个气球，编号为 0 到 n-1，每个气球上都标有一个数字，这些数字存在数组 nums 中。现在要求你戳破所有的气球。戳破第 i 个气球，你可以获得 nums[i-1] * nums[i] * nums[i+1] 枚硬币。如果 i-1 或 i+1 超出了数组的边界，那么就当它是一个数字为 1 的气球。求所能获得硬币的最大数量。",
+    "difficulty": "hard",
+    "tags": ["数组", "动态规划"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "4\n3 1 5 8", "output": "167"}
+    ],
+    "test_cases": [
+      {"input": "4\n3 1 5 8", "expected": "167"},
+      {"input": "1\n5", "expected": "5"},
+      {"input": "2\n1 5", "expected": "10"}
+    ],
+    "starter_code": {
+      "python": "# 戳气球\n# 第一行输入数组长度n，第二行输入n个整数\n# 输出能获得的最大硬币数\nn = int(input())\nnums = list(map(int, input().split()))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "去除重复字母",
+    "description": "给你一个字符串 s，请你去除字符串中重复的字母，使得每个字母只出现一次。需保证返回结果的字典序最小（要求不能打乱其他字符的相对位置）。",
+    "difficulty": "hard",
+    "tags": ["字符串", "栈", "贪心"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "bcabc", "output": "abc"}
+    ],
+    "test_cases": [
+      {"input": "bcabc", "expected": "abc"},
+      {"input": "cbacdcbc", "expected": "acdb"},
+      {"input": "abcd", "expected": "abcd"}
+    ],
+    "starter_code": {
+      "python": "# 去除重复字母\n# 输入一个字符串s，输出去除重复字母后字典序最小的字符串\ns = input().strip()\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "俄罗斯套娃信封问题",
+    "description": "给你一个二维整数数组 envelopes，其中 envelopes[i] = [wi, hi]，表示第 i 个信封的宽度和高度。当另一个信封的宽度和高度都比这个信封大的时候，这个信封就可以放进另一个信封里，如同俄罗斯套娃一样。请计算最多能有多少个信封能组成一组套娃信封。",
+    "difficulty": "hard",
+    "tags": ["数组", "动态规划", "二分查找", "排序"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "4\n5 4\n6 4\n6 7\n2 3", "output": "3"}
+    ],
+    "test_cases": [
+      {"input": "4\n5 4\n6 4\n6 7\n2 3", "expected": "3"},
+      {"input": "1\n1 1", "expected": "1"},
+      {"input": "3\n1 2\n2 3\n3 4", "expected": "3"}
+    ],
+    "starter_code": {
+      "python": "# 俄罗斯套娃信封问题\n# 第一行输入信封个数n，接下来n行每行两个整数表示宽度和高度\n# 输出最多能组成的套娃信封数\nn = int(input())\nenvelopes = []\nfor _ in range(n):\n    envelopes.append(list(map(int, input().split())))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "最大正方形",
+    "description": "在一个由 '0' 和 '1' 组成的二维矩阵内，找到只包含 '1' 的最大正方形，并返回其面积。",
+    "difficulty": "hard",
+    "tags": ["数组", "动态规划", "矩阵"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "4 5\n10100\n10111\n11111\n10010", "output": "4"}
+    ],
+    "test_cases": [
+      {"input": "4 5\n10100\n10111\n11111\n10010", "expected": "4"},
+      {"input": "2 2\n01\n10", "expected": "1"},
+      {"input": "1 1\n0", "expected": "0"},
+      {"input": "3 3\n111\n111\n111", "expected": "9"}
+    ],
+    "starter_code": {
+      "python": "# 最大正方形\n# 第一行输入rows和cols，接下来rows行每行一个01字符串\n# 输出最大正方形面积\nrows, cols = map(int, input().split())\nmatrix = []\nfor _ in range(rows):\n    matrix.append(list(input().strip()))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "接雨水",
+    "description": "给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。",
+    "difficulty": "hard",
+    "tags": ["数组", "双指针", "单调栈"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "12\n0 1 0 2 1 0 1 3 2 1 2 1", "output": "6"}
+    ],
+    "test_cases": [
+      {"input": "12\n0 1 0 2 1 0 1 3 2 1 2 1", "expected": "6"},
+      {"input": "6\n4 2 0 3 2 5", "expected": "9"},
+      {"input": "3\n2 0 2", "expected": "2"}
+    ],
+    "starter_code": {
+      "python": "# 接雨水\n# 第一行输入柱子数量n，第二行输入n个非负整数表示高度\n# 输出可接到的雨水总量\nn = int(input())\nheight = list(map(int, input().split()))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "最长回文子串",
+    "description": "给你一个字符串 s，找到 s 中最长的回文子串。如果存在多个答案，输出任意一个最长回文子串即可。",
+    "difficulty": "medium",
+    "tags": ["字符串", "动态规划", "双指针"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "babad", "output": "bab"}
+    ],
+    "test_cases": [
+      {"input": "babad", "expected": "bab"},
+      {"input": "cbbd", "expected": "bb"},
+      {"input": "forgeeksskeegfor", "expected": "geeksskeeg"}
+    ],
+    "starter_code": {
+      "python": "# 最长回文子串\n# 输入一个字符串s，输出其中一个最长回文子串\ns = input().strip()\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "零钱兑换",
+    "description": "给你一个整数数组 coins，表示不同面额的硬币；以及一个整数 amount，表示总金额。计算并返回可以凑成总金额所需的最少硬币个数。如果没有任何一种硬币组合能组成总金额，输出 -1。",
+    "difficulty": "medium",
+    "tags": ["动态规划", "数组"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "3\n1 2 5\n11", "output": "3"}
+    ],
+    "test_cases": [
+      {"input": "3\n1 2 5\n11", "expected": "3"},
+      {"input": "1\n2\n3", "expected": "-1"},
+      {"input": "4\n2 5 10 1\n27", "expected": "4"}
+    ],
+    "starter_code": {
+      "python": "# 零钱兑换\n# 第一行输入硬币种类数n，第二行输入n个硬币面额，第三行输入目标金额amount\n# 输出凑成amount所需的最少硬币数，没有解则输出-1\nn = int(input())\ncoins = list(map(int, input().split()))\namount = int(input())\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "最小路径和",
+    "description": "给定一个包含非负整数的 m x n 网格 grid，请找出一条从左上角到右下角的路径，使得路径上的数字总和最小。每次只能向下或者向右移动一步。",
+    "difficulty": "medium",
+    "tags": ["动态规划", "矩阵"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "3 3\n1 3 1\n1 5 1\n4 2 1", "output": "7"}
+    ],
+    "test_cases": [
+      {"input": "3 3\n1 3 1\n1 5 1\n4 2 1", "expected": "7"},
+      {"input": "2 3\n1 2 3\n4 5 6", "expected": "12"},
+      {"input": "1 1\n5", "expected": "5"}
+    ],
+    "starter_code": {
+      "python": "# 最小路径和\n# 第一行输入rows和cols，接下来rows行每行cols个非负整数\n# 输出从左上角走到右下角的最小路径和\nrows, cols = map(int, input().split())\ngrid = []\nfor _ in range(rows):\n    grid.append(list(map(int, input().split())))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "岛屿数量",
+    "description": "给你一个由 '1'（陆地）和 '0'（水）组成的二维网格，请计算网格中岛屿的数量。岛屿总是被水包围，并且每座岛屿只能由水平方向和竖直方向上相邻的陆地连接形成。",
+    "difficulty": "medium",
+    "tags": ["图论", "深度优先搜索", "广度优先搜索", "矩阵"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "4 5\n11110\n11010\n11000\n00000", "output": "1"}
+    ],
+    "test_cases": [
+      {"input": "4 5\n11110\n11010\n11000\n00000", "expected": "1"},
+      {"input": "4 5\n11000\n11000\n00100\n00011", "expected": "3"},
+      {"input": "1 1\n1", "expected": "1"}
+    ],
+    "starter_code": {
+      "python": "# 岛屿数量\n# 第一行输入rows和cols，接下来rows行每行一个01字符串\n# 输出岛屿数量\nrows, cols = map(int, input().split())\ngrid = []\nfor _ in range(rows):\n    grid.append(list(input().strip()))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "编辑距离",
+    "description": "给你两个单词 word1 和 word2，请返回将 word1 转换成 word2 所使用的最少操作数。你可以对一个单词进行插入、删除、替换一个字符这三种操作。",
+    "difficulty": "hard",
+    "tags": ["动态规划", "字符串"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "horse\nros", "output": "3"}
+    ],
+    "test_cases": [
+      {"input": "horse\nros", "expected": "3"},
+      {"input": "intention\nexecution", "expected": "5"},
+      {"input": "abc\nabc", "expected": "0"}
+    ],
+    "starter_code": {
+      "python": "# 编辑距离\n# 输入两行字符串word1和word2\n# 输出将word1转换成word2的最少操作数\nword1 = input().strip()\nword2 = input().strip()\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "不同路径 II",
+    "description": "一个机器人位于一个 m x n 网格的左上角。机器人每次只能向下或者向右移动一步。网格中的障碍物和空位置分别用 1 和 0 表示。请计算机器人能够到达右下角的不同路径数量。",
+    "difficulty": "medium",
+    "tags": ["动态规划", "矩阵"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "3 3\n0 0 0\n0 1 0\n0 0 0", "output": "2"}
+    ],
+    "test_cases": [
+      {"input": "3 3\n0 0 0\n0 1 0\n0 0 0", "expected": "2"},
+      {"input": "2 2\n0 1\n0 0", "expected": "1"},
+      {"input": "3 2\n0 0\n1 1\n0 0", "expected": "0"}
+    ],
+    "starter_code": {
+      "python": "# 不同路径 II\n# 第一行输入rows和cols，接下来rows行每行cols个0或1\n# 0表示空地，1表示障碍物，输出不同路径数量\nrows, cols = map(int, input().split())\nobstacle_grid = []\nfor _ in range(rows):\n    obstacle_grid.append(list(map(int, input().split())))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "分割等和子集",
+    "description": "给你一个只包含正整数的非空数组 nums，请判断是否可以将这个数组分割成两个子集，使得两个子集的元素和相等。若可以输出 true，否则输出 false。",
+    "difficulty": "medium",
+    "tags": ["动态规划", "背包问题", "数组"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "4\n1 5 11 5", "output": "true"}
+    ],
+    "test_cases": [
+      {"input": "4\n1 5 11 5", "expected": "true"},
+      {"input": "4\n1 2 3 5", "expected": "false"},
+      {"input": "4\n2 2 1 1", "expected": "true"}
+    ],
+    "starter_code": {
+      "python": "# 分割等和子集\n# 第一行输入数组长度n，第二行输入n个正整数\n# 若可以分割成两个和相等的子集输出true，否则输出false\nn = int(input())\nnums = list(map(int, input().split()))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "课程表",
+    "description": "你这个学期必须选修 numCourses 门课程，记为 0 到 numCourses - 1。输入若干先修关系 [a, b]，表示如果要学习课程 a，必须先完成课程 b。请判断是否可能完成所有课程。若可以输出 true，否则输出 false。",
+    "difficulty": "medium",
+    "tags": ["图论", "拓扑排序", "广度优先搜索"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "2 1\n1 0", "output": "true"}
+    ],
+    "test_cases": [
+      {"input": "2 1\n1 0", "expected": "true"},
+      {"input": "2 2\n1 0\n0 1", "expected": "false"},
+      {"input": "4 4\n1 0\n2 0\n3 1\n3 2", "expected": "true"}
+    ],
+    "starter_code": {
+      "python": "# 课程表\n# 第一行输入课程数numCourses和先修关系数m，接下来m行每行两个整数a b\n# 若可以完成所有课程输出true，否则输出false\nnum_courses, m = map(int, input().split())\nprerequisites = []\nfor _ in range(m):\n    prerequisites.append(list(map(int, input().split())))\n\n# 在此编写你的解决方案\n"
+    }
+  },
+  {
+    "title": "搜索二维矩阵 II",
+    "description": "编写一个高效的算法来搜索 m x n 矩阵中的一个目标值 target。该矩阵具有以下特性：每行的元素从左到右升序排列，每列的元素从上到下升序排列。若存在输出 true，否则输出 false。",
+    "difficulty": "medium",
+    "tags": ["矩阵", "二分查找", "双指针"],
+    "languages": ["python"],
+    "examples": [
+      {"input": "5 5\n1 4 7 11 15\n2 5 8 12 19\n3 6 9 16 22\n10 13 14 17 24\n18 21 23 26 30\n5", "output": "true"}
+    ],
+    "test_cases": [
+      {"input": "5 5\n1 4 7 11 15\n2 5 8 12 19\n3 6 9 16 22\n10 13 14 17 24\n18 21 23 26 30\n5", "expected": "true"},
+      {"input": "2 2\n1 4\n2 5\n20", "expected": "false"},
+      {"input": "1 1\n1\n1", "expected": "true"}
+    ],
+    "starter_code": {
+      "python": "# 搜索二维矩阵 II\n# 第一行输入rows和cols，接下来rows行每行cols个整数，最后一行输入target\n# 若矩阵中存在target输出true，否则输出false\nrows, cols = map(int, input().split())\nmatrix = []\nfor _ in range(rows):\n    matrix.append(list(map(int, input().split())))\ntarget = int(input())\n\n# 在此编写你的解决方案\n"
+    }
+  }
+]

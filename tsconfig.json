@@ -1,0 +1,13 @@
+{
+  "files": [],
+  "exclude": ["out", "dist-release", "node_modules"],
+  "compilerOptions": {
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  },
+  "references": [
+    { "path": "./tsconfig.node.json" },
+    { "path": "./tsconfig.web.json" }
+  ]
+}

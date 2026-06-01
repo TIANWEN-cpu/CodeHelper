@@ -1,0 +1,1056 @@
+[
+  {
+    "title": "计算均值方差标准差",
+    "description": "在数学建模竞赛中，数据的基本统计量分析是最基础的技能。给定一组数据，你需要计算它们的均值(mean)、方差(variance, 总体方差)和标准差(standard deviation, 总体标准差)。\n\n输入格式：第一行一个整数n表示数据个数，第二行n个空格分隔的浮点数。\n输出格式：一行三个数，分别为均值、方差、标准差，保留2位小数，空格分隔。",
+    "difficulty": "easy",
+    "tags": ["数学建模", "统计学", "数据处理"],
+    "languages": ["python"],
+    "examples": [
+      {
+        "input": "5\n1 2 3 4 5",
+        "output": "3.00 2.00 1.41"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "5\n1 2 3 4 5",
+        "expected": "3.00 2.00 1.41"
+      },
+      {
+        "input": "4\n10 20 30 40",
+        "expected": "25.00 125.00 11.18"
+      },
+      {
+        "input": "3\n1.5 2.5 3.5",
+        "expected": "2.50 0.67 0.82"
+      }
+    ],
+    "starter_code": {
+      "python": "import numpy as np\n\nn = int(input())\ndata = list(map(float, input().split()))\n\n# 计算均值、方差、标准差\n"
+    }
+  },
+  {
+    "title": "线性回归",
+    "description": "线性回归是数学建模中最常用的方法之一，用于分析两个变量之间的线性关系。给定n个数据点(x, y)，使用最小二乘法求出线性回归方程 y = ax + b 的斜率a和截距b。\n\n最小二乘法公式：\na = (n*sum(xi*yi) - sum(xi)*sum(yi)) / (n*sum(xi^2) - (sum(xi))^2)\nb = (sum(yi) - a*sum(xi)) / n\n\n输入格式：第一行一个整数n表示数据点个数，接下来n行每行两个浮点数x和y。\n输出格式：一行两个数，分别为斜率a和截距b，保留4位小数，空格分隔。",
+    "difficulty": "easy",
+    "tags": ["数学建模", "回归分析", "最小二乘法"],
+    "languages": ["python"],
+    "examples": [
+      {
+        "input": "4\n1 2\n2 4\n3 5\n4 4",
+        "output": "0.8000 1.5000"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "4\n1 2\n2 4\n3 5\n4 4",
+        "expected": "0.8000 1.5000"
+      },
+      {
+        "input": "3\n1 1\n2 2\n3 3",
+        "expected": "1.0000 0.0000"
+      },
+      {
+        "input": "5\n0 1\n1 3\n2 5\n3 7\n4 9",
+        "expected": "2.0000 1.0000"
+      }
+    ],
+    "starter_code": {
+      "python": "import numpy as np\n\nn = int(input())\npoints = []\nfor _ in range(n):\n    x, y = map(float, input().split())\n    points.append((x, y))\n\n# 用最小二乘法计算斜率和截距\n"
+    }
+  },
+  {
+    "title": "数据归一化",
+    "description": "在数学建模中，数据归一化(Min-Max Normalization)是数据预处理的重要步骤，可以消除不同量纲的影响。Min-Max归一化将数据缩放到[0,1]区间。\n\n公式：x_norm = (x - x_min) / (x_max - x_min)\n\n输入格式：第一行一个整数n表示数据个数，第二行n个空格分隔的浮点数。\n输出格式：一行n个归一化后的数据，保留4位小数，空格分隔。",
+    "difficulty": "easy",
+    "tags": ["数学建模", "数据预处理", "归一化"],
+    "languages": ["python"],
+    "examples": [
+      {
+        "input": "5\n1 2 3 4 5",
+        "output": "0.0000 0.2500 0.5000 0.7500 1.0000"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "5\n1 2 3 4 5",
+        "expected": "0.0000 0.2500 0.5000 0.7500 1.0000"
+      },
+      {
+        "input": "4\n10 20 30 40",
+        "expected": "0.0000 0.3333 0.6667 1.0000"
+      },
+      {
+        "input": "3\n-1 0 1",
+        "expected": "0.0000 0.5000 1.0000"
+      }
+    ],
+    "starter_code": {
+      "python": "import numpy as np\n\nn = int(input())\ndata = list(map(float, input().split()))\n\n# Min-Max归一化\n"
+    }
+  },
+  {
+    "title": "移动平均",
+    "description": "移动平均(Moving Average)是时间序列分析中的基本方法，广泛应用于数学建模的趋势分析和数据平滑。给定一组时间序列数据和窗口大小k，计算简单移动平均值。\n\n对于第i个移动平均值(i从0开始)，取data[i]到data[i+k-1]共k个数的平均值。共输出n-k+1个值。\n\n输入格式：第一行两个整数n和k，分别表示数据个数和窗口大小。第二行n个空格分隔的浮点数。\n输出格式：一行n-k+1个移动平均值，保留2位小数，空格分隔。",
+    "difficulty": "easy",
+    "tags": ["数学建模", "时间序列", "移动平均"],
+    "languages": ["python"],
+    "examples": [
+      {
+        "input": "6 3\n1 2 3 4 5 6",
+        "output": "2.00 3.00 4.00 5.00"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "6 3\n1 2 3 4 5 6",
+        "expected": "2.00 3.00 4.00 5.00"
+      },
+      {
+        "input": "5 2\n10 20 30 40 50",
+        "expected": "15.00 25.00 35.00 45.00"
+      },
+      {
+        "input": "7 4\n2 4 6 8 10 12 14",
+        "expected": "5.00 7.00 9.00 11.00"
+      }
+    ],
+    "starter_code": {
+      "python": "import numpy as np\n\nn, k = map(int, input().split())\ndata = list(map(float, input().split()))\n\n# 计算窗口为k的移动平均\n"
+    }
+  },
+  {
+    "title": "矩阵乘法",
+    "description": "矩阵运算是数学建模的核心工具。给定两个矩阵A和B，计算它们的乘积C = A * B。\n\n矩阵乘法规则：C[i][j] = sum(A[i][k] * B[k][j])，其中A为m*p矩阵，B为p*n矩阵，结果C为m*n矩阵。\n\n输入格式：第一行三个整数m p n。接下来m行每行p个整数表示矩阵A。再接下来p行每行n个整数表示矩阵B。\n输出格式：m行，每行n个整数，表示乘积矩阵C，空格分隔。",
+    "difficulty": "easy",
+    "tags": ["数学建模", "线性代数", "矩阵运算"],
+    "languages": ["python"],
+    "examples": [
+      {
+        "input": "2 2 2\n1 2\n3 4\n5 6\n7 8",
+        "output": "19 22\n43 50"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "2 2 2\n1 2\n3 4\n5 6\n7 8",
+        "expected": "19 22\n43 50"
+      },
+      {
+        "input": "2 3 2\n1 0 2\n-1 3 1\n3 1\n2 1\n1 0",
+        "expected": "5 1\n4 2"
+      },
+      {
+        "input": "1 3 1\n1 2 3\n4\n5\n6",
+        "expected": "32"
+      }
+    ],
+    "starter_code": {
+      "python": "import numpy as np\n\nm, p, n = map(int, input().split())\nA = []\nfor _ in range(m):\n    A.append(list(map(int, input().split())))\nB = []\nfor _ in range(p):\n    B.append(list(map(int, input().split())))\n\n# 计算矩阵乘积 C = A * B\n"
+    }
+  },
+  {
+    "title": "欧几里得距离",
+    "description": "欧几里得距离是数学建模中度量两个点之间距离的最常用方法，在聚类分析、模式识别等领域广泛应用。给定两个n维向量，计算它们的欧几里得距离。\n\n公式：d = sqrt(sum((ai - bi)^2))\n\n输入格式：第一行一个整数n表示向量维度。第二行n个浮点数表示向量a。第三行n个浮点数表示向量b。\n输出格式：一个浮点数，表示欧几里得距离，保留4位小数。",
+    "difficulty": "easy",
+    "tags": ["数学建模", "距离度量", "向量计算"],
+    "languages": ["python"],
+    "examples": [
+      {
+        "input": "3\n1 2 3\n4 5 6",
+        "output": "5.1962"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "3\n1 2 3\n4 5 6",
+        "expected": "5.1962"
+      },
+      {
+        "input": "2\n0 0\n3 4",
+        "expected": "5.0000"
+      },
+      {
+        "input": "4\n1 0 0 1\n0 1 1 0",
+        "expected": "2.0000"
+      }
+    ],
+    "starter_code": {
+      "python": "import numpy as np\n\nn = int(input())\na = list(map(float, input().split()))\nb = list(map(float, input().split()))\n\n# 计算欧几里得距离\n"
+    }
+  },
+  {
+    "title": "皮尔逊相关系数",
+    "description": "皮尔逊相关系数(Pearson Correlation Coefficient)用于衡量两组数据的线性相关程度，是数学建模中变量关系分析的重要工具。取值范围为[-1, 1]，1表示完全正相关，-1表示完全负相关，0表示无线性相关。\n\n公式：r = [n*sum(xi*yi) - sum(xi)*sum(yi)] / sqrt([n*sum(xi^2)-(sum(xi))^2] * [n*sum(yi^2)-(sum(yi))^2])\n\n输入格式：第一行一个整数n。第二行n个浮点数表示数据x。第三行n个浮点数表示数据y。\n输出格式：一个浮点数，表示皮尔逊相关系数，保留4位小数。",
+    "difficulty": "easy",
+    "tags": ["数学建模", "统计学", "相关分析"],
+    "languages": ["python"],
+    "examples": [
+      {
+        "input": "5\n1 2 3 4 5\n2 4 5 4 5",
+        "output": "0.7746"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "5\n1 2 3 4 5\n2 4 5 4 5",
+        "expected": "0.7746"
+      },
+      {
+        "input": "4\n1 2 3 4\n2 4 6 8",
+        "expected": "1.0000"
+      },
+      {
+        "input": "4\n1 2 3 4\n8 6 4 2",
+        "expected": "-1.0000"
+      }
+    ],
+    "starter_code": {
+      "python": "import numpy as np\n\nn = int(input())\nx = list(map(float, input().split()))\ny = list(map(float, input().split()))\n\n# 计算皮尔逊相关系数\n"
+    }
+  },
+  {
+    "title": "多项式求值",
+    "description": "多项式是数学建模中描述变量关系的基本工具。给定一个n次多项式的系数和一个x值，计算多项式在该点的值。\n\n多项式表示为：P(x) = a0 + a1*x + a2*x^2 + ... + an*x^n\n建议使用霍纳法则(秦九韶算法)高效计算。\n\n输入格式：第一行一个整数n表示多项式最高次数。第二行n+1个浮点数表示系数a0, a1, ..., an。第三行一个浮点数表示x的值。\n输出格式：一个浮点数或整数，表示多项式值。如果结果是整数则输出整数，否则保留4位小数。",
+    "difficulty": "easy",
+    "tags": ["数学建模", "数值计算", "多项式"],
+    "languages": ["python"],
+    "examples": [
+      {
+        "input": "2\n1 2 3\n2",
+        "output": "17"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "2\n1 2 3\n2",
+        "expected": "17"
+      },
+      {
+        "input": "3\n1 0 0 1\n3",
+        "expected": "28"
+      },
+      {
+        "input": "2\n0.5 1.5 2.0\n1.5",
+        "expected": "7.2500"
+      }
+    ],
+    "starter_code": {
+      "python": "import numpy as np\n\nn = int(input())\ncoeffs = list(map(float, input().split()))\nx = float(input())\n\n# 使用秦九韶算法计算多项式值 P(x) = a0 + a1*x + a2*x^2 + ... + an*x^n\n"
+    }
+  },
+  {
+    "title": "数值积分(梯形法)",
+    "description": "数值积分是数学建模中处理无法解析求解的积分问题的重要方法。梯形法(Trapezoidal Rule)是最基本的数值积分方法，通过将积分区间划分为若干小梯形来近似计算积分值。\n\n给定函数在等距采样点上的值和区间端点，用复合梯形法求积分。\n公式：积分 ≈ h/2 * (f(x0) + 2*f(x1) + 2*f(x2) + ... + 2*f(x_{n-1}) + f(xn))，其中h为步长。\n\n输入格式：第一行两个浮点数a和b表示积分区间[a,b]。第二行一个整数n表示采样点个数(含端点)。第三行n个浮点数表示函数在等距采样点上的值。\n输出格式：一个浮点数，表示积分近似值，保留4位小数。",
+    "difficulty": "easy",
+    "tags": ["数学建模", "数值计算", "数值积分"],
+    "languages": ["python"],
+    "examples": [
+      {
+        "input": "0 1\n5\n0 0.25 1.0 2.25 4.0",
+        "output": "1.3750"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "0 1\n5\n0 0.25 1.0 2.25 4.0",
+        "expected": "1.3750"
+      },
+      {
+        "input": "0 3.14159\n5\n0 0.70711 1.0 0.70711 0",
+        "expected": "1.8961"
+      },
+      {
+        "input": "1 5\n5\n1 2 3 4 5",
+        "expected": "12.0000"
+      }
+    ],
+    "starter_code": {
+      "python": "import numpy as np\n\na, b = map(float, input().split())\nn = int(input())\nf_values = list(map(float, input().split()))\n\n# 用梯形法计算数值积分\n"
+    }
+  },
+  {
+    "title": "排列组合计算",
+    "description": "排列组合是数学建模中概率分析和组合优化的基础。给定n和k，计算组合数C(n,k)和排列数A(n,k)。\n\nC(n,k) = n! / (k! * (n-k)!)\nA(n,k) = n! / (n-k)!\n\n输入格式：一行两个整数n和k (0 <= k <= n <= 20)。\n输出格式：一行两个整数，分别为C(n,k)和A(n,k)，空格分隔。",
+    "difficulty": "easy",
+    "tags": ["数学建模", "组合数学", "概率论"],
+    "languages": ["python"],
+    "examples": [
+      {
+        "input": "5 2",
+        "output": "10 20"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "5 2",
+        "expected": "10 20"
+      },
+      {
+        "input": "10 3",
+        "expected": "120 720"
+      },
+      {
+        "input": "6 0",
+        "expected": "1 1"
+      },
+      {
+        "input": "7 7",
+        "expected": "1 5040"
+      }
+    ],
+    "starter_code": {
+      "python": "import numpy as np\nfrom math import factorial\n\nn, k = map(int, input().split())\n\n# 计算组合数C(n,k)和排列数A(n,k)\n"
+    }
+  },
+  {
+    "title": "多项式拟合",
+    "description": "多项式拟合是数学建模竞赛中数据分析的核心技能，如CUMCM 2017年A题(CT系统参数标定)中的数据拟合。给定一组数据点，使用最小二乘法拟合一个m次多项式 P(x) = c0 + c1*x + c2*x^2 + ... + cm*x^m，输出多项式系数。\n\n输入格式：第一行两个整数n和m，分别表示数据点个数和拟合多项式次数。接下来n行每行两个浮点数x和y。\n输出格式：一行m+1个系数，从低次到高次c0 c1 ... cm，保留4位小数，空格分隔。",
+    "difficulty": "medium",
+    "tags": ["数学建模", "数据拟合", "最小二乘法"],
+    "languages": ["python"],
+    "examples": [
+      {
+        "input": "4 1\n1 2.1\n2 3.9\n3 6.2\n4 7.8",
+        "output": "0.0000 2.0000"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "4 1\n1 2.1\n2 3.9\n3 6.2\n4 7.8",
+        "expected": "0.0000 2.0000"
+      },
+      {
+        "input": "5 2\n0 1\n1 2\n2 5\n3 10\n4 17",
+        "expected": "1.0000 0.0000 1.0000"
+      },
+      {
+        "input": "3 1\n0 0\n1 1\n2 2",
+        "expected": "0.0000 1.0000"
+      }
+    ],
+    "starter_code": {
+      "python": "import numpy as np\n\nn, m = map(int, input().split())\npoints = []\nfor _ in range(n):\n    x, y = map(float, input().split())\n    points.append((x, y))\n\n# 使用最小二乘法拟合m次多项式\n# 提示：可以使用numpy.polyfit，注意系数顺序\n"
+    }
+  },
+  {
+    "title": "拉格朗日插值",
+    "description": "拉格朗日插值法是数学建模中数据插值的经典方法，可以由已知的数据点构造一个多项式，使其通过所有给定点。适用于根据离散观测数据估算中间值的场景，在全国研究生数学建模竞赛中也常有应用。\n\n拉格朗日插值公式：L(x) = sum(yi * prod((x - xj)/(xi - xj), j!=i))\n\n输入格式：第一行一个整数n表示数据点个数。接下来n行每行两个浮点数xi和yi。最后一行一个浮点数x_target表示目标插值点。\n输出格式：一个浮点数，表示插值结果，保留4位小数。",
+    "difficulty": "medium",
+    "tags": ["数学建模", "数值分析", "插值"],
+    "languages": ["python"],
+    "examples": [
+      {
+        "input": "3\n1 1\n2 4\n3 9\n2.5",
+        "output": "6.2500"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "3\n1 1\n2 4\n3 9\n2.5",
+        "expected": "6.2500"
+      },
+      {
+        "input": "4\n0 0\n1 1\n2 8\n3 27\n1.5",
+        "expected": "3.3750"
+      },
+      {
+        "input": "3\n0 1\n1 3\n2 7\n0.5",
+        "expected": "1.7500"
+      }
+    ],
+    "starter_code": {
+      "python": "import numpy as np\n\nn = int(input())\npoints = []\nfor _ in range(n):\n    x, y = map(float, input().split())\n    points.append((x, y))\nx_target = float(input())\n\n# 拉格朗日插值法\n"
+    }
+  },
+  {
+    "title": "蒙特卡洛求Pi",
+    "description": "蒙特卡洛方法是数学建模竞赛(MCM/ICM)中常用的随机模拟方法。通过在正方形内随机投点，统计落入内切圆的点数来估算圆周率pi。\n\n原理：在[0,1]x[0,1]的正方形内随机投点，若点(x,y)满足x^2+y^2<=1（在四分之一圆内），则计入圆内点数。pi ≈ 4 * 圆内点数 / 总点数。\n\n输入格式：第一行一个整数n表示点的个数。接下来n行每行两个浮点数x和y，均在[0,1]范围内。\n输出格式：一个浮点数，表示估算的pi值，保留4位小数。",
+    "difficulty": "medium",
+    "tags": ["数学建模", "蒙特卡洛", "随机模拟"],
+    "languages": ["python"],
+    "examples": [
+      {
+        "input": "4\n0.3 0.4\n0.8 0.7\n0.1 0.2\n0.5 0.5",
+        "output": "3.0000"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "4\n0.3 0.4\n0.8 0.7\n0.1 0.2\n0.5 0.5",
+        "expected": "3.0000"
+      },
+      {
+        "input": "5\n0.1 0.1\n0.2 0.2\n0.9 0.9\n0.5 0.3\n0.4 0.4",
+        "expected": "3.2000"
+      },
+      {
+        "input": "6\n0.1 0.1\n0.3 0.3\n0.5 0.5\n0.7 0.7\n0.9 0.1\n0.1 0.9",
+        "expected": "4.0000"
+      }
+    ],
+    "starter_code": {
+      "python": "import numpy as np\n\nn = int(input())\npoints = []\nfor _ in range(n):\n    x, y = map(float, input().split())\n    points.append((x, y))\n\n# 蒙特卡洛法估算pi\n# 统计满足 x^2 + y^2 <= 1 的点数\n"
+    }
+  },
+  {
+    "title": "Logistic人口增长模型",
+    "description": "Logistic模型是数学建模竞赛中经典的人口增长模型(如CUMCM人口预测题)。该模型考虑了环境容纳量的限制，比指数增长模型更接近实际。\n\nLogistic方程的解析解：P(t) = K / (1 + ((K - P0) / P0) * exp(-r * t))\n\n其中：K为环境容纳量（最大人口数），r为内禀增长率，P0为初始人口，t为时间。\n\n输入格式：一行四个浮点数r K P0 t，分别为增长率、环境容纳量、初始人口和时间。\n输出格式：一个浮点数，表示t时刻的人口数，保留2位小数。",
+    "difficulty": "medium",
+    "tags": ["数学建模", "微分方程", "人口模型"],
+    "languages": ["python"],
+    "examples": [
+      {
+        "input": "0.5 1000 100 5",
+        "output": "531.00"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "0.5 1000 100 5",
+        "expected": "531.00"
+      },
+      {
+        "input": "0.3 500 50 10",
+        "expected": "332.31"
+      },
+      {
+        "input": "1.0 200 10 3",
+        "expected": "167.64"
+      }
+    ],
+    "starter_code": {
+      "python": "import numpy as np\n\nr, K, P0, t = map(float, input().split())\n\n# Logistic人口增长模型\n# P(t) = K / (1 + ((K - P0) / P0) * exp(-r * t))\n"
+    }
+  },
+  {
+    "title": "最短路径(Dijkstra算法)",
+    "description": "最短路径问题是数学建模竞赛中图论和网络优化的核心问题。Dijkstra算法用于求解单源最短路径，广泛应用于交通规划、物流调度(如CUMCM交通优化类题目)等建模场景。\n\n给定一个n个节点的有向图的邻接矩阵，求从节点0到其他所有节点的最短距离。邻接矩阵中-1表示无直接连接。\n\n输入格式：第一行一个整数n表示节点数。接下来n行每行n个整数表示邻接矩阵(0表示自身，-1表示不可达，正数表示边权)。\n输出格式：一行n个整数，表示节点0到各节点的最短距离，空格分隔。不可达输出-1。",
+    "difficulty": "medium",
+    "tags": ["数学建模", "图论", "最短路径"],
+    "languages": ["python"],
+    "examples": [
+      {
+        "input": "4\n0 1 4 -1\n-1 0 2 6\n-1 -1 0 3\n-1 -1 -1 0",
+        "output": "0 1 3 6"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "4\n0 1 4 -1\n-1 0 2 6\n-1 -1 0 3\n-1 -1 -1 0",
+        "expected": "0 1 3 6"
+      },
+      {
+        "input": "3\n0 7 -1\n-1 0 2\n-1 -1 0",
+        "expected": "0 7 9"
+      },
+      {
+        "input": "3\n0 3 8\n-1 0 2\n-1 -1 0",
+        "expected": "0 3 5"
+      }
+    ],
+    "starter_code": {
+      "python": "import numpy as np\nimport heapq\n\nn = int(input())\nadj = []\nfor _ in range(n):\n    adj.append(list(map(int, input().split())))\n\n# Dijkstra算法求单源最短路径\n"
+    }
+  },
+  {
+    "title": "线性规划",
+    "description": "线性规划是数学建模竞赛(如CUMCM 2018年A题生产计划优化)中最常见的优化方法之一。给定一个两变量的线性规划问题，求最优解。\n\n标准形式：\n最大化 z = c1*x1 + c2*x2\n约束条件：\na11*x1 + a12*x2 <= b1\na21*x1 + a22*x2 <= b2\nx1 >= 0, x2 >= 0\n\n输入格式：第一行两个浮点数c1 c2（目标函数系数）。第二行三个浮点数a11 a12 b1（第一个约束）。第三行三个浮点数a21 a22 b2（第二个约束）。\n输出格式：第一行两个浮点数x1 x2（最优解，保留4位小数），第二行一个浮点数z（最优值，保留4位小数）。",
+    "difficulty": "medium",
+    "tags": ["数学建模", "线性规划", "最优化"],
+    "languages": ["python"],
+    "examples": [
+      {
+        "input": "5 4\n6 4 24\n1 2 6",
+        "output": "3.0000 1.5000\n21.0000"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "5 4\n6 4 24\n1 2 6",
+        "expected": "3.0000 1.5000\n21.0000"
+      },
+      {
+        "input": "3 5\n1 0 4\n0 2 12",
+        "expected": "4.0000 6.0000\n42.0000"
+      },
+      {
+        "input": "2 3\n1 1 4\n2 1 6",
+        "expected": "0.0000 4.0000\n12.0000"
+      }
+    ],
+    "starter_code": {
+      "python": "import numpy as np\nfrom scipy.optimize import linprog\n\nc1, c2 = map(float, input().split())\na11, a12, b1 = map(float, input().split())\na21, a22, b2 = map(float, input().split())\n\n# 线性规划求解（注意linprog求的是最小值，需取负）\n"
+    }
+  },
+  {
+    "title": "牛顿迭代法求根",
+    "description": "牛顿迭代法(Newton-Raphson)是数学建模中求解非线性方程根的重要数值方法。该方法通过不断用切线逼近函数零点，收敛速度快。\n\n给定一个多项式及其初始猜测值，使用牛顿迭代法求多项式的一个根。\n迭代公式：x_{n+1} = x_n - f(x_n) / f'(x_n)\n收敛条件：|f(x)| < 1e-10 或迭代次数超过1000次。\n\n多项式 P(x) = a0 + a1*x + a2*x^2 + ... + an*x^n\n\n输入格式：第一行一个整数n表示多项式最高次数。第二行n+1个浮点数表示系数a0, a1, ..., an。第三行一个浮点数表示初始猜测值x0。\n输出格式：一个浮点数，表示求得的根，保留6位小数。",
+    "difficulty": "medium",
+    "tags": ["数学建模", "数值分析", "方程求根"],
+    "languages": ["python"],
+    "examples": [
+      {
+        "input": "2\n-4 0 1\n3.0",
+        "output": "2.000000"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "2\n-4 0 1\n3.0",
+        "expected": "2.000000"
+      },
+      {
+        "input": "3\n-6 11 -6 1\n3.5",
+        "expected": "3.000000"
+      },
+      {
+        "input": "2\n-2 0 1\n1.0",
+        "expected": "1.414214"
+      }
+    ],
+    "starter_code": {
+      "python": "import numpy as np\n\nn = int(input())\ncoeffs = list(map(float, input().split()))\nx0 = float(input())\n\n# 牛顿迭代法求根\n# 需要同时计算多项式值f(x)和导数f'(x)\n"
+    }
+  },
+  {
+    "title": "高斯消元法",
+    "description": "高斯消元法是数学建模中求解线性方程组的基本方法，广泛应用于电路分析、经济模型、力学平衡等问题。给定线性方程组Ax=b，使用高斯消元法(列主元消去法)求解。\n\n输入格式：第一行一个整数n表示方程个数（也是未知数个数）。接下来n行，每行n+1个浮点数表示增广矩阵[A|b]的一行。\n输出格式：一行n个浮点数，表示解向量x，保留4位小数，空格分隔。保证方程有唯一解。",
+    "difficulty": "medium",
+    "tags": ["数学建模", "线性代数", "方程求解"],
+    "languages": ["python"],
+    "examples": [
+      {
+        "input": "3\n2 1 -1 8\n-3 -1 2 -11\n-2 1 2 -3",
+        "output": "2.0000 3.0000 -1.0000"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "3\n2 1 -1 8\n-3 -1 2 -11\n-2 1 2 -3",
+        "expected": "2.0000 3.0000 -1.0000"
+      },
+      {
+        "input": "2\n1 1 3\n1 -1 1",
+        "expected": "2.0000 1.0000"
+      },
+      {
+        "input": "3\n1 0 0 5\n0 1 0 3\n0 0 1 7",
+        "expected": "5.0000 3.0000 7.0000"
+      }
+    ],
+    "starter_code": {
+      "python": "import numpy as np\n\nn = int(input())\nmatrix = []\nfor _ in range(n):\n    matrix.append(list(map(float, input().split())))\n\n# 高斯消元法求解线性方程组\n"
+    }
+  },
+  {
+    "title": "最小生成树(Prim算法)",
+    "description": "最小生成树问题在数学建模竞赛中常见于网络设计、管道铺设、通信线路规划等场景(如CUMCM网络优化类题目)。Prim算法从一个顶点出发，逐步扩展生成树，每次选择连接已选顶点和未选顶点的最小权边。\n\n给定一个n个节点的无向图的邻接矩阵，求最小生成树的总权重。从节点0开始。邻接矩阵中0表示无连接(对角线为0)。\n\n输入格式：第一行一个整数n表示节点数。接下来n行每行n个整数表示邻接矩阵(0表示无连接或自身)。\n输出格式：一个整数，表示最小生成树的总权重。",
+    "difficulty": "medium",
+    "tags": ["数学建模", "图论", "最小生成树"],
+    "languages": ["python"],
+    "examples": [
+      {
+        "input": "4\n0 2 0 6\n2 0 3 8\n0 3 0 7\n6 8 7 0",
+        "output": "12"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "4\n0 2 0 6\n2 0 3 8\n0 3 0 7\n6 8 7 0",
+        "expected": "12"
+      },
+      {
+        "input": "3\n0 1 4\n1 0 2\n4 2 0",
+        "expected": "3"
+      },
+      {
+        "input": "5\n0 2 0 0 4\n2 0 3 0 0\n0 3 0 1 0\n0 0 1 0 5\n4 0 0 5 0",
+        "expected": "10"
+      }
+    ],
+    "starter_code": {
+      "python": "import numpy as np\nimport heapq\n\nn = int(input())\nadj = []\nfor _ in range(n):\n    adj.append(list(map(int, input().split())))\n\n# Prim算法求最小生成树\n"
+    }
+  },
+  {
+    "title": "SIR传染病模型",
+    "description": "SIR模型是数学建模竞赛中经典的传染病传播模型(如CUMCM 2020年新冠疫情相关题目以及MCM相关赛题)。该模型将人群分为易感者(S)、感染者(I)和康复者(R)三类。\n\n微分方程：\ndS/dt = -beta * S * I / N\ndI/dt = beta * S * I / N - gamma * I\ndR/dt = gamma * I\n\n其中N = S + I + R为总人口，beta为传染率，gamma为恢复率。使用欧拉法进行数值模拟，步长dt=1天。\n\n输入格式：一行六个数：beta gamma S0 I0 R0 days（beta和gamma为浮点数，其余为整数）。\n输出格式：一行三个数，表示最终的S I R值，保留2位小数，空格分隔。",
+    "difficulty": "medium",
+    "tags": ["数学建模", "微分方程", "传染病模型"],
+    "languages": ["python"],
+    "examples": [
+      {
+        "input": "0.3 0.1 990 10 0 100",
+        "output": "21.79 2.39 975.82"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "0.3 0.1 990 10 0 100",
+        "expected": "21.79 2.39 975.82"
+      },
+      {
+        "input": "0.5 0.1 950 50 0 50",
+        "expected": "4.99 62.83 932.17"
+      },
+      {
+        "input": "0.2 0.2 800 200 0 30",
+        "expected": "308.45 50.22 641.32"
+      }
+    ],
+    "starter_code": {
+      "python": "import numpy as np\n\nparams = input().split()\nbeta = float(params[0])\ngamma = float(params[1])\nS = float(params[2])\nI = float(params[3])\nR = float(params[4])\ndays = int(params[5])\n\n# SIR模型 - 欧拉法数值模拟\n"
+    }
+  },
+  {
+    "title": "0-1背包问题",
+    "description": "0-1背包问题是数学建模竞赛中经典的组合优化问题(如CUMCM 2019年B题资源分配)，应用于资源分配、投资组合等场景。给定n个物品，每个物品有重量和价值，在不超过背包容量的前提下，选择物品使总价值最大。每个物品只能选择一次。\n\n使用动态规划求解：dp[i][w] = max(dp[i-1][w], dp[i-1][w-wi] + vi)\n\n输入格式：第一行两个整数n和W，分别表示物品数和背包容量。接下来n行每行两个整数w和v，分别表示物品的重量和价值。\n输出格式：一个整数，表示最大价值。",
+    "difficulty": "medium",
+    "tags": ["数学建模", "动态规划", "组合优化"],
+    "languages": ["python"],
+    "examples": [
+      {
+        "input": "4 7\n1 1\n3 4\n4 5\n5 7",
+        "output": "9"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "4 7\n1 1\n3 4\n4 5\n5 7",
+        "expected": "9"
+      },
+      {
+        "input": "3 10\n5 10\n4 40\n6 30",
+        "expected": "70"
+      },
+      {
+        "input": "5 15\n1 2\n5 10\n6 13\n3 7\n4 8",
+        "expected": "30"
+      }
+    ],
+    "starter_code": {
+      "python": "import numpy as np\n\nn, W = map(int, input().split())\nitems = []\nfor _ in range(n):\n    w, v = map(int, input().split())\n    items.append((w, v))\n\n# 0-1背包动态规划\n"
+    }
+  },
+  {
+    "title": "矩阵特征值",
+    "description": "矩阵特征值分析是数学建模中线性代数应用的核心内容，广泛用于主成分分析(PCA)、稳定性分析、振动分析等。给定一个2x2矩阵，求其特征值。\n\n对于2x2矩阵[[a,b],[c,d]]，特征方程为 lambda^2 - (a+d)*lambda + (ad-bc) = 0\n使用求根公式：lambda = ((a+d) +/- sqrt((a+d)^2 - 4*(ad-bc))) / 2\n\n输入格式：两行，每行两个浮点数，表示2x2矩阵。\n输出格式：一行两个浮点数，表示特征值，从小到大排列，保留4位小数，空格分隔。保证特征值为实数。",
+    "difficulty": "medium",
+    "tags": ["数学建模", "线性代数", "特征值"],
+    "languages": ["python"],
+    "examples": [
+      {
+        "input": "2 1\n1 2",
+        "output": "1.0000 3.0000"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "2 1\n1 2",
+        "expected": "1.0000 3.0000"
+      },
+      {
+        "input": "4 2\n1 3",
+        "expected": "2.0000 5.0000"
+      },
+      {
+        "input": "3 0\n0 5",
+        "expected": "3.0000 5.0000"
+      }
+    ],
+    "starter_code": {
+      "python": "import numpy as np\n\nrow1 = list(map(float, input().split()))\nrow2 = list(map(float, input().split()))\nmatrix = [row1, row2]\n\n# 求2x2矩阵的特征值\n"
+    }
+  },
+  {
+    "title": "模拟退火求函数最小值",
+    "description": "模拟退火算法(Simulated Annealing)是数学建模竞赛中常用的全局优化方法，灵感来源于金属退火过程。它能够以一定概率接受劣解从而跳出局部最优，在CUMCM和MCM中广泛应用于复杂优化问题。\n\n问题：求函数 f(x) = x*sin(x) + x*cos(2*x) 在区间[0, 10]上的最小值。\n\n使用固定随机种子np.random.seed(seed)确保结果可复现。参数：初始温度T=1000，降温系数alpha=0.995，终止温度T_min=1e-8，每温度步迭代次数L=100。\n\n输入格式：一行一个整数seed，表示随机种子。\n输出格式：第一行一个浮点数表示最小值点x（保留4位小数），第二行一个浮点数表示最小值f(x)（保留4位小数）。",
+    "difficulty": "hard",
+    "tags": ["数学建模", "优化算法", "模拟退火"],
+    "languages": ["python"],
+    "examples": [
+      {
+        "input": "42",
+        "output": "7.9787\n-11.8994"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "42",
+        "expected": "7.9787\n-11.8994"
+      },
+      {
+        "input": "0",
+        "expected": "7.9787\n-11.8994"
+      },
+      {
+        "input": "123",
+        "expected": "7.9787\n-11.8994"
+      }
+    ],
+    "starter_code": {
+      "python": "import numpy as np\n\nseed = int(input())\nnp.random.seed(seed)\n\ndef f(x):\n    return x * np.sin(x) + x * np.cos(2 * x)\n\n# 模拟退火算法\n# 参数：T=1000, alpha=0.995, T_min=1e-8, L=100\n# 区间：[0, 10]\n"
+    }
+  },
+  {
+    "title": "灰色预测GM(1,1)",
+    "description": "灰色预测GM(1,1)模型是数学建模竞赛(尤其是CUMCM国赛)中经典的预测方法，适用于小样本、贫信息场景的短期预测，如经济指标、产量、人口等。\n\n步骤：\n1. 对原始序列x(0)做一次累加生成序列x(1)\n2. 构建均值序列z(1)，z(1)(k) = 0.5*x(1)(k) + 0.5*x(1)(k-1)，k=2,3,...,n\n3. 建立灰色微分方程，用最小二乘法求参数a和b：\n   矩阵B = [[-z(1)(2), 1], [-z(1)(3), 1], ...], Y = [x(0)(2), x(0)(3), ...]\n   [a, b]^T = (B^T * B)^{-1} * B^T * Y\n4. 求解方程得到时间响应函数：x(1)(k+1) = (x(0)(1) - b/a) * exp(-a*k) + b/a\n5. 通过累减还原得到预测值：x_hat(0)(k) = x_hat(1)(k) - x_hat(1)(k-1)，x_hat(0)(1) = x(0)(1)\n\n输入格式：第一行一个整数n表示已知数据个数。第二行n个浮点数表示原始数据序列。第三行一个整数m表示要预测的值的序号(从1开始，m=n+1表示预测下一个值)。\n输出格式：一个浮点数，表示预测值，保留2位小数。",
+    "difficulty": "hard",
+    "tags": ["数学建模", "灰色预测", "时间序列"],
+    "languages": ["python"],
+    "examples": [
+      {
+        "input": "5\n100 120 135 155 178\n6",
+        "output": "199.45"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "5\n100 120 135 155 178\n6",
+        "expected": "199.45"
+      },
+      {
+        "input": "4\n200 230 260 295\n5",
+        "expected": "331.64"
+      },
+      {
+        "input": "5\n50 55 62 70 79\n6",
+        "expected": "88.61"
+      }
+    ],
+    "starter_code": {
+      "python": "import numpy as np\n\nn = int(input())\nx0 = list(map(float, input().split()))\nm = int(input())\n\n# 灰色预测GM(1,1)模型\n# 1. 一次累加生成\n# 2. 构建均值序列\n# 3. 最小二乘法求参数a, b\n# 4. 时间响应函数预测\n# 5. 累减还原\n"
+    }
+  },
+  {
+    "title": "层次分析法(AHP)",
+    "description": "层次分析法(AHP)是数学建模竞赛中最常用的多准则决策方法之一(尤其在CUMCM国赛B题中高频出现)。通过构建判断矩阵，计算各指标的权重，用于评价和决策问题。\n\n步骤（算术平均法）：\n1. 输入判断矩阵A（n阶正互反矩阵）\n2. 将每列归一化：每个元素除以该列的总和\n3. 按行求和\n4. 将行和归一化得到权重向量\n\n输入格式：第一行一个整数n表示矩阵阶数。接下来n行每行n个浮点数表示判断矩阵。\n输出格式：一行n个浮点数，表示归一化的权重向量，保留4位小数，空格分隔。",
+    "difficulty": "hard",
+    "tags": ["数学建模", "层次分析法", "决策分析"],
+    "languages": ["python"],
+    "examples": [
+      {
+        "input": "3\n1 2 5\n0.5 1 3\n0.2 0.333333 1",
+        "output": "0.5816 0.3090 0.1095"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "3\n1 2 5\n0.5 1 3\n0.2 0.333333 1",
+        "expected": "0.5816 0.3090 0.1095"
+      },
+      {
+        "input": "3\n1 1 1\n1 1 1\n1 1 1",
+        "expected": "0.3333 0.3333 0.3333"
+      },
+      {
+        "input": "4\n1 3 5 7\n0.333333 1 3 5\n0.2 0.333333 1 3\n0.142857 0.2 0.333333 1",
+        "expected": "0.5579 0.2389 0.1175 0.0857"
+      }
+    ],
+    "starter_code": {
+      "python": "import numpy as np\n\nn = int(input())\nmatrix = []\nfor _ in range(n):\n    matrix.append(list(map(float, input().split())))\n\n# 层次分析法(AHP) - 算术平均法求权重\n# 1. 各列归一化\n# 2. 按行求和\n# 3. 归一化得到权重向量\n"
+    }
+  },
+  {
+    "title": "旅行商问题(贪心法)",
+    "description": "旅行商问题(TSP)是数学建模竞赛中经典的组合优化问题，在MCM/CUMCM物流配送、电路板钻孔、路径规划等场景中广泛应用。本题使用贪心法（最近邻法）求解TSP的近似解。\n\n贪心策略：从城市0出发，每次选择距当前城市最近的未访问城市，直到所有城市都访问完毕，最后返回起点。\n\n输入格式：第一行一个整数n表示城市数。接下来n行每行两个浮点数表示城市的x y坐标。\n输出格式：一个浮点数，表示贪心法求得的路径总长度（包含返回起点），保留2位小数。",
+    "difficulty": "hard",
+    "tags": ["数学建模", "组合优化", "旅行商问题"],
+    "languages": ["python"],
+    "examples": [
+      {
+        "input": "4\n0 0\n1 0\n1 1\n0 1",
+        "output": "4.00"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "4\n0 0\n1 0\n1 1\n0 1",
+        "expected": "4.00"
+      },
+      {
+        "input": "5\n0 0\n3 0\n3 4\n0 4\n1.5 2",
+        "expected": "14.00"
+      },
+      {
+        "input": "3\n0 0\n3 4\n6 0",
+        "expected": "16.00"
+      }
+    ],
+    "starter_code": {
+      "python": "import numpy as np\n\nn = int(input())\ncities = []\nfor _ in range(n):\n    x, y = map(float, input().split())\n    cities.append((x, y))\n\n# 贪心法(最近邻法)求解TSP\n# 从城市0出发\n"
+    }
+  },
+  {
+    "title": "遗传算法求最大值",
+    "description": "遗传算法(Genetic Algorithm)是数学建模竞赛中常用的智能优化算法，模拟自然选择和遗传机制，在MCM/CUMCM复杂优化问题中广泛使用。本题使用遗传算法求函数 f(x) = x * sin(10*pi*x) + 2 在区间[-1, 2]上的最大值。\n\n参数设置：种群大小pop_size=100，染色体长度(二进制编码)bits=20，交叉概率pc=0.8，变异概率pm=0.01，迭代代数generations=200。\n\n使用二进制编码，轮盘赌选择，单点交叉，位变异。使用固定随机种子确保结果可复现。\n\n输入格式：一行一个整数seed，表示随机种子。\n输出格式：第一行一个浮点数表示最大值点x（保留4位小数），第二行一个浮点数表示最大值f(x)（保留4位小数）。",
+    "difficulty": "hard",
+    "tags": ["数学建模", "智能优化", "遗传算法"],
+    "languages": ["python"],
+    "examples": [
+      {
+        "input": "42",
+        "output": "1.8506\n3.8503"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "42",
+        "expected": "1.8506\n3.8503"
+      },
+      {
+        "input": "0",
+        "expected": "1.8506\n3.8503"
+      },
+      {
+        "input": "99",
+        "expected": "1.8506\n3.8503"
+      }
+    ],
+    "starter_code": {
+      "python": "import numpy as np\n\nseed = int(input())\nnp.random.seed(seed)\n\ndef f(x):\n    return x * np.sin(10 * np.pi * x) + 2\n\n# 遗传算法\n# 参数：pop_size=100, bits=20, pc=0.8, pm=0.01, generations=200\n# 区间：[-1, 2]\n# 编码：二进制编码\n# 选择：轮盘赌\n# 交叉：单点交叉\n# 变异：位变异\n"
+    }
+  },
+  {
+    "title": "K-Means聚类",
+    "description": "K-Means聚类是数学建模竞赛中最常用的无监督学习方法，广泛应用于CUMCM客户分群、数据分类、图像分割等场景。算法通过迭代将数据点分配到K个簇中，使每个点到其所属簇中心的距离最小。\n\n算法步骤：\n1. 选前K个点作为初始簇中心\n2. 将每个点分配到最近的簇中心\n3. 重新计算每个簇的中心（簇内所有点的均值）\n4. 重复2-3直到簇中心不再变化或达到最大迭代次数(100次)\n\n输入格式：第一行两个整数n和K，表示数据点数和簇数。接下来n行每行两个浮点数表示数据点坐标。\n输出格式：K行，每行两个浮点数表示各簇中心坐标，按x坐标从小到大排列，保留2位小数，空格分隔。",
+    "difficulty": "hard",
+    "tags": ["数学建模", "聚类分析", "机器学习"],
+    "languages": ["python"],
+    "examples": [
+      {
+        "input": "6 2\n1 1\n1.5 2\n3 4\n5 7\n3.5 5\n4.5 5",
+        "output": "1.25 1.50\n4.00 5.25"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "6 2\n1 1\n1.5 2\n3 4\n5 7\n3.5 5\n4.5 5",
+        "expected": "1.25 1.50\n4.00 5.25"
+      },
+      {
+        "input": "4 2\n0 0\n1 0\n10 10\n11 10",
+        "expected": "0.50 0.00\n10.50 10.00"
+      },
+      {
+        "input": "6 3\n0 0\n1 0\n0 1\n10 10\n11 10\n10 11",
+        "expected": "0.33 0.33\n10.00 10.50\n11.00 10.00"
+      }
+    ],
+    "starter_code": {
+      "python": "import numpy as np\n\nn, K = map(int, input().split())\npoints = []\nfor _ in range(n):\n    x, y = map(float, input().split())\n    points.append((x, y))\n\n# K-Means聚类\n# 初始中心：取前K个点\n# 最大迭代：100次\n"
+    }
+  },
+  {
+    "title": "马尔可夫链稳态分布",
+    "description": "马尔可夫链是数学建模竞赛中描述随机过程的重要工具，应用于MCM/ICM天气预测、股票分析、排队论等场景。给定一个转移概率矩阵，求马尔可夫链的稳态分布(平稳分布)。\n\n稳态分布pi满足：pi * P = pi，且sum(pi_i) = 1。\n\n方法：通过迭代 pi(t+1) = pi(t) * P 直到收敛(max|pi(t+1) - pi(t)| < 1e-10 或迭代1000次)，初始分布取均匀分布。\n\n输入格式：第一行一个整数n表示状态数。接下来n行每行n个浮点数表示转移概率矩阵P（行随机矩阵，每行和为1）。\n输出格式：一行n个浮点数，表示稳态分布，保留4位小数，空格分隔。",
+    "difficulty": "hard",
+    "tags": ["数学建模", "随机过程", "马尔可夫链"],
+    "languages": ["python"],
+    "examples": [
+      {
+        "input": "2\n0.7 0.3\n0.4 0.6",
+        "output": "0.5714 0.4286"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "2\n0.7 0.3\n0.4 0.6",
+        "expected": "0.5714 0.4286"
+      },
+      {
+        "input": "3\n0.5 0.3 0.2\n0.1 0.6 0.3\n0.2 0.2 0.6",
+        "expected": "0.2432 0.3649 0.3919"
+      },
+      {
+        "input": "2\n0.9 0.1\n0.5 0.5",
+        "expected": "0.8333 0.1667"
+      }
+    ],
+    "starter_code": {
+      "python": "import numpy as np\n\nn = int(input())\nP = []\nfor _ in range(n):\n    P.append(list(map(float, input().split())))\n\n# 马尔可夫链稳态分布\n# 迭代法：pi(t+1) = pi(t) * P\n# 初始：均匀分布\n"
+    }
+  },
+  {
+    "title": "一维热传导方程数值解",
+    "description": "偏微分方程(PDE)的数值解是数学建模竞赛中高级应用的重要内容(如CUMCM温度场模拟类题目)。一维热传导方程是最经典的PDE之一，描述温度随时间和空间的变化。\n\n方程：du/dt = alpha * d^2u/dx^2\n\n使用显式有限差分法(FTCS格式)求解：\nu(i,j+1) = u(i,j) + alpha*dt/dx^2 * (u(i+1,j) - 2*u(i,j) + u(i-1,j))\n\n边界条件：u(0,t) = T_left, u(L,t) = T_right (固定温度边界)\n初始条件：u(x,0) = 0 (初始温度为0)\n\n输入格式：一行六个数：alpha L T_left T_right nx nt（alpha为浮点数，L T_left T_right为浮点数，nx nt为整数）。其中nx为空间网格点数(含边界)，nt为时间步数。dx=L/(nx-1)，dt根据稳定性条件取dt=0.4*dx^2/alpha。\n输出格式：一行nx个浮点数，表示nt步后的温度分布，保留2位小数，空格分隔。",
+    "difficulty": "hard",
+    "tags": ["数学建模", "偏微分方程", "有限差分法"],
+    "languages": ["python"],
+    "examples": [
+      {
+        "input": "1.0 1.0 100.0 50.0 5 100",
+        "output": "100.00 87.42 74.92 62.46 50.00"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "1.0 1.0 100.0 50.0 5 100",
+        "expected": "100.00 87.42 74.92 62.46 50.00"
+      },
+      {
+        "input": "0.5 2.0 0.0 100.0 5 200",
+        "expected": "0.00 24.95 49.97 75.00 100.00"
+      },
+      {
+        "input": "1.0 1.0 50.0 50.0 5 50",
+        "expected": "50.00 49.40 49.08 49.40 50.00"
+      }
+    ],
+    "starter_code": {
+      "python": "import numpy as np\n\nparams = input().split()\nalpha = float(params[0])\nL = float(params[1])\nT_left = float(params[2])\nT_right = float(params[3])\nnx = int(params[4])\nnt = int(params[5])\n\n# 一维热传导方程 - 显式有限差分法(FTCS)\n# dx = L / (nx - 1)\n# dt = 0.4 * dx^2 / alpha (稳定性条件)\n"
+    }
+  },
+  {
+    "title": "Dijkstra最短路径",
+    "description": "最短路径问题是数学建模中网络优化、物流配送、路径规划的基础问题。给定一个带权无向图，以及起点和终点，请使用 Dijkstra 算法求两点之间的最短路径长度。\n\n输入格式：第一行输入两个整数 n 和 m，表示节点数和边数，节点编号为 0 到 n-1。接下来 m 行每行输入三个整数 u v w，表示节点 u 和节点 v 之间有一条权重为 w 的无向边。最后一行输入起点 s 和终点 t。\n输出格式：输出一行，一个整数，表示从 s 到 t 的最短路径长度。",
+    "difficulty": "medium",
+    "tags": ["数学建模", "图论", "最短路径"],
+    "languages": ["python"],
+    "examples": [
+      {
+        "input": "5 9\n0 1 10\n0 2 3\n1 2 1\n1 3 2\n2 1 4\n2 3 8\n2 4 2\n3 4 7\n4 3 9\n0 3",
+        "output": "6"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "5 9\n0 1 10\n0 2 3\n1 2 1\n1 3 2\n2 1 4\n2 3 8\n2 4 2\n3 4 7\n4 3 9\n0 3",
+        "expected": "6"
+      },
+      {
+        "input": "4 4\n0 1 1\n1 2 2\n0 2 4\n2 3 1\n0 3",
+        "expected": "4"
+      },
+      {
+        "input": "6 9\n0 1 7\n0 2 9\n0 5 14\n1 2 10\n1 3 15\n2 3 11\n2 5 2\n3 4 6\n4 5 9\n0 4",
+        "expected": "20"
+      }
+    ],
+    "starter_code": {
+      "python": "import heapq\n\nn, m = map(int, input().split())\nedges = []\nfor _ in range(m):\n    edges.append(tuple(map(int, input().split())))\ns, t = map(int, input().split())\n\n# 使用 Dijkstra 算法求最短路径长度\n"
+    }
+  },
+  {
+    "title": "Prim最小生成树",
+    "description": "最小生成树是数学建模中网络设计与成本优化的重要模型。给定一个连通无向带权图，请使用 Prim 算法求其最小生成树的总权重。\n\n输入格式：第一行输入两个整数 n 和 m，表示节点数和边数，节点编号为 0 到 n-1。接下来 m 行每行输入三个整数 u v w，表示节点 u 和节点 v 之间有一条权重为 w 的无向边。\n输出格式：输出一行，一个整数，表示最小生成树的总权重。",
+    "difficulty": "medium",
+    "tags": ["数学建模", "图论", "最小生成树"],
+    "languages": ["python"],
+    "examples": [
+      {
+        "input": "4 5\n0 1 1\n0 2 4\n1 2 2\n1 3 5\n2 3 3",
+        "output": "6"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "4 5\n0 1 1\n0 2 4\n1 2 2\n1 3 5\n2 3 3",
+        "expected": "6"
+      },
+      {
+        "input": "5 7\n0 1 2\n0 3 6\n1 2 3\n1 3 8\n1 4 5\n2 4 7\n3 4 9",
+        "expected": "16"
+      },
+      {
+        "input": "3 3\n0 1 10\n1 2 5\n0 2 6",
+        "expected": "11"
+      }
+    ],
+    "starter_code": {
+      "python": "import heapq\n\nn, m = map(int, input().split())\nedges = []\nfor _ in range(m):\n    edges.append(tuple(map(int, input().split())))\n\n# 使用 Prim 算法求最小生成树总权重\n"
+    }
+  },
+  {
+    "title": "熵权法指标权重",
+    "description": "熵权法是数学建模中客观赋权的经典方法，常用于多指标评价。给定一个 n x m 的正向指标矩阵，请使用熵权法计算每个指标的权重。\n\n计算步骤：\n1. 对每一列计算比重 p_ij = x_ij / sum(x_ij)\n2. 计算熵值 e_j = -k * sum(p_ij * ln(p_ij))，其中 k = 1 / ln(n)，若 p_ij = 0 则该项按 0 处理\n3. 计算差异系数 d_j = 1 - e_j\n4. 计算权重 w_j = d_j / sum(d_j)\n\n输入格式：第一行输入两个整数 n 和 m。接下来 n 行每行输入 m 个正数，表示评价矩阵。\n输出格式：输出一行 m 个浮点数，表示各指标权重，保留4位小数，空格分隔。",
+    "difficulty": "medium",
+    "tags": ["数学建模", "综合评价", "熵权法"],
+    "languages": ["python"],
+    "examples": [
+      {
+        "input": "3 3\n10 20 30\n20 10 40\n30 30 20",
+        "output": "0.4110 0.4110 0.1779"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "3 3\n10 20 30\n20 10 40\n30 30 20",
+        "expected": "0.4110 0.4110 0.1779"
+      },
+      {
+        "input": "3 2\n5 8\n7 6\n9 4",
+        "expected": "0.4223 0.5777"
+      },
+      {
+        "input": "4 3\n100 80 60\n90 90 70\n80 85 75\n70 95 80",
+        "expected": "0.5358 0.1260 0.3382"
+      }
+    ],
+    "starter_code": {
+      "python": "import math\n\nn, m = map(int, input().split())\nmatrix = []\nfor _ in range(n):\n    matrix.append(list(map(float, input().split())))\n\n# 按题意实现熵权法，输出各指标权重\n"
+    }
+  },
+  {
+    "title": "TOPSIS综合评价",
+    "description": "TOPSIS 是数学建模中常用的综合评价方法。给定一个 n x m 的正向指标矩阵和各指标权重，请使用 TOPSIS 方法计算每个方案的贴近度得分。\n\n计算步骤：\n1. 对每一列做向量归一化\n2. 将归一化后的矩阵乘以给定权重，得到加权规范化矩阵\n3. 对每个指标取最大值为正理想解、最小值为负理想解\n4. 对每个方案计算到正理想解与负理想解的欧氏距离，记为 D+ 和 D-\n5. 贴近度 C = D- / (D+ + D-)\n\n输入格式：第一行输入两个整数 n 和 m。接下来 n 行每行输入 m 个正数，表示各方案的指标值。最后一行输入 m 个浮点数，表示各指标权重，保证权重和为 1。\n输出格式：输出一行 n 个浮点数，表示各方案的贴近度，保留4位小数，空格分隔。",
+    "difficulty": "hard",
+    "tags": ["数学建模", "综合评价", "TOPSIS"],
+    "languages": ["python"],
+    "examples": [
+      {
+        "input": "3 3\n80 90 70\n85 80 75\n90 85 80\n0.4 0.3 0.3",
+        "output": "0.3637 0.3970 0.7845"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "3 3\n80 90 70\n85 80 75\n90 85 80\n0.4 0.3 0.3",
+        "expected": "0.3637 0.3970 0.7845"
+      },
+      {
+        "input": "3 2\n70 60\n80 75\n90 85\n0.5 0.5",
+        "expected": "0.0000 0.5642 1.0000"
+      },
+      {
+        "input": "4 3\n88 92 79\n76 85 90\n93 80 84\n85 88 87\n0.3 0.4 0.3",
+        "expected": "0.6208 0.4000 0.5106 0.6150"
+      }
+    ],
+    "starter_code": {
+      "python": "import math\n\nn, m = map(int, input().split())\nmatrix = []\nfor _ in range(n):\n    matrix.append(list(map(float, input().split())))\nweights = list(map(float, input().split()))\n\n# 按题意实现 TOPSIS，输出每个方案的贴近度\n"
+    }
+  },
+  {
+    "title": "灰色关联分析",
+    "description": "灰色关联分析是数学建模中用于比较序列发展趋势相似程度的经典方法。给定一个参考序列和若干比较序列，请计算每个比较序列相对于参考序列的灰色关联度。\n\n本题采用以下步骤：\n1. 对所有序列做初值化处理，即每个元素除以本序列首项\n2. 计算参考序列与各比较序列在每个位置上的绝对差\n3. 设全局最小差为 minDelta，最大差为 maxDelta，分辨系数 rho = 0.5\n4. 关联系数 xi = (minDelta + rho * maxDelta) / (delta + rho * maxDelta)\n5. 每个比较序列的灰色关联度为其所有关联系数的平均值\n\n输入格式：第一行输入两个整数 n 和 m，表示序列长度和比较序列数量。第二行输入 n 个正数，表示参考序列。接下来 m 行每行输入 n 个正数，表示一个比较序列。\n输出格式：输出一行 m 个浮点数，表示各比较序列的灰色关联度，保留4位小数，空格分隔。",
+    "difficulty": "hard",
+    "tags": ["数学建模", "灰色系统", "关联分析"],
+    "languages": ["python"],
+    "examples": [
+      {
+        "input": "4 3\n100 110 120 130\n98 108 118 128\n90 105 115 125\n102 112 123 135",
+        "output": "0.9377 0.5242 0.8737"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "4 3\n100 110 120 130\n98 108 118 128\n90 105 115 125\n102 112 123 135",
+        "expected": "0.9377 0.5242 0.8737"
+      },
+      {
+        "input": "4 2\n50 55 60 68\n48 54 61 67\n52 58 65 73",
+        "expected": "0.6042 0.6397"
+      },
+      {
+        "input": "5 3\n200 220 240 260 280\n195 214 236 255 276\n205 228 250 275 300\n180 198 215 235 258",
+        "expected": "0.8318 0.6216 0.8379"
+      }
+    ],
+    "starter_code": {
+      "python": "n, m = map(int, input().split())\nreference = list(map(float, input().split()))\nsequences = []\nfor _ in range(m):\n    sequences.append(list(map(float, input().split())))\n\n# 按题意实现灰色关联分析，输出各比较序列的关联度\n"
+    }
+  }
+]

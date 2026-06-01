@@ -1,0 +1,337 @@
+import { ipcMain } from 'electron'
+import { getDB } from '../db/index'
+import { existsSync, readdirSync, readFileSync } from 'fs'
+import { join } from 'path'
+import { runCodeSnippet } from '../utils/codeRunner'
+
+export function registerProblemsIPC() {
+  const db = getDB()
+  syncProblems()
+
+  ipcMain.handle('problems-list', (_e, filters?: {
+    difficulty?: string
+    tag?: string
+    status?: string
+    source?: string
+    track?: string
+    platform?: string
+    mode?: string
+  }) => {
+    let query = 'SELECT p.*, (SELECT COUNT(*) FROM submissions s WHERE s.problem_id = p.id AND s.status = \'accepted\') as solved FROM problems p WHERE 1=1'
+    const params: string[] = []
+
+    if (filters?.difficulty) {
+      query += ' AND p.difficulty = ?'
+      params.push(filters.difficulty)
+    }
+    if (filters?.tag) {
+      query += ' AND p.tags LIKE ?'
+      params.push(`%${filters.tag}%`)
+    }
+    if (filters?.source) {
+      query += ' AND p.source = ?'
+      params.push(filters.source)
+    }
+    if (filters?.track) {
+      query += ' AND p.tracks LIKE ?'
+      params.push(`%"${filters.track}"%`)
+    }
+    if (filters?.platform) {
+      query += ' AND p.platform = ?'
+      params.push(filters.platform)
+    }
+    if (filters?.mode) {
+      query += ' AND p.mode = ?'
+      params.push(filters.mode)
+    }
+    query += ' ORDER BY p.id ASC'
+    return db.prepare(query).all(...params)
+  })
+
+  ipcMain.handle('problems-get', (_e, id: number) => {
+    return db.prepare('SELECT * FROM problems WHERE id = ?').get(id)
+  })
+
+  ipcMain.handle('problems-submit', async (_e, args: { problemId: number; code: string; language: string }) => {
+    const problem = db.prepare('SELECT * FROM problems WHERE id = ?').get(args.problemId) as any
+    if (!problem) throw new Error('题目不存在')
+
+    const testCases = JSON.parse(problem.test_cases)
+    const results: { input: string; expected: string; actual: string; passed: boolean }[] = []
+    const startTime = Date.now()
+    let status: 'accepted' | 'wrong_answer' | 'compile_error' | 'runtime_error' | 'timeout' = 'accepted'
+
+    for (const tc of testCases) {
+      if (args.language === 'sql') {
+        const actual = normalizeSql(args.code)
+        const expected = normalizeSql(String(tc.expected))
+        const passed = actual === expected
+        results.push({ input: tc.input, expected: tc.expected, actual: args.code.trim(), passed })
+        if (!passed) {
+          status = 'wrong_answer'
+          break
+        }
+        continue
+      }
+
+      const result = await runCodeSnippet(args.code, args.language, tc.input)
+      const actual = result.stdout.trim()
+      const passed = normalizeOutput(actual) === normalizeOutput(String(tc.expected))
+      results.push({ input: tc.input, expected: tc.expected, actual, passed })
+
+      if (result.exitCode !== 0) {
+        status = result.stage === 'compile'
+          ? 'compile_error'
+          : result.stderr.toLowerCase().includes('timed out')
+            ? 'timeout'
+            : 'runtime_error'
+        break
+      }
+
+      if (!passed) {
+        status = 'wrong_answer'
+        break
+      }
+    }
+
+    const duration = Date.now() - startTime
+    const passedCount = results.filter((r) => r.passed).length
+    if (passedCount === testCases.length) {
+      status = 'accepted'
+    }
+
+    // Record submission
+    db.prepare(
+      'INSERT INTO submissions (problem_id, language, code, status, passed_cases, total_cases, duration_ms) VALUES (?,?,?,?,?,?,?)'
+    ).run(args.problemId, args.language, args.code, status, passedCount, testCases.length, duration)
+
+    // Record mistake if failed
+    if (status !== 'accepted') {
+      const existing = db.prepare('SELECT * FROM mistakes WHERE problem_id = ?').get(args.problemId) as any
+      const errorTypes = mergeErrorTypes(existing?.error_types, status)
+      if (existing) {
+        db.prepare('UPDATE mistakes SET error_count = error_count + 1, last_wrong_code = ?, error_types = ?, updated_at = CURRENT_TIMESTAMP WHERE problem_id = ?')
+          .run(args.code, JSON.stringify(errorTypes), args.problemId)
+      } else {
+        db.prepare('INSERT INTO mistakes (problem_id, last_wrong_code, error_types) VALUES (?,?,?)')
+          .run(args.problemId, args.code, JSON.stringify(errorTypes))
+      }
+    } else {
+      // If solved, update mistake with correct code
+      db.prepare('UPDATE mistakes SET correct_code = ? WHERE problem_id = ?').run(args.code, args.problemId)
+    }
+
+    return { status, passed: passedCount, total: testCases.length, results, duration }
+  })
+
+  ipcMain.handle('problems-submissions', (_e, problemId: number) => {
+    return db.prepare('SELECT * FROM submissions WHERE problem_id = ? ORDER BY created_at DESC LIMIT 20').all(problemId)
+  })
+}
+
+function syncProblems() {
+  const db = getDB()
+  const problemDir = resolveProblemDirectory()
+  if (!problemDir) {
+    return
+  }
+
+  const files = readdirSync(problemDir).filter((file) => file.endsWith('.json')).sort()
+  const insertStmt = db.prepare(`
+    INSERT INTO problems (
+      title, description, difficulty, tags, languages, examples, test_cases, starter_code,
+      source, tracks, platform, mode, exam_style, year, official_url, estimated_time
+    ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+  `)
+  const updateStmt = db.prepare(`
+    UPDATE problems
+    SET description = ?, difficulty = ?, tags = ?, languages = ?, examples = ?, test_cases = ?, starter_code = ?,
+        tracks = ?, platform = ?, mode = ?, exam_style = ?, year = ?, official_url = ?, estimated_time = ?
+    WHERE id = ?
+  `)
+  const existsStmt = db.prepare('SELECT id FROM problems WHERE title = ? AND source = ? LIMIT 1')
+
+  for (const file of files) {
+    const seedPath = join(problemDir, file)
+
+    try {
+      const data = JSON.parse(readFileSync(seedPath, 'utf-8')) as ProblemSeed[]
+      const derivedSource = inferSourceFromFile(file)
+
+      for (const problem of data) {
+        const normalized = normalizeProblemSeed(problem, derivedSource)
+        const exists = existsStmt.get(normalized.title, normalized.source) as { id: number } | undefined
+        if (exists) {
+          updateStmt.run(
+            normalized.description,
+            normalized.difficulty,
+            JSON.stringify(normalized.tags),
+            JSON.stringify(normalized.languages),
+            JSON.stringify(normalized.examples),
+            JSON.stringify(normalized.test_cases),
+            JSON.stringify(normalized.starter_code),
+            JSON.stringify(normalized.tracks),
+            normalized.platform,
+            normalized.mode,
+            normalized.exam_style,
+            normalized.year ?? null,
+            normalized.official_url ?? null,
+            normalized.estimated_time ?? null,
+            exists.id,
+          )
+          continue
+        }
+
+        insertStmt.run(
+          normalized.title,
+          normalized.description,
+          normalized.difficulty,
+          JSON.stringify(normalized.tags),
+          JSON.stringify(normalized.languages),
+          JSON.stringify(normalized.examples),
+          JSON.stringify(normalized.test_cases),
+          JSON.stringify(normalized.starter_code),
+          normalized.source,
+          JSON.stringify(normalized.tracks),
+          normalized.platform,
+          normalized.mode,
+          normalized.exam_style,
+          normalized.year ?? null,
+          normalized.official_url ?? null,
+          normalized.estimated_time ?? null,
+        )
+      }
+    } catch (err) {
+      console.error(`Failed to sync problems from ${file}:`, err)
+    }
+  }
+}
+
+interface ProblemSeed {
+  title: string
+  description: string
+  difficulty: 'easy' | 'medium' | 'hard'
+  tags: string[]
+  languages: string[]
+  examples: Array<{ input: string; output: string; explanation?: string }>
+  test_cases: Array<{ input: string; expected: string }>
+  starter_code: Record<string, string>
+  source?: string
+  tracks?: string[]
+  platform?: string
+  mode?: string
+  exam_style?: string
+  year?: number
+  official_url?: string
+  estimated_time?: number
+}
+
+function resolveProblemDirectory() {
+  const candidates = [
+    join(process.resourcesPath, 'problems'),
+    join(__dirname, '../../resources/problems'),
+  ]
+
+  for (const candidate of candidates) {
+    if (existsSync(candidate)) {
+      return candidate
+    }
+  }
+
+  return null
+}
+
+function inferSourceFromFile(file: string) {
+  if (file === 'basic.json') return 'builtin'
+  if (file === 'leetcode.json') return 'leetcode'
+  if (file === 'math-modeling.json') return 'math-modeling'
+  return file.replace(/\.json$/i, '')
+}
+
+function normalizeProblemSeed(problem: ProblemSeed, fallbackSource: string) {
+  return {
+    ...problem,
+    source: problem.source ?? fallbackSource,
+    tracks: problem.tracks ?? inferTracksFromSource(problem.source ?? fallbackSource),
+    platform: problem.platform ?? inferPlatformFromSource(problem.source ?? fallbackSource),
+    mode: problem.mode ?? inferModeFromSource(problem.source ?? fallbackSource),
+    exam_style: problem.exam_style ?? inferExamStyle(problem.source ?? fallbackSource),
+    estimated_time: problem.estimated_time ?? inferEstimatedTime(problem.difficulty, problem.mode ?? inferModeFromSource(problem.source ?? fallbackSource)),
+  }
+}
+
+function inferTracksFromSource(source: string) {
+  if (source.includes('exam-retest')) return ['postgrad-retest']
+  if (source.includes('summer')) return ['summer-camp']
+  if (source.includes('algo-job')) return ['algo-job']
+  if (source.includes('ic-job')) return ['ic-job']
+  if (source.includes('modeling') || source === 'math-modeling') return ['math-modeling']
+  if (source === 'leetcode') return ['algo-job', 'summer-camp']
+  return ['postgrad-retest', 'algo-job']
+}
+
+function inferPlatformFromSource(source: string) {
+  if (source.includes('pat')) return 'pat'
+  if (source.includes('pta')) return 'pta'
+  if (source.includes('csp')) return 'csp'
+  if (source.includes('kattis')) return 'kattis'
+  if (source.includes('cf-gym')) return 'cf-gym'
+  if (source.includes('uoj')) return 'uoj'
+  if (source.includes('nowcoder')) return 'nowcoder'
+  if (source.includes('oa')) return 'hackerrank'
+  if (source.includes('hdlbits')) return 'hdlbits'
+  if (source.includes('simulation')) return 'eda-playground'
+  if (source.includes('official')) return 'cumcm'
+  if (source.includes('kaggle')) return 'kaggle'
+  if (source.includes('mathworks')) return 'mathworks'
+  if (source === 'leetcode') return 'leetcode'
+  if (source === 'math-modeling') return 'cumcm'
+  return 'internal'
+}
+
+function inferModeFromSource(source: string) {
+  if (source.includes('simulation')) return 'simulation'
+  if (source.includes('kaggle')) return 'data-task'
+  if (source.includes('mathworks') || source.includes('official') || source === 'math-modeling') return 'case-study'
+  return 'oj'
+}
+
+function inferExamStyle(source: string) {
+  if (source.includes('ic-job') || source.includes('hdlbits')) return 'hdl'
+  if (source.includes('modeling') || source === 'math-modeling') return 'modeling'
+  if (source.includes('algo-job') || source === 'leetcode' || source.includes('oa')) return 'oa'
+  return 'acm'
+}
+
+function inferEstimatedTime(difficulty: string, mode: string) {
+  const base = difficulty === 'easy' ? 20 : difficulty === 'medium' ? 35 : 55
+  if (mode === 'simulation') return base + 15
+  if (mode === 'data-task' || mode === 'case-study' || mode === 'report-task') return base + 25
+  return base
+}
+
+function normalizeOutput(output: string) {
+  return output.trim().replace(/\r\n/g, '\n')
+}
+
+function normalizeSql(sql: string) {
+  return sql
+    .replace(/--.*$/gm, '')
+    .replace(/\s+/g, ' ')
+    .replace(/\s*;\s*$/, '')
+    .trim()
+    .toLowerCase()
+}
+
+function mergeErrorTypes(rawErrorTypes: string | undefined, status: string) {
+  try {
+    const parsed = rawErrorTypes ? JSON.parse(rawErrorTypes) : []
+    const errorTypes = Array.isArray(parsed) ? parsed.filter((item) => typeof item === 'string') : []
+    if (!errorTypes.includes(status)) {
+      errorTypes.push(status)
+    }
+    return errorTypes
+  } catch {
+    return [status]
+  }
+}
