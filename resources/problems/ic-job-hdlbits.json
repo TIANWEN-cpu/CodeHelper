@@ -1,0 +1,4702 @@
+[
+  {
+    "title": "HDLBits 训练 001：二选一多路复用器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "easy",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_001(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2020,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 40
+  },
+  {
+    "title": "HDLBits 训练 002：四位优先编码器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "easy",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_002(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2021,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 40
+  },
+  {
+    "title": "HDLBits 训练 003：模十计数器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "easy",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_003(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2022,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 40
+  },
+  {
+    "title": "HDLBits 训练 004：移位寄存器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "easy",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_004(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2023,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 40
+  },
+  {
+    "title": "HDLBits 训练 005：边沿检测器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "easy",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_005(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2024,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 40
+  },
+  {
+    "title": "HDLBits 训练 006：交通灯状态机",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "easy",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_006(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2025,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 40
+  },
+  {
+    "title": "HDLBits 训练 007：串口接收握手",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "easy",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_007(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2020,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 40
+  },
+  {
+    "title": "HDLBits 训练 008：流水线有效位",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "easy",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_008(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2021,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 40
+  },
+  {
+    "title": "HDLBits 训练 009：异步 FIFO 标志",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "easy",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_009(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2022,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 40
+  },
+  {
+    "title": "HDLBits 训练 010：按键消抖模块",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "easy",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_010(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2023,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 40
+  },
+  {
+    "title": "HDLBits 训练 011：可配置分频器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "easy",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_011(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2024,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 40
+  },
+  {
+    "title": "HDLBits 训练 012：占空比控制器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "easy",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_012(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2025,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 40
+  },
+  {
+    "title": "HDLBits 训练 013：二选一多路复用器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "easy",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_013(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2020,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 40
+  },
+  {
+    "title": "HDLBits 训练 014：四位优先编码器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "easy",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_014(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2021,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 40
+  },
+  {
+    "title": "HDLBits 训练 015：模十计数器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "easy",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_015(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2022,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 40
+  },
+  {
+    "title": "HDLBits 训练 016：移位寄存器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "easy",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_016(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2023,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 40
+  },
+  {
+    "title": "HDLBits 训练 017：边沿检测器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "easy",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_017(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2024,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 40
+  },
+  {
+    "title": "HDLBits 训练 018：交通灯状态机",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "easy",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_018(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2025,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 40
+  },
+  {
+    "title": "HDLBits 训练 019：串口接收握手",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "easy",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_019(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2020,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 40
+  },
+  {
+    "title": "HDLBits 训练 020：流水线有效位",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "easy",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_020(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2021,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 40
+  },
+  {
+    "title": "HDLBits 训练 021：异步 FIFO 标志",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "easy",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_021(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2022,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 40
+  },
+  {
+    "title": "HDLBits 训练 022：按键消抖模块",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "easy",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_022(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2023,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 40
+  },
+  {
+    "title": "HDLBits 训练 023：可配置分频器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "easy",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_023(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2024,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 40
+  },
+  {
+    "title": "HDLBits 训练 024：占空比控制器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "easy",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_024(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2025,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 40
+  },
+  {
+    "title": "HDLBits 训练 025：二选一多路复用器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "easy",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_025(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2020,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 40
+  },
+  {
+    "title": "HDLBits 训练 026：四位优先编码器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_026(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2021,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 027：模十计数器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_027(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2022,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 028：移位寄存器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_028(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2023,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 029：边沿检测器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_029(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2024,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 030：交通灯状态机",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_030(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2025,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 031：串口接收握手",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_031(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2020,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 032：流水线有效位",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_032(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2021,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 033：异步 FIFO 标志",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_033(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2022,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 034：按键消抖模块",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_034(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2023,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 035：可配置分频器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_035(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2024,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 036：占空比控制器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_036(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2025,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 037：二选一多路复用器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_037(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2020,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 038：四位优先编码器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_038(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2021,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 039：模十计数器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_039(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2022,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 040：移位寄存器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_040(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2023,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 041：边沿检测器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_041(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2024,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 042：交通灯状态机",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_042(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2025,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 043：串口接收握手",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_043(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2020,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 044：流水线有效位",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_044(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2021,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 045：异步 FIFO 标志",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_045(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2022,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 046：按键消抖模块",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_046(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2023,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 047：可配置分频器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_047(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2024,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 048：占空比控制器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_048(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2025,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 049：二选一多路复用器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_049(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2020,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 050：四位优先编码器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_050(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2021,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 051：模十计数器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_051(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2022,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 052：移位寄存器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_052(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2023,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 053：边沿检测器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_053(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2024,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 054：交通灯状态机",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_054(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2025,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 055：串口接收握手",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_055(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2020,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 056：流水线有效位",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_056(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2021,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 057：异步 FIFO 标志",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_057(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2022,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 058：按键消抖模块",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_058(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2023,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 059：可配置分频器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_059(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2024,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 060：占空比控制器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_060(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2025,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 061：二选一多路复用器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_061(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2020,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 062：四位优先编码器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_062(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2021,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 063：模十计数器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_063(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2022,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 064：移位寄存器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_064(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2023,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 065：边沿检测器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_065(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2024,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 066：交通灯状态机",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_066(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2025,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 067：串口接收握手",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_067(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2020,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 068：流水线有效位",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_068(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2021,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 069：异步 FIFO 标志",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_069(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2022,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 070：按键消抖模块",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_070(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2023,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 071：可配置分频器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_071(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2024,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 072：占空比控制器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_072(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2025,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 073：二选一多路复用器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_073(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2020,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 074：四位优先编码器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_074(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2021,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 075：模十计数器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_075(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2022,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 076：移位寄存器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_076(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2023,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 077：边沿检测器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_077(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2024,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 078：交通灯状态机",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_078(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2025,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 079：串口接收握手",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_079(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2020,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 080：流水线有效位",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "medium",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_080(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2021,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 55
+  },
+  {
+    "title": "HDLBits 训练 081：异步 FIFO 标志",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "hard",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_081(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2022,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 75
+  },
+  {
+    "title": "HDLBits 训练 082：按键消抖模块",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "hard",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_082(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2023,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 75
+  },
+  {
+    "title": "HDLBits 训练 083：可配置分频器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "hard",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_083(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2024,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 75
+  },
+  {
+    "title": "HDLBits 训练 084：占空比控制器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "hard",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_084(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2025,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 75
+  },
+  {
+    "title": "HDLBits 训练 085：二选一多路复用器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "hard",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_085(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2020,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 75
+  },
+  {
+    "title": "HDLBits 训练 086：四位优先编码器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "hard",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_086(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2021,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 75
+  },
+  {
+    "title": "HDLBits 训练 087：模十计数器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "hard",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_087(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2022,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 75
+  },
+  {
+    "title": "HDLBits 训练 088：移位寄存器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "hard",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_088(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2023,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 75
+  },
+  {
+    "title": "HDLBits 训练 089：边沿检测器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "hard",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_089(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2024,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 75
+  },
+  {
+    "title": "HDLBits 训练 090：交通灯状态机",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "hard",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_090(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2025,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 75
+  },
+  {
+    "title": "HDLBits 训练 091：串口接收握手",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "hard",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_091(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2020,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 75
+  },
+  {
+    "title": "HDLBits 训练 092：流水线有效位",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "hard",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_092(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2021,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 75
+  },
+  {
+    "title": "HDLBits 训练 093：异步 FIFO 标志",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "hard",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_093(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2022,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 75
+  },
+  {
+    "title": "HDLBits 训练 094：按键消抖模块",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "hard",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_094(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2023,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 75
+  },
+  {
+    "title": "HDLBits 训练 095：可配置分频器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "hard",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_095(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2024,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 75
+  },
+  {
+    "title": "HDLBits 训练 096：占空比控制器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "hard",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_096(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2025,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 75
+  },
+  {
+    "title": "HDLBits 训练 097：二选一多路复用器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "hard",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_097(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2020,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 75
+  },
+  {
+    "title": "HDLBits 训练 098：四位优先编码器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "hard",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_098(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2021,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 75
+  },
+  {
+    "title": "HDLBits 训练 099：模十计数器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "hard",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_099(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2022,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 75
+  },
+  {
+    "title": "HDLBits 训练 100：移位寄存器",
+    "description": "HDLBits 训练 训练题。\n\n请根据题意完成 Verilog 模块设计，并结合时序关系说明关键状态转移。\n建议写出端口含义、寄存器更新规则和至少一组手工仿真结果。\n如果是验证题，请补充激励设计思路与观察点。",
+    "difficulty": "hard",
+    "tags": [
+      "Verilog",
+      "时序逻辑",
+      "数字电路"
+    ],
+    "languages": [
+      "verilog"
+    ],
+    "examples": [
+      {
+        "input": "clk 上升沿、rst_n=0、din=0",
+        "output": "模块进入复位状态，关键寄存器清零",
+        "explanation": "请在答案中说明复位优先级和输出信号默认值。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "case 1: rst_n=0",
+        "expected": "能够说明复位后的寄存器状态"
+      },
+      {
+        "input": "case 2: 连续 4 个时钟输入模式 1011",
+        "expected": "能够写出关键输出变化"
+      },
+      {
+        "input": "case 3: 边界条件",
+        "expected": "补充异常或边界场景处理"
+      }
+    ],
+    "starter_code": {
+      "verilog": "module top_module_100(\n    input wire clk,\n    input wire rst_n,\n    input wire din,\n    output reg dout\n);\n    // 在这里补全你的 Verilog 设计\nendmodule\n"
+    },
+    "source": "ic-job-hdlbits",
+    "tracks": [
+      "ic-job"
+    ],
+    "platform": "hdlbits",
+    "mode": "simulation",
+    "exam_style": "hdl",
+    "year": 2023,
+    "official_url": "https://hdlbits.01xz.net",
+    "estimated_time": 75
+  }
+]

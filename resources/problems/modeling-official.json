@@ -1,0 +1,2822 @@
+[
+  {
+    "title": "建模真题拆解 001：城市配送优化",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "easy",
+    "tags": [
+      "数学建模",
+      "数据分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "cumcm",
+    "mode": "case-study",
+    "exam_style": "modeling",
+    "year": 2018,
+    "official_url": "https://www.mcm.edu.cn",
+    "estimated_time": 110
+  },
+  {
+    "title": "建模真题拆解 002：景区客流预测",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "easy",
+    "tags": [
+      "论文复现",
+      "结果分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "pgmcm",
+    "mode": "report-task",
+    "exam_style": "modeling",
+    "year": 2019,
+    "official_url": "https://cpipc.acge.org.cn",
+    "estimated_time": 110
+  },
+  {
+    "title": "建模真题拆解 003：指标评价体系",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "easy",
+    "tags": [
+      "数学建模",
+      "数据分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "mcm-icm",
+    "mode": "case-study",
+    "exam_style": "modeling",
+    "year": 2020,
+    "official_url": "https://www.comap.com/contests/mcm-icm",
+    "estimated_time": 110
+  },
+  {
+    "title": "建模真题拆解 004：疫情传播建模",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "easy",
+    "tags": [
+      "论文复现",
+      "结果分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "mathorcup",
+    "mode": "report-task",
+    "exam_style": "modeling",
+    "year": 2021,
+    "official_url": "https://www.mathorcup.org",
+    "estimated_time": 110
+  },
+  {
+    "title": "建模真题拆解 005：灰色预测分析",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "easy",
+    "tags": [
+      "数学建模",
+      "数据分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "cumcm",
+    "mode": "case-study",
+    "exam_style": "modeling",
+    "year": 2022,
+    "official_url": "https://www.mcm.edu.cn",
+    "estimated_time": 110
+  },
+  {
+    "title": "建模真题拆解 006：能源负荷调度",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "easy",
+    "tags": [
+      "论文复现",
+      "结果分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "pgmcm",
+    "mode": "report-task",
+    "exam_style": "modeling",
+    "year": 2023,
+    "official_url": "https://cpipc.acge.org.cn",
+    "estimated_time": 110
+  },
+  {
+    "title": "建模真题拆解 007：公交排班优化",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "easy",
+    "tags": [
+      "数学建模",
+      "数据分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "mcm-icm",
+    "mode": "case-study",
+    "exam_style": "modeling",
+    "year": 2024,
+    "official_url": "https://www.comap.com/contests/mcm-icm",
+    "estimated_time": 110
+  },
+  {
+    "title": "建模真题拆解 008：仓储选址规划",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "easy",
+    "tags": [
+      "论文复现",
+      "结果分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "mathorcup",
+    "mode": "report-task",
+    "exam_style": "modeling",
+    "year": 2025,
+    "official_url": "https://www.mathorcup.org",
+    "estimated_time": 110
+  },
+  {
+    "title": "建模真题拆解 009：用户分群画像",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "easy",
+    "tags": [
+      "数学建模",
+      "数据分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "cumcm",
+    "mode": "case-study",
+    "exam_style": "modeling",
+    "year": 2018,
+    "official_url": "https://www.mcm.edu.cn",
+    "estimated_time": 110
+  },
+  {
+    "title": "建模真题拆解 010：异常检测报告",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "medium",
+    "tags": [
+      "论文复现",
+      "结果分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "pgmcm",
+    "mode": "report-task",
+    "exam_style": "modeling",
+    "year": 2019,
+    "official_url": "https://cpipc.acge.org.cn",
+    "estimated_time": 125
+  },
+  {
+    "title": "建模真题拆解 011：网络可靠性评估",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "medium",
+    "tags": [
+      "数学建模",
+      "数据分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "mcm-icm",
+    "mode": "case-study",
+    "exam_style": "modeling",
+    "year": 2020,
+    "official_url": "https://www.comap.com/contests/mcm-icm",
+    "estimated_time": 125
+  },
+  {
+    "title": "建模真题拆解 012：温度场数值模拟",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "medium",
+    "tags": [
+      "论文复现",
+      "结果分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "mathorcup",
+    "mode": "report-task",
+    "exam_style": "modeling",
+    "year": 2021,
+    "official_url": "https://www.mathorcup.org",
+    "estimated_time": 125
+  },
+  {
+    "title": "建模真题拆解 013：城市配送优化",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "medium",
+    "tags": [
+      "数学建模",
+      "数据分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "cumcm",
+    "mode": "case-study",
+    "exam_style": "modeling",
+    "year": 2022,
+    "official_url": "https://www.mcm.edu.cn",
+    "estimated_time": 125
+  },
+  {
+    "title": "建模真题拆解 014：景区客流预测",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "medium",
+    "tags": [
+      "论文复现",
+      "结果分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "pgmcm",
+    "mode": "report-task",
+    "exam_style": "modeling",
+    "year": 2023,
+    "official_url": "https://cpipc.acge.org.cn",
+    "estimated_time": 125
+  },
+  {
+    "title": "建模真题拆解 015：指标评价体系",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "medium",
+    "tags": [
+      "数学建模",
+      "数据分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "mcm-icm",
+    "mode": "case-study",
+    "exam_style": "modeling",
+    "year": 2024,
+    "official_url": "https://www.comap.com/contests/mcm-icm",
+    "estimated_time": 125
+  },
+  {
+    "title": "建模真题拆解 016：疫情传播建模",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "medium",
+    "tags": [
+      "论文复现",
+      "结果分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "mathorcup",
+    "mode": "report-task",
+    "exam_style": "modeling",
+    "year": 2025,
+    "official_url": "https://www.mathorcup.org",
+    "estimated_time": 125
+  },
+  {
+    "title": "建模真题拆解 017：灰色预测分析",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "medium",
+    "tags": [
+      "数学建模",
+      "数据分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "cumcm",
+    "mode": "case-study",
+    "exam_style": "modeling",
+    "year": 2018,
+    "official_url": "https://www.mcm.edu.cn",
+    "estimated_time": 125
+  },
+  {
+    "title": "建模真题拆解 018：能源负荷调度",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "medium",
+    "tags": [
+      "论文复现",
+      "结果分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "pgmcm",
+    "mode": "report-task",
+    "exam_style": "modeling",
+    "year": 2019,
+    "official_url": "https://cpipc.acge.org.cn",
+    "estimated_time": 125
+  },
+  {
+    "title": "建模真题拆解 019：公交排班优化",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "medium",
+    "tags": [
+      "数学建模",
+      "数据分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "mcm-icm",
+    "mode": "case-study",
+    "exam_style": "modeling",
+    "year": 2020,
+    "official_url": "https://www.comap.com/contests/mcm-icm",
+    "estimated_time": 125
+  },
+  {
+    "title": "建模真题拆解 020：仓储选址规划",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "medium",
+    "tags": [
+      "论文复现",
+      "结果分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "mathorcup",
+    "mode": "report-task",
+    "exam_style": "modeling",
+    "year": 2021,
+    "official_url": "https://www.mathorcup.org",
+    "estimated_time": 125
+  },
+  {
+    "title": "建模真题拆解 021：用户分群画像",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "medium",
+    "tags": [
+      "数学建模",
+      "数据分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "cumcm",
+    "mode": "case-study",
+    "exam_style": "modeling",
+    "year": 2022,
+    "official_url": "https://www.mcm.edu.cn",
+    "estimated_time": 125
+  },
+  {
+    "title": "建模真题拆解 022：异常检测报告",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "medium",
+    "tags": [
+      "论文复现",
+      "结果分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "pgmcm",
+    "mode": "report-task",
+    "exam_style": "modeling",
+    "year": 2023,
+    "official_url": "https://cpipc.acge.org.cn",
+    "estimated_time": 125
+  },
+  {
+    "title": "建模真题拆解 023：网络可靠性评估",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "medium",
+    "tags": [
+      "数学建模",
+      "数据分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "mcm-icm",
+    "mode": "case-study",
+    "exam_style": "modeling",
+    "year": 2024,
+    "official_url": "https://www.comap.com/contests/mcm-icm",
+    "estimated_time": 125
+  },
+  {
+    "title": "建模真题拆解 024：温度场数值模拟",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "medium",
+    "tags": [
+      "论文复现",
+      "结果分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "mathorcup",
+    "mode": "report-task",
+    "exam_style": "modeling",
+    "year": 2025,
+    "official_url": "https://www.mathorcup.org",
+    "estimated_time": 125
+  },
+  {
+    "title": "建模真题拆解 025：城市配送优化",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "medium",
+    "tags": [
+      "数学建模",
+      "数据分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "cumcm",
+    "mode": "case-study",
+    "exam_style": "modeling",
+    "year": 2018,
+    "official_url": "https://www.mcm.edu.cn",
+    "estimated_time": 125
+  },
+  {
+    "title": "建模真题拆解 026：景区客流预测",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "medium",
+    "tags": [
+      "论文复现",
+      "结果分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "pgmcm",
+    "mode": "report-task",
+    "exam_style": "modeling",
+    "year": 2019,
+    "official_url": "https://cpipc.acge.org.cn",
+    "estimated_time": 125
+  },
+  {
+    "title": "建模真题拆解 027：指标评价体系",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "medium",
+    "tags": [
+      "数学建模",
+      "数据分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "mcm-icm",
+    "mode": "case-study",
+    "exam_style": "modeling",
+    "year": 2020,
+    "official_url": "https://www.comap.com/contests/mcm-icm",
+    "estimated_time": 125
+  },
+  {
+    "title": "建模真题拆解 028：疫情传播建模",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "medium",
+    "tags": [
+      "论文复现",
+      "结果分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "mathorcup",
+    "mode": "report-task",
+    "exam_style": "modeling",
+    "year": 2021,
+    "official_url": "https://www.mathorcup.org",
+    "estimated_time": 125
+  },
+  {
+    "title": "建模真题拆解 029：灰色预测分析",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "medium",
+    "tags": [
+      "数学建模",
+      "数据分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "cumcm",
+    "mode": "case-study",
+    "exam_style": "modeling",
+    "year": 2022,
+    "official_url": "https://www.mcm.edu.cn",
+    "estimated_time": 125
+  },
+  {
+    "title": "建模真题拆解 030：能源负荷调度",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "medium",
+    "tags": [
+      "论文复现",
+      "结果分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "pgmcm",
+    "mode": "report-task",
+    "exam_style": "modeling",
+    "year": 2023,
+    "official_url": "https://cpipc.acge.org.cn",
+    "estimated_time": 125
+  },
+  {
+    "title": "建模真题拆解 031：公交排班优化",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "medium",
+    "tags": [
+      "数学建模",
+      "数据分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "mcm-icm",
+    "mode": "case-study",
+    "exam_style": "modeling",
+    "year": 2024,
+    "official_url": "https://www.comap.com/contests/mcm-icm",
+    "estimated_time": 125
+  },
+  {
+    "title": "建模真题拆解 032：仓储选址规划",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "medium",
+    "tags": [
+      "论文复现",
+      "结果分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "mathorcup",
+    "mode": "report-task",
+    "exam_style": "modeling",
+    "year": 2025,
+    "official_url": "https://www.mathorcup.org",
+    "estimated_time": 125
+  },
+  {
+    "title": "建模真题拆解 033：用户分群画像",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "medium",
+    "tags": [
+      "数学建模",
+      "数据分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "cumcm",
+    "mode": "case-study",
+    "exam_style": "modeling",
+    "year": 2018,
+    "official_url": "https://www.mcm.edu.cn",
+    "estimated_time": 125
+  },
+  {
+    "title": "建模真题拆解 034：异常检测报告",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "medium",
+    "tags": [
+      "论文复现",
+      "结果分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "pgmcm",
+    "mode": "report-task",
+    "exam_style": "modeling",
+    "year": 2019,
+    "official_url": "https://cpipc.acge.org.cn",
+    "estimated_time": 125
+  },
+  {
+    "title": "建模真题拆解 035：网络可靠性评估",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "medium",
+    "tags": [
+      "数学建模",
+      "数据分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "mcm-icm",
+    "mode": "case-study",
+    "exam_style": "modeling",
+    "year": 2020,
+    "official_url": "https://www.comap.com/contests/mcm-icm",
+    "estimated_time": 125
+  },
+  {
+    "title": "建模真题拆解 036：温度场数值模拟",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "medium",
+    "tags": [
+      "论文复现",
+      "结果分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "mathorcup",
+    "mode": "report-task",
+    "exam_style": "modeling",
+    "year": 2021,
+    "official_url": "https://www.mathorcup.org",
+    "estimated_time": 125
+  },
+  {
+    "title": "建模真题拆解 037：城市配送优化",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "medium",
+    "tags": [
+      "数学建模",
+      "数据分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "cumcm",
+    "mode": "case-study",
+    "exam_style": "modeling",
+    "year": 2022,
+    "official_url": "https://www.mcm.edu.cn",
+    "estimated_time": 125
+  },
+  {
+    "title": "建模真题拆解 038：景区客流预测",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "medium",
+    "tags": [
+      "论文复现",
+      "结果分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "pgmcm",
+    "mode": "report-task",
+    "exam_style": "modeling",
+    "year": 2023,
+    "official_url": "https://cpipc.acge.org.cn",
+    "estimated_time": 125
+  },
+  {
+    "title": "建模真题拆解 039：指标评价体系",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "medium",
+    "tags": [
+      "数学建模",
+      "数据分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "mcm-icm",
+    "mode": "case-study",
+    "exam_style": "modeling",
+    "year": 2024,
+    "official_url": "https://www.comap.com/contests/mcm-icm",
+    "estimated_time": 125
+  },
+  {
+    "title": "建模真题拆解 040：疫情传播建模",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "hard",
+    "tags": [
+      "论文复现",
+      "结果分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "mathorcup",
+    "mode": "report-task",
+    "exam_style": "modeling",
+    "year": 2025,
+    "official_url": "https://www.mathorcup.org",
+    "estimated_time": 145
+  },
+  {
+    "title": "建模真题拆解 041：灰色预测分析",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "hard",
+    "tags": [
+      "数学建模",
+      "数据分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "cumcm",
+    "mode": "case-study",
+    "exam_style": "modeling",
+    "year": 2018,
+    "official_url": "https://www.mcm.edu.cn",
+    "estimated_time": 145
+  },
+  {
+    "title": "建模真题拆解 042：能源负荷调度",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "hard",
+    "tags": [
+      "论文复现",
+      "结果分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "pgmcm",
+    "mode": "report-task",
+    "exam_style": "modeling",
+    "year": 2019,
+    "official_url": "https://cpipc.acge.org.cn",
+    "estimated_time": 145
+  },
+  {
+    "title": "建模真题拆解 043：公交排班优化",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "hard",
+    "tags": [
+      "数学建模",
+      "数据分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "mcm-icm",
+    "mode": "case-study",
+    "exam_style": "modeling",
+    "year": 2020,
+    "official_url": "https://www.comap.com/contests/mcm-icm",
+    "estimated_time": 145
+  },
+  {
+    "title": "建模真题拆解 044：仓储选址规划",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "hard",
+    "tags": [
+      "论文复现",
+      "结果分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "mathorcup",
+    "mode": "report-task",
+    "exam_style": "modeling",
+    "year": 2021,
+    "official_url": "https://www.mathorcup.org",
+    "estimated_time": 145
+  },
+  {
+    "title": "建模真题拆解 045：用户分群画像",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "hard",
+    "tags": [
+      "数学建模",
+      "数据分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "cumcm",
+    "mode": "case-study",
+    "exam_style": "modeling",
+    "year": 2022,
+    "official_url": "https://www.mcm.edu.cn",
+    "estimated_time": 145
+  },
+  {
+    "title": "建模真题拆解 046：异常检测报告",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "hard",
+    "tags": [
+      "论文复现",
+      "结果分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "pgmcm",
+    "mode": "report-task",
+    "exam_style": "modeling",
+    "year": 2023,
+    "official_url": "https://cpipc.acge.org.cn",
+    "estimated_time": 145
+  },
+  {
+    "title": "建模真题拆解 047：网络可靠性评估",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "hard",
+    "tags": [
+      "数学建模",
+      "数据分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "mcm-icm",
+    "mode": "case-study",
+    "exam_style": "modeling",
+    "year": 2024,
+    "official_url": "https://www.comap.com/contests/mcm-icm",
+    "estimated_time": 145
+  },
+  {
+    "title": "建模真题拆解 048：温度场数值模拟",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "hard",
+    "tags": [
+      "论文复现",
+      "结果分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "mathorcup",
+    "mode": "report-task",
+    "exam_style": "modeling",
+    "year": 2025,
+    "official_url": "https://www.mathorcup.org",
+    "estimated_time": 145
+  },
+  {
+    "title": "建模真题拆解 049：城市配送优化",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "hard",
+    "tags": [
+      "数学建模",
+      "数据分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "cumcm",
+    "mode": "case-study",
+    "exam_style": "modeling",
+    "year": 2018,
+    "official_url": "https://www.mcm.edu.cn",
+    "estimated_time": 145
+  },
+  {
+    "title": "建模真题拆解 050：景区客流预测",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "hard",
+    "tags": [
+      "论文复现",
+      "结果分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "pgmcm",
+    "mode": "report-task",
+    "exam_style": "modeling",
+    "year": 2019,
+    "official_url": "https://cpipc.acge.org.cn",
+    "estimated_time": 145
+  },
+  {
+    "title": "建模真题拆解 051：指标评价体系",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "hard",
+    "tags": [
+      "数学建模",
+      "数据分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "mcm-icm",
+    "mode": "case-study",
+    "exam_style": "modeling",
+    "year": 2020,
+    "official_url": "https://www.comap.com/contests/mcm-icm",
+    "estimated_time": 145
+  },
+  {
+    "title": "建模真题拆解 052：疫情传播建模",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "hard",
+    "tags": [
+      "论文复现",
+      "结果分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "mathorcup",
+    "mode": "report-task",
+    "exam_style": "modeling",
+    "year": 2021,
+    "official_url": "https://www.mathorcup.org",
+    "estimated_time": 145
+  },
+  {
+    "title": "建模真题拆解 053：灰色预测分析",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "hard",
+    "tags": [
+      "数学建模",
+      "数据分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "cumcm",
+    "mode": "case-study",
+    "exam_style": "modeling",
+    "year": 2022,
+    "official_url": "https://www.mcm.edu.cn",
+    "estimated_time": 145
+  },
+  {
+    "title": "建模真题拆解 054：能源负荷调度",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "hard",
+    "tags": [
+      "论文复现",
+      "结果分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "pgmcm",
+    "mode": "report-task",
+    "exam_style": "modeling",
+    "year": 2023,
+    "official_url": "https://cpipc.acge.org.cn",
+    "estimated_time": 145
+  },
+  {
+    "title": "建模真题拆解 055：公交排班优化",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "hard",
+    "tags": [
+      "数学建模",
+      "数据分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "mcm-icm",
+    "mode": "case-study",
+    "exam_style": "modeling",
+    "year": 2024,
+    "official_url": "https://www.comap.com/contests/mcm-icm",
+    "estimated_time": 145
+  },
+  {
+    "title": "建模真题拆解 056：仓储选址规划",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "hard",
+    "tags": [
+      "论文复现",
+      "结果分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "mathorcup",
+    "mode": "report-task",
+    "exam_style": "modeling",
+    "year": 2025,
+    "official_url": "https://www.mathorcup.org",
+    "estimated_time": 145
+  },
+  {
+    "title": "建模真题拆解 057：用户分群画像",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "hard",
+    "tags": [
+      "数学建模",
+      "数据分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "cumcm",
+    "mode": "case-study",
+    "exam_style": "modeling",
+    "year": 2018,
+    "official_url": "https://www.mcm.edu.cn",
+    "estimated_time": 145
+  },
+  {
+    "title": "建模真题拆解 058：异常检测报告",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "hard",
+    "tags": [
+      "论文复现",
+      "结果分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "pgmcm",
+    "mode": "report-task",
+    "exam_style": "modeling",
+    "year": 2019,
+    "official_url": "https://cpipc.acge.org.cn",
+    "estimated_time": 145
+  },
+  {
+    "title": "建模真题拆解 059：网络可靠性评估",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "hard",
+    "tags": [
+      "数学建模",
+      "数据分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "mcm-icm",
+    "mode": "case-study",
+    "exam_style": "modeling",
+    "year": 2020,
+    "official_url": "https://www.comap.com/contests/mcm-icm",
+    "estimated_time": 145
+  },
+  {
+    "title": "建模真题拆解 060：温度场数值模拟",
+    "description": "建模真题拆解 训练题。\n\n请围绕给定业务场景完成问题重述、建模假设、变量定义、求解流程和结果分析。\n如涉及数据处理，请给出清洗方案、特征设计与评价指标；如涉及优化，请说明目标函数和约束条件。",
+    "difficulty": "hard",
+    "tags": [
+      "论文复现",
+      "结果分析",
+      "建模报告"
+    ],
+    "languages": [
+      "python"
+    ],
+    "examples": [
+      {
+        "input": "场景资料 / 附件数据",
+        "output": "建模思路摘要 + 关键结果 + 结论建议",
+        "explanation": "该类题目更关注分析过程与结果解释，不要求标准输出完全一致。"
+      }
+    ],
+    "test_cases": [
+      {
+        "input": "任务 1：问题拆解",
+        "expected": "给出变量、假设和建模目标"
+      },
+      {
+        "input": "任务 2：求解流程",
+        "expected": "描述算法、评价指标和实验步骤"
+      },
+      {
+        "input": "任务 3：结果分析",
+        "expected": "给出结论、敏感性分析或改进建议"
+      }
+    ],
+    "starter_code": {
+      "python": "# 建议步骤：\n# 1. 读取或整理数据\n# 2. 明确评价指标 / 目标函数\n# 3. 完成建模、求解与结果解释\n\ndef main():\n    pass\n\nif __name__ == '__main__':\n    main()\n"
+    },
+    "source": "modeling-official",
+    "tracks": [
+      "math-modeling"
+    ],
+    "platform": "mathorcup",
+    "mode": "report-task",
+    "exam_style": "modeling",
+    "year": 2021,
+    "official_url": "https://www.mathorcup.org",
+    "estimated_time": 145
+  }
+]
