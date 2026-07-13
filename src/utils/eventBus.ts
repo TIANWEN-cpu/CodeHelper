@@ -1,162 +1,71 @@
-/**
- * Typed event bus for cross-component communication.
- *
- * Provides a type-safe publish/subscribe system that decouples stores
- * and components from direct inter-store calls.
- *
- * Usage:
- * ```ts
- * import { eventBus, type AppEvents } from '../utils/eventBus'
- *
- * // Subscribe
- * const unsub = eventBus.on('theme:changed', (theme) => {
- *   console.log('New theme:', theme)
- * })
- *
- * // Publish
- * eventBus.emit('theme:changed', 'fjord')
- *
- * // One-shot listener
- * eventBus.once('session:created', (id) => { ... })
- *
- * // Unsubscribe
- * unsub()
- * ```
- */
-
-// ---------------------------------------------------------------------------
-// Event definitions — add new events here for full type safety
-// ---------------------------------------------------------------------------
-
-export interface AppEvents {
-  // Theme events
+type EventPayloads = {
   'theme:changed': string
-
-  // Session events
-  'session:created': string
-  'session:switched': string
-  'session:deleted': string
-
-  // Problem events
-  'problem:selected': number
-  'problem:submitted': number
-  'problems:refreshed': void
-
-  // Editor events
-  'editor:tab-opened': string
-  'editor:tab-closed': string
-  'editor:content-changed': { tabId: string; content: string }
-
-  // AI events
-  'ai:stream-start': string
-  'ai:stream-chunk': { requestId: string; chunk: string }
-  'ai:stream-done': { requestId: string; content: string }
-  'ai:error': { requestId: string; error: string }
-
-  // Knowledge events
-  'knowledge:uploaded': void
-  'knowledge:deleted': number
-  'knowledge:tagged': { docId: number; tags: string[] }
-  'knowledge:concept-selected': string
-
-  // Settings events
-  'settings:config-saved': number
-  'settings:config-deleted': number
-
-  // Generic events
-  'error:occurred': { context: string; message: string }
-  'app:ready': void
+  'settings:updated': unknown
+  'chat:message': unknown
+  'layout:changed': unknown
 }
 
-// ---------------------------------------------------------------------------
-// Event bus implementation
-// ---------------------------------------------------------------------------
+type EventName = keyof EventPayloads | string
+type Listener<T = unknown> = (payload: T) => void
 
-type Listener<T> = (data: T) => void
+const MAX_LISTENERS = 50
 
-class EventBus<Events> {
-  private listeners = new Map<keyof Events, Set<Listener<unknown>>>()
-  private static readonly MAX_LISTENERS_PER_EVENT = 50
+class EventBus {
+  private listeners = new Map<EventName, Set<Listener>>()
 
-  /**
-   * Subscribe to an event. Returns an unsubscribe function.
-   */
-  on<K extends keyof Events>(event: K, listener: Listener<Events[K]>): () => void {
-    let set = this.listeners.get(event)
-    if (!set) {
-      set = new Set()
-      this.listeners.set(event, set)
+  on<T = unknown>(event: EventName, listener: Listener<T>): () => void {
+    const set = this.listeners.get(event) ?? new Set<Listener>()
+    set.add(listener as Listener)
+    this.listeners.set(event, set)
+    if (set.size > MAX_LISTENERS) {
+      console.warn(`[eventBus] Max listeners (${MAX_LISTENERS}) exceeded for "${event}"`)
     }
-    if (set.size >= EventBus.MAX_LISTENERS_PER_EVENT) {
-      console.warn(
-        `[EventBus] Max listeners (${EventBus.MAX_LISTENERS_PER_EVENT}) reached for "${String(event)}". Possible memory leak.`,
-      )
-    }
-    set.add(listener as Listener<unknown>)
-
-    return () => {
-      set!.delete(listener as Listener<unknown>)
-      if (set!.size === 0) {
-        this.listeners.delete(event)
-      }
-    }
+    return () => this.off(event, listener as Listener)
   }
 
-  /**
-   * Subscribe to an event once. Auto-unsubscribes after the first call.
-   */
-  once<K extends keyof Events>(event: K, listener: Listener<Events[K]>): () => void {
-    const unsub = this.on(event, (data) => {
-      unsub()
-      listener(data)
-    })
-    return unsub
+  once<T = unknown>(event: EventName, listener: Listener<T>): () => void {
+    const wrapped: Listener<T> = (payload) => {
+      this.off(event, wrapped as Listener)
+      listener(payload)
+    }
+    return this.on(event, wrapped)
   }
 
-  /**
-   * Emit an event. All registered listeners are called synchronously.
-   */
-  emit<K extends keyof Events>(event: K, data: Events[K]): void {
+  off(event?: EventName, listener?: Listener): void {
+    if (event == null) {
+      this.listeners.clear()
+      return
+    }
+    if (listener == null) {
+      this.listeners.delete(event)
+      return
+    }
     const set = this.listeners.get(event)
     if (!set) return
+    set.delete(listener)
+    if (set.size === 0) this.listeners.delete(event)
+  }
 
+  emit<T = unknown>(event: EventName, payload?: T): void {
+    const set = this.listeners.get(event)
+    if (!set) return
     for (const listener of set) {
       try {
-        ;(listener as Listener<Events[K]>)(data)
+        listener(payload)
       } catch (error) {
-        console.error(`[EventBus] Error in listener for "${String(event)}":`, error)
+        console.error('[EventBus] listener failed:', error)
       }
     }
   }
 
-  /**
-   * Remove all listeners for a specific event, or all events if no key given.
-   */
-  off<K extends keyof Events>(event?: K): void {
-    if (event) {
-      this.listeners.delete(event)
-    } else {
-      this.listeners.clear()
-    }
-  }
-
-  /**
-   * Get the number of listeners for a given event.
-   */
-  listenerCount<K extends keyof Events>(event: K): number {
+  listenerCount(event: EventName): number {
     return this.listeners.get(event)?.size ?? 0
   }
 
-  /**
-   * Check if an event has any listeners.
-   */
-  hasListeners<K extends keyof Events>(event: K): boolean {
+  hasListeners(event: EventName): boolean {
     return this.listenerCount(event) > 0
   }
 }
 
-// ---------------------------------------------------------------------------
-// Singleton instance
-// ---------------------------------------------------------------------------
-
-export const eventBus = new EventBus<AppEvents>()
+export const eventBus = new EventBus()
+export type { EventBus }

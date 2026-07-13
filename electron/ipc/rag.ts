@@ -5,126 +5,439 @@ import { basename, extname } from 'path'
 import { splitIntoChunks, escapeRegExp } from '../utils/textUtils'
 import { trackPerformance } from '../utils/perfMonitor'
 import type { KnowledgeChunkRow } from '../types/db'
+import type Database from 'better-sqlite3'
+
+export type ScoredKnowledgeChunk = KnowledgeChunkRow & { score: number }
+type KnowledgeDocListRow = {
+  id: number
+  filename: string
+  file_type: string | null
+  chunk_count: number
+  created_at: string
+  content_preview?: string | null
+}
+type KnowledgeDocDetailRow = KnowledgeDocListRow & {
+  content: string | null
+}
+type KnowledgeDocMetadata = {
+  display_title?: string
+  source_repo?: string
+  source_url?: string
+  source_path?: string
+  category?: string
+  category_dir?: string
+  tags?: string[]
+}
+
+// ---------------------------------------------------------------------------
+// Deferred DB wrapper — prevents blocking startup with synchronous DB init.
+//
+// getDB() performs a synchronous SQLite open + schema + index creation. When
+// called early in the app lifecycle this can block the Electron main thread
+// and delay window creation. The wrapper below:
+//   1. Kicks off init on first access (lazy).
+//   2. Does NOT block the event loop — init runs in the microtask queue.
+//   3. Returns null via getReadyDB() until init finishes, so IPC handlers
+//      can return graceful empty responses instead of blocking or crashing.
+//   4. Adds a configurable timeout (default 15 s) so a hung DB open cannot
+//      stall the app indefinitely.
+// ---------------------------------------------------------------------------
+
+const DB_INIT_TIMEOUT_MS = 15_000
+
+let knowledgeDB: Database.Database | null = null
+let knowledgeDBInitPromise: Promise<Database.Database> | null = null
+let knowledgeDBReady = false
+let knowledgeDBInitError: Error | null = null
+
+/** Kick off DB init in the background (idempotent). */
+function ensureKnowledgeDBInit(): void {
+  if (knowledgeDBInitPromise) return
+  knowledgeDBInitPromise = Promise.resolve()
+    .then(() => {
+      const db = getDB()
+      knowledgeDB = db
+      knowledgeDBReady = true
+      return db
+    })
+    .catch((err) => {
+      knowledgeDBInitError = err instanceof Error ? err : new Error(String(err))
+      console.error('[knowledge-db] Deferred init failed:', knowledgeDBInitError)
+      throw knowledgeDBInitError
+    })
+}
+
+/**
+ * Return the DB if already initialised, otherwise trigger background init and
+ * return null.  IPC handlers call this and, on null, return a graceful
+ * "not-ready" payload instead of blocking.
+ */
+function getReadyDB(): Database.Database | null {
+  if (knowledgeDBReady && knowledgeDB) return knowledgeDB
+  if (knowledgeDBReady && !knowledgeDB) {
+    // Edge case: ready flag set but ref lost — re-fetch synchronously.
+    knowledgeDB = getDB()
+    return knowledgeDB
+  }
+  // Not ready yet — kick off init (if not already started) and return null.
+  ensureKnowledgeDBInit()
+  return null
+}
+
+/**
+ * Like getReadyDB() but waits up to DB_INIT_TIMEOUT_MS for init to finish.
+ * Used by write-heavy handlers (upload, delete) where returning "not ready"
+ * would lose user data.
+ */
+async function getDBWithTimeout(): Promise<Database.Database> {
+  if (knowledgeDBReady && knowledgeDB) return knowledgeDB
+  ensureKnowledgeDBInit()
+
+  const timeoutPromise = new Promise<never>((_, reject) => {
+    setTimeout(() => reject(new Error('知识库数据库初始化超时，请稍后重试。')), DB_INIT_TIMEOUT_MS)
+  })
+
+  const db = await Promise.race([knowledgeDBInitPromise!, timeoutPromise])
+  if (!knowledgeDB) knowledgeDB = db
+  return db
+}
+
+/** Kick off background init eagerly so it finishes before the user needs it. */
+ensureKnowledgeDBInit()
+
+function validateKnowledgeQuery(query: string): string {
+  if (typeof query !== 'string' || !query.trim()) throw new Error('参数无效: query')
+  return query.trim().slice(0, 1000)
+}
+
+export function extractYamlScalar(frontMatter: string, key: string): string | undefined {
+  const match = frontMatter.match(new RegExp(`^${key}:\\s*"?([^"\\r\\n]+)"?\\s*$`, 'm'))
+  return match?.[1]?.trim()
+}
+
+export function extractYamlTags(frontMatter: string): string[] {
+  const tagsBlock = frontMatter.match(/^tags:\s*\r?\n((?:\s+-\s*.*\r?\n?)+)/m)?.[1]
+  if (!tagsBlock) return []
+  return tagsBlock
+    .split(/\r?\n/)
+    .map((line) => line.match(/^\s+-\s*"?([^"]+)"?\s*$/)?.[1]?.trim())
+    .filter((tag): tag is string => Boolean(tag))
+}
+
+export function titleFromFilename(filename: string): string {
+  return filename
+    .replace(/\.md$/i, '')
+    .split('__')
+    .slice(-1)[0]
+    .replace(/^[a-f0-9]{8,}_?/i, '')
+    .replace(/[-_]+/g, ' ')
+    .trim()
+}
+
+function enrichKnowledgeDoc<T extends KnowledgeDocListRow | KnowledgeDocDetailRow>(
+  row: T,
+): T & KnowledgeDocMetadata {
+  const preview = 'content' in row ? row.content : row.content_preview
+  if (typeof preview !== 'string') return row
+
+  const frontMatter = preview.match(/^---\s*\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? ''
+  const displayTitle = extractYamlScalar(frontMatter, 'title') ?? titleFromFilename(row.filename)
+  const metadata: KnowledgeDocMetadata = {
+    display_title: displayTitle,
+    source_repo: extractYamlScalar(frontMatter, 'source_repo'),
+    source_url: extractYamlScalar(frontMatter, 'source_url'),
+    source_path: extractYamlScalar(frontMatter, 'source_path'),
+    category: extractYamlScalar(frontMatter, 'category'),
+    category_dir: extractYamlScalar(frontMatter, 'category_dir'),
+  }
+  const tags = extractYamlTags(frontMatter)
+  if (tags.length > 0) metadata.tags = tags
+
+  return Object.fromEntries(
+    Object.entries({ ...row, ...metadata }).filter(([, value]) => value !== undefined),
+  ) as unknown as T & KnowledgeDocMetadata
+}
+
+/**
+ * 关键词检索上限：knowledge_chunks 可能很大，而 LIKE '%kw%' 无法走索引，
+ * 会全表扫。这里给 SQL 一个硬上限，避免把数千条 chunk 全部读进内存再做 JS 精排。
+ * 该上限远大于调用方最终需要的 limit（默认 5~10），只用于先收窄候选集。
+ */
+const KEYWORD_SCAN_MAX = 200
+
+function keywordSearch(query: string, limit = 5): ScoredKnowledgeChunk[] {
+  const normalizedQuery = validateKnowledgeQuery(query)
+  const keywords = normalizedQuery
+    .toLowerCase()
+    .split(/\s+/)
+    .filter((k) => k.length > 1)
+  if (keywords.length === 0) return []
+
+  const db = getReadyDB()
+  if (!db) return [] // DB not ready yet — return empty results gracefully.
+
+  const conditions = keywords.map(() => 'LOWER(kc.content) LIKE ?').join(' OR ')
+  const params = keywords.map((kw) => `%${kw}%`)
+  // 用 SQL LIMIT 收窄候选集（取最近 KEYWORD_SCAN_MAX 条命中），避免全量搬进内存。
+  const matchingChunks = db
+    .prepare(
+      `SELECT kc.*, kd.filename FROM knowledge_chunks kc JOIN knowledge_docs kd ON kc.doc_id = kd.id
+       WHERE ${conditions}
+       ORDER BY kc.id DESC
+       LIMIT ?`,
+    )
+    .all(...params, KEYWORD_SCAN_MAX) as KnowledgeChunkRow[]
+
+  // 预编译关键词正则一次，复用于所有 chunk（原先每个 chunk 都 new RegExp，CPU 热点）。
+  const matchers = keywords.map((kw) => new RegExp(escapeRegExp(kw), 'g'))
+  const scored = matchingChunks.map((chunk) => {
+    const text = chunk.content.toLowerCase()
+    let score = 0
+    for (const re of matchers) {
+      score += (text.match(re) || []).length
+    }
+    return { ...chunk, score }
+  })
+
+  scored.sort((a, b) => b.score - a.score)
+  return scored.slice(0, limit)
+}
+
+export function topConceptsFromChunks(chunks: ScoredKnowledgeChunk[], limit = 8): string[] {
+  const counts = new Map<string, number>()
+  const stopWords = new Set([
+    'the',
+    'and',
+    'for',
+    'with',
+    'this',
+    'that',
+    'from',
+    'are',
+    'was',
+    'were',
+  ])
+
+  for (const chunk of chunks) {
+    for (const word of chunk.content.toLowerCase().match(/[a-z0-9_一-龥]{2,}/g) ?? []) {
+      if (stopWords.has(word)) continue
+      counts.set(word, (counts.get(word) ?? 0) + 1)
+    }
+  }
+
+  return [...counts.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, limit)
+    .map(([word]) => word)
+}
 
 export function registerRAGIPC(): void {
-  ipcMain.handle('knowledge-upload', async () => {
-    const result = await dialog.showOpenDialog({
-      properties: ['openFile', 'multiSelections'],
-      filters: [{ name: '文档', extensions: ['txt', 'md', 'pdf'] }],
-    })
-
-    if (result.canceled || result.filePaths.length === 0) return null
-
-    const db = getDB()
-    const uploaded: string[] = []
-
-    for (const filePath of result.filePaths) {
-      const filename = basename(filePath)
-      const ext = extname(filePath).toLowerCase()
-      let content = ''
-
-      const MAX_FILE_SIZE = 10 * 1024 * 1024 // 10MB
-      let stat
-      try {
-        stat = statSync(filePath)
-      } catch (error) {
-        throw new Error(
-          `无法读取文件 "${filename}": ${error instanceof Error ? error.message : String(error)}`,
-        )
-      }
-      if (stat.size > MAX_FILE_SIZE) {
-        throw new Error(`文件 "${filename}" 超过大小限制（最大 10MB）`)
-      }
-
-      if (ext === '.txt' || ext === '.md') {
-        content = readFileSync(filePath, 'utf-8')
-      } else if (ext === '.pdf') {
-        try {
-          const pdfParseModule = await import('pdf-parse')
-          const pdfParseFn = (pdfParseModule as unknown as Record<string, unknown>).default as
-            | ((data: Buffer) => Promise<{ text: string }>)
-            | undefined
-          const pdfParse =
-            pdfParseFn ?? (pdfParseModule as unknown as (data: Buffer) => Promise<{ text: string }>)
-          const buffer = readFileSync(filePath)
-          const textResult = await pdfParse(buffer)
-          content = textResult.text
-        } catch (error) {
-          throw new Error(`PDF 解析失败: ${error instanceof Error ? error.message : String(error)}`)
-        }
-      }
-
-      // Split into chunks (~500 chars)
-      const chunks = splitIntoChunks(content, 500)
-
-      const docResult = db
-        .prepare(
-          'INSERT INTO knowledge_docs (filename, file_type, content, chunk_count) VALUES (?,?,?,?)',
-        )
-        .run(filename, ext, content, chunks.length)
-
-      const docId = docResult.lastInsertRowid
-      const insertChunk = db.prepare(
-        'INSERT INTO knowledge_chunks (doc_id, content, chunk_index) VALUES (?,?,?)',
-      )
-
-      chunks.forEach((chunk, i) => {
-        insertChunk.run(docId, chunk, i)
+  ipcMain.handle(
+    'knowledge-upload',
+    trackPerformance('knowledge-upload', async () => {
+      const result = await dialog.showOpenDialog({
+        properties: ['openFile', 'multiSelections'],
+        filters: [{ name: '文档', extensions: ['txt', 'md', 'pdf'] }],
       })
 
-      uploaded.push(filename)
-    }
+      if (result.canceled || result.filePaths.length === 0) return null
 
-    return uploaded
-  })
+      const db = await getDBWithTimeout()
+      const uploaded: string[] = []
 
-  ipcMain.handle('knowledge-list', () => {
-    return getDB()
+      for (const filePath of result.filePaths) {
+        const filename = basename(filePath)
+        const ext = extname(filePath).toLowerCase()
+        let content = ''
+
+        const MAX_FILE_SIZE = 10 * 1024 * 1024 // 10MB
+        let stat
+        try {
+          stat = statSync(filePath)
+        } catch (error) {
+          throw new Error(
+            `无法读取文件 "${filename}": ${error instanceof Error ? error.message : String(error)}`,
+          )
+        }
+        if (stat.size > MAX_FILE_SIZE) {
+          throw new Error(`文件 "${filename}" 超过大小限制（最大 10MB）`)
+        }
+
+        if (ext === '.txt' || ext === '.md') {
+          try {
+            content = readFileSync(filePath, 'utf-8')
+          } catch (error) {
+            throw new Error(
+              `读取文件 "${filename}" 失败: ${error instanceof Error ? error.message : String(error)}`,
+            )
+          }
+        } else if (ext === '.pdf') {
+          try {
+            const pdfParseModule = await import('pdf-parse')
+            const pdfParseFn = (pdfParseModule as unknown as Record<string, unknown>).default as
+              | ((data: Buffer) => Promise<{ text: string }>)
+              | undefined
+            const pdfParse =
+              pdfParseFn ??
+              (pdfParseModule as unknown as (data: Buffer) => Promise<{ text: string }>)
+            const buffer = readFileSync(filePath)
+            const textResult = await pdfParse(buffer)
+            content = textResult.text
+          } catch (error) {
+            throw new Error(
+              `PDF 解析失败: ${error instanceof Error ? error.message : String(error)}`,
+            )
+          }
+        }
+
+        // Split into chunks (~500 chars)
+        const chunks = splitIntoChunks(content, 500)
+
+        // 单文件的 doc + chunks 写入包进事务：避免中途失败留下
+        // chunk_count 与实际 chunk 数不一致的“半截文档”。
+        const insertDoc = db.transaction(
+          (docFilename: string, docExt: string, docContent: string) => {
+            const docResult = db
+              .prepare(
+                'INSERT INTO knowledge_docs (filename, file_type, content, chunk_count) VALUES (?,?,?,?)',
+              )
+              .run(docFilename, docExt, docContent, chunks.length)
+
+            const docId = docResult.lastInsertRowid
+            const insertChunk = db.prepare(
+              'INSERT INTO knowledge_chunks (doc_id, content, chunk_index) VALUES (?,?,?)',
+            )
+            chunks.forEach((chunk, i) => {
+              insertChunk.run(docId, chunk, i)
+            })
+          },
+        )
+        insertDoc(filename, ext, content)
+
+        uploaded.push(filename)
+      }
+
+      return uploaded
+    }),
+  )
+
+  ipcMain.handle('knowledge-list', async () => {
+    const db = await getDBWithTimeout()
+    return db
       .prepare(
-        'SELECT id, filename, file_type, chunk_count, created_at FROM knowledge_docs ORDER BY created_at DESC',
+        `SELECT id, filename, file_type, chunk_count, created_at, substr(content, 1, 1800) AS content_preview
+         FROM knowledge_docs
+         ORDER BY created_at DESC, id DESC`,
       )
       .all()
-  })
-
-  ipcMain.handle('knowledge-delete', (_e, id: number) => {
-    if (typeof id !== 'number' || !Number.isFinite(id) || id < 1) throw new Error('参数无效: id')
-    getDB().prepare('DELETE FROM knowledge_docs WHERE id = ?').run(id)
+      .map((row) => enrichKnowledgeDoc(row as KnowledgeDocListRow))
   })
 
   ipcMain.handle(
-    'knowledge-search',
-    trackPerformance('knowledge-search', (_e, query: string) => {
-      if (typeof query !== 'string' || !query.trim()) throw new Error('参数无效: query')
-      query = query.trim().slice(0, 1000)
-      // Simple keyword search (no embedding for now)
-      const keywords = query
-        .toLowerCase()
-        .split(/\s+/)
-        .filter((k) => k.length > 1)
-      if (keywords.length === 0) return []
-
-      const db = getDB()
-      const conditions = keywords.map(() => 'LOWER(kc.content) LIKE ?').join(' OR ')
-      const params = keywords.map((kw) => `%${kw}%`)
-      const matchingChunks = db
+    'knowledge-get',
+    trackPerformance('knowledge-get', (_e, id: number) => {
+      if (typeof id !== 'number' || !Number.isFinite(id) || id < 1) throw new Error('参数无效: id')
+      const db = getReadyDB()
+      if (!db) return null
+      const row = db
         .prepare(
-          `SELECT kc.*, kd.filename FROM knowledge_chunks kc JOIN knowledge_docs kd ON kc.doc_id = kd.id WHERE ${conditions}`,
+          `SELECT id, filename, file_type, content, chunk_count, created_at
+           FROM knowledge_docs
+           WHERE id = ?`,
         )
-        .all(...params) as KnowledgeChunkRow[]
-
-      // Score chunks by keyword match frequency
-      const scored = matchingChunks.map((chunk) => {
-        const text = chunk.content.toLowerCase()
-        let score = 0
-        for (const kw of keywords) {
-          const matches = (text.match(new RegExp(escapeRegExp(kw), 'g')) || []).length
-          score += matches
-        }
-        return { ...chunk, score }
-      })
-
-      scored.sort((a, b) => b.score - a.score)
-      return scored.slice(0, 5)
+        .get(id) as KnowledgeDocDetailRow | undefined
+      return row ? enrichKnowledgeDoc(row) : null
     }),
+  )
+
+  ipcMain.handle(
+    'knowledge-delete',
+    trackPerformance('knowledge-delete', async (_e, id: number) => {
+      if (typeof id !== 'number' || !Number.isFinite(id) || id < 1) throw new Error('参数无效: id')
+      try {
+        const db = await getDBWithTimeout()
+        db.prepare('DELETE FROM knowledge_chunks WHERE doc_id = ?').run(id)
+        db.prepare('DELETE FROM knowledge_docs WHERE id = ?').run(id)
+      } catch (error) {
+        throw new Error(
+          `删除知识文档失败: ${error instanceof Error ? error.message : String(error)}`,
+        )
+      }
+    }),
+  )
+
+  ipcMain.handle(
+    'knowledge-search',
+    trackPerformance('knowledge-search', (_e, query: string) => keywordSearch(query, 5)),
+  )
+
+  ipcMain.handle(
+    'knowledge-semantic-search',
+    trackPerformance('knowledge-semantic-search', (_e, query: string) =>
+      keywordSearch(query, 10).map((chunk) => ({
+        content: chunk.content,
+        filename: chunk.filename,
+        doc_id: chunk.doc_id,
+        chunk_id: chunk.id,
+        score: Math.min(1, chunk.score / 5),
+        explanation: '当前使用关键词匹配作为语义搜索降级结果。',
+      })),
+    ),
+  )
+
+  ipcMain.handle(
+    'knowledge-summarize',
+    trackPerformance('knowledge-summarize', (_e, query: string) => {
+      const chunks = keywordSearch(query, 5)
+      const keyConcepts = topConceptsFromChunks(chunks, 6)
+      return {
+        summary:
+          chunks.length > 0
+            ? `基于 ${chunks.length} 个知识库片段的关键词检索结果生成降级摘要。`
+            : '知识库中暂未找到相关内容。',
+        keyConcepts,
+      }
+    }),
+  )
+
+  ipcMain.handle('knowledge-concept-graph', () => ({ nodes: [], edges: [] }))
+
+  ipcMain.handle('knowledge-concept-detail', (_e, conceptId: string) => {
+    if (typeof conceptId !== 'string' || !conceptId.trim()) throw new Error('参数无效: conceptId')
+    const label = conceptId.trim()
+    return {
+      concept: { id: label, label, weight: 0, category: 'keyword' },
+      documents: [],
+      relatedConcepts: [],
+      description: '当前概念图谱为实验性能力，暂无可用详情。',
+    }
+  })
+
+  ipcMain.handle('knowledge-auto-tag', (_e, docId: number) => {
+    if (typeof docId !== 'number' || !Number.isFinite(docId) || docId < 1)
+      throw new Error('参数无效: docId')
+    return []
+  })
+
+  ipcMain.handle('knowledge-tags', () => [])
+
+  ipcMain.handle('knowledge-tag-documents', (_e, tag: string) => {
+    if (typeof tag !== 'string' || !tag.trim()) throw new Error('参数无效: tag')
+    return []
+  })
+
+  ipcMain.handle(
+    'knowledge-rag-context',
+    trackPerformance('knowledge-rag-context', (_e, query?: string) => ({
+      recentProblems: [],
+      learningHistory: [],
+      knowledgeChunks: query ? keywordSearch(query, 5).map((chunk) => chunk.content) : [],
+      userProfile: {
+        preferredLanguage: 'zh-CN',
+        difficultyLevel: 'beginner',
+        strongTopics: [],
+        weakTopics: [],
+      },
+    })),
   )
 }

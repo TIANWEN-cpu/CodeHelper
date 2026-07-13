@@ -1,23 +1,23 @@
 import { create } from 'zustand'
-import type { ChatConfig } from '../types/chat'
-import { typedInvoke, invalidateCache } from '../api/ipc'
-import { toErrorMessage, getUserMessage } from '../utils/errors'
-import { eventBus } from '../utils/eventBus'
+import { typedInvoke } from '@/api/ipc'
 
-// Re-export type so existing consumers are not broken
-export type { ChatConfig as AIConfig }
+type AIConfig = Record<string, unknown> & { id?: number }
 
-interface SettingsState {
-  aiConfigs: ChatConfig[]
+type SettingsStore = {
+  aiConfigs: AIConfig[]
   loading: boolean
   saving: boolean
   saveError: string | null
   loadConfigs: () => Promise<void>
-  saveConfig: (config: ChatConfig) => Promise<void>
+  saveConfig: (config: AIConfig) => Promise<void>
   deleteConfig: (id: number) => Promise<void>
 }
 
-export const useSettingsStore = create<SettingsState>((set, get) => ({
+function message(error: unknown) {
+  return error instanceof Error ? error.message : String(error)
+}
+
+export const useSettingsStore = create<SettingsStore>((set, get) => ({
   aiConfigs: [],
   loading: false,
   saving: false,
@@ -25,10 +25,11 @@ export const useSettingsStore = create<SettingsState>((set, get) => ({
   loadConfigs: async () => {
     set({ loading: true })
     try {
-      const configs = await typedInvoke('db-get-ai-configs')
-      set({ aiConfigs: configs })
+      const aiConfigs = await typedInvoke<AIConfig[]>('db-get-ai-configs')
+      set({ aiConfigs })
     } catch (error) {
-      console.error('[SettingsStore.loadConfigs]', toErrorMessage(error))
+      console.error('[SettingsStore.loadConfigs]', error)
+      set({ aiConfigs: [] })
     } finally {
       set({ loading: false })
     }
@@ -36,13 +37,10 @@ export const useSettingsStore = create<SettingsState>((set, get) => ({
   saveConfig: async (config) => {
     set({ saving: true, saveError: null })
     try {
-      const configId = await typedInvoke('db-save-ai-config', config)
-      invalidateCache('db-get-ai-configs')
+      await typedInvoke('db-save-ai-config', config)
       await get().loadConfigs()
-      eventBus.emit('settings:config-saved', Number(configId))
-    } catch (error: unknown) {
-      set({ saveError: getUserMessage(error) })
-      console.error('[SettingsStore.saveConfig]', toErrorMessage(error))
+    } catch (error) {
+      set({ saveError: message(error) })
       throw error
     } finally {
       set({ saving: false })
@@ -51,11 +49,9 @@ export const useSettingsStore = create<SettingsState>((set, get) => ({
   deleteConfig: async (id) => {
     try {
       await typedInvoke('db-delete-ai-config', id)
-      invalidateCache('db-get-ai-configs')
       await get().loadConfigs()
-      eventBus.emit('settings:config-deleted', id)
     } catch (error) {
-      console.error('[SettingsStore.deleteConfig]', toErrorMessage(error))
+      console.error('[SettingsStore.deleteConfig]', error)
     }
   },
 }))

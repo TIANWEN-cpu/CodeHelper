@@ -1,326 +1,337 @@
 import { create } from 'zustand'
-import type {
-  Message,
-  Session,
-  PromptPreset,
-  MemoryItem,
-  StreamChunkPayload,
-  StreamDonePayload,
-} from '../types/chat'
-import { SESSION_TITLE_MAX_LENGTH } from '../constants'
-import { toErrorMessage, getUserMessage } from '../utils/errors'
-import { typedInvoke, invalidateCache } from '../api/ipc'
-import { eventBus } from '../utils/eventBus'
-import { ragContextService } from '../utils/ragContextService'
+import { typedInvoke } from '@/api/ipc'
+import { reportError } from '@/utils/errorHandler'
 
-// Re-export types so existing consumers are not broken
-export type { Message as ChatMessage, Session as ChatSession, PromptPreset, MemoryItem }
-export type { StreamChunkPayload, StreamDonePayload }
+type Role = 'user' | 'assistant' | 'system'
+type Session = {
+  id: string
+  title: string
+  system_prompt?: string
+  created_at?: string
+  updated_at?: string
+}
+type Message = { id: string; role: Role; content: string; timestamp?: number; created_at?: string }
+type Preset = { id: number | string; name: string; prompt: string; is_builtin?: boolean }
+type Memory = Record<string, unknown>
 
-/** Max messages kept in memory per session to prevent unbounded growth. */
-const MAX_MESSAGES_IN_MEMORY = 500
+/**
+ * 发送选项：
+ * - sendOverride：实际发给模型的文本（带上下文/教学前缀）；显示与入库仍用原始 content。
+ * - includeMemories：是否允许后端注入跨会话长期记忆。
+ * - includeKnowledge：是否检索本地知识库（RAG）随请求发送。
+ * - memoryCategories：按类别发送白名单（隐私控制），undefined=全部。
+ * - llmExtract：true 时用 LLM 智能抽取记忆替代本地正则捕获。
+ * - configId：指定 AI 配置；缺省用默认配置。
+ */
+export type SendMessageOptions = {
+  sendOverride?: string
+  includeMemories?: boolean
+  includeKnowledge?: boolean
+  memoryCategories?: string[]
+  llmExtract?: boolean
+  configId?: number
+}
 
-interface ChatState {
+type ChatStore = {
   sessions: Session[]
   activeSessionId: string | null
   messages: Message[]
+  loading: boolean
   streaming: boolean
   currentRequestId: string | null
   error: string | null
-  presets: PromptPreset[]
-  memories: MemoryItem[]
+  presets: Preset[]
+  memories: Memory[]
   loadSessions: () => Promise<void>
   createSession: (systemPrompt?: string, title?: string) => Promise<string>
   switchSession: (id: string) => Promise<void>
   deleteSession: (id: string) => Promise<void>
   renameSession: (id: string, title: string) => Promise<void>
-  sendMessage: (content: string, configId?: number) => Promise<void>
-  appendChunk: (payload: StreamChunkPayload) => void
-  finishStream: (payload: StreamDonePayload) => Promise<void>
+  sendMessage: (content: string, options?: SendMessageOptions) => Promise<void>
+  appendChunk: (payload: { requestId: string; chunk: string }) => void
+  finishStream: (payload: { requestId: string; content: string }) => Promise<void>
   loadPresets: () => Promise<void>
-  loadMemories: (search?: string) => Promise<void>
-  saveMemory: (memory: Partial<MemoryItem> & { content: string }) => Promise<void>
+  loadMemories: (query?: string) => Promise<void>
+  saveMemory: (memory: Record<string, unknown>) => Promise<void>
   deleteMemory: (id: number) => Promise<void>
 }
 
-/** Ensure an active session exists, creating one if needed. Returns the session ID. */
-async function ensureActiveSession(get: () => ChatState): Promise<string> {
-  let { activeSessionId } = get()
-  if (!activeSessionId) {
-    activeSessionId = await get().createSession()
+function nowId(prefix: string) {
+  return `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`
+}
+
+function errorMessage(error: unknown) {
+  return error instanceof Error ? error.message : String(error)
+}
+
+function makeTitle(content: string) {
+  return content.length > 30 ? `${content.slice(0, 30)}...` : content
+}
+
+let sessionSwitchRequestId = 0
+let pendingSessionSwitchId: string | null = null
+
+/** 去重会话列表（按 id，保留首次出现），避免重复 key 渲染。 */
+export function normalizeChatSessions<T extends { id?: string }>(list: T[]): T[] {
+  const seen = new Set<string>()
+  const out: T[] = []
+  for (const session of list) {
+    if (!session.id || seen.has(session.id)) continue
+    seen.add(session.id)
+    out.push(session)
   }
-  return activeSessionId
+  return out
 }
 
-/** Auto-rename sessions still titled '新对话' based on the first user message. */
-async function autoRenameIfNeeded(
-  get: () => ChatState,
-  sessionId: string,
-  content: string,
-): Promise<void> {
-  const session = get().sessions.find((item) => item.id === sessionId)
-  if (!session || session.title !== '新对话') return
-
-  const title =
-    content.slice(0, SESSION_TITLE_MAX_LENGTH) +
-    (content.length > SESSION_TITLE_MAX_LENGTH ? '...' : '')
-  await get().renameSession(sessionId, title)
-}
-
-/** Build the API message array from current state, injecting system prompt. */
-function buildApiMessages(
-  get: () => ChatState,
-  session: Session | undefined,
-  excludeMsgId: string,
-): Array<{ role: string; content: string }> {
-  const apiMessages: Array<{ role: string; content: string }> = []
-  if (session?.system_prompt) {
-    apiMessages.push({ role: 'system', content: session.system_prompt })
-  }
-  for (const message of get().messages) {
-    if (message.content && message.id !== excludeMsgId) {
-      apiMessages.push({ role: message.role, content: message.content })
-    }
-  }
-  return apiMessages
-}
-
-function buildRequestId(): string {
-  return `req-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`
-}
-
-export const useChatStore = create<ChatState>((set, get) => ({
+export const useChatStore = create<ChatStore>((set, get) => ({
   sessions: [],
   activeSessionId: null,
   messages: [],
+  loading: false,
   streaming: false,
   currentRequestId: null,
   error: null,
   presets: [],
   memories: [],
-
   loadSessions: async () => {
+    set({ loading: true })
     try {
-      const sessions = await typedInvoke('chat-sessions-list')
-      set({ sessions })
+      const sessions = await typedInvoke<Session[]>('chat-sessions-list')
+      set({ sessions: normalizeChatSessions(sessions), error: null, loading: false })
     } catch (error) {
-      console.error('[ChatStore.loadSessions]', toErrorMessage(error))
+      console.error('[ChatStore.loadSessions]', error)
+      set({ sessions: [], error: errorMessage(error), loading: false })
     }
   },
-
-  createSession: async (systemPrompt?: string, title?: string) => {
-    const id = `session-${Date.now()}`
-    await typedInvoke('chat-session-create', {
-      id,
-      title: title || '新对话',
-      system_prompt: systemPrompt || '',
-    })
-    invalidateCache('chat-sessions-list')
+  createSession: async (systemPrompt = '', title = '新对话') => {
+    const id = nowId('session')
+    await typedInvoke('chat-session-create', { id, title, system_prompt: systemPrompt })
     await get().loadSessions()
     await get().switchSession(id)
-    eventBus.emit('session:created', id)
     return id
   },
-
-  switchSession: async (id: string) => {
+  switchSession: async (id) => {
+    const requestId = ++sessionSwitchRequestId
+    pendingSessionSwitchId = id
+    set({ loading: true })
     try {
-      const rows = await typedInvoke('chat-messages-load', id)
-      let messages: Message[] = rows.map((row) => ({
-        id: `msg-${row.id}`,
-        role: row.role,
-        content: row.content,
-        timestamp: new Date(row.created_at).getTime(),
-      }))
-      // Trim to prevent unbounded memory growth — keep most recent messages
-      if (messages.length > MAX_MESSAGES_IN_MEMORY) {
-        messages = messages.slice(-MAX_MESSAGES_IN_MEMORY)
-      }
-      set({ activeSessionId: id, messages, error: null, streaming: false, currentRequestId: null })
-      eventBus.emit('session:switched', id)
+      const rows = await typedInvoke<Message[]>('chat-messages-load', id)
+      if (sessionSwitchRequestId !== requestId) return
+      set({
+        activeSessionId: id,
+        messages: Array.isArray(rows) ? rows : [],
+        streaming: false,
+        currentRequestId: null,
+        error: null,
+        loading: false,
+      })
+      pendingSessionSwitchId = null
     } catch (error) {
-      const errMsg = getUserMessage(error)
-      console.error('[ChatStore.switchSession]', toErrorMessage(error))
-      set({ error: errMsg })
+      if (sessionSwitchRequestId !== requestId) return
+      pendingSessionSwitchId = null
+      console.error('[ChatStore.switchSession]', error)
+      set({ error: errorMessage(error), streaming: false, currentRequestId: null, loading: false })
     }
   },
-
-  deleteSession: async (id: string) => {
-    try {
-      await typedInvoke('chat-session-delete', id)
-      invalidateCache('chat-sessions-list')
-      const { activeSessionId } = get()
-      await get().loadSessions()
-      if (activeSessionId === id) {
-        const sessions = get().sessions
-        if (sessions.length > 0) {
-          await get().switchSession(sessions[0].id)
-        } else {
-          set({ activeSessionId: null, messages: [], streaming: false, currentRequestId: null })
-        }
-      }
-      eventBus.emit('session:deleted', id)
-    } catch (error) {
-      console.error('[ChatStore.deleteSession]', toErrorMessage(error))
+  deleteSession: async (id) => {
+    if (pendingSessionSwitchId === id) {
+      sessionSwitchRequestId += 1
+      pendingSessionSwitchId = null
+    }
+    const wasActive = get().activeSessionId === id
+    await typedInvoke('chat-session-delete', id)
+    await get().loadSessions()
+    if (wasActive) {
+      const next = get().sessions[0]
+      if (next) await get().switchSession(next.id)
+      else set({ activeSessionId: null, messages: [] })
     }
   },
-
-  renameSession: async (id: string, title: string) => {
-    try {
-      await typedInvoke('chat-session-update', id, { title })
-      invalidateCache('chat-sessions-list')
-      await get().loadSessions()
-    } catch (error) {
-      console.error('[ChatStore.renameSession]', toErrorMessage(error))
-    }
+  renameSession: async (id, title) => {
+    await typedInvoke('chat-session-update', id, { title })
+    await get().loadSessions()
   },
-
-  sendMessage: async (content: string, configId?: number) => {
-    const activeSessionId = await ensureActiveSession(get)
-
-    const requestId = buildRequestId()
-    const userMsg: Message = {
-      id: `msg-${Date.now()}`,
-      role: 'user',
-      content,
-      timestamp: Date.now(),
-    }
-    const assistantMsg: Message = {
-      id: `msg-${Date.now() + 1}`,
+  sendMessage: async (content, options = {}) => {
+    const {
+      sendOverride,
+      includeMemories = true,
+      includeKnowledge = true,
+      memoryCategories,
+      llmExtract = false,
+      configId,
+    } = options
+    let sessionId = get().activeSessionId
+    if (!sessionId) sessionId = await get().createSession()
+    const session = get().sessions.find((item) => item.id === sessionId)
+    const requestId = nowId('req')
+    const userMessage: Message = { id: nowId('user'), role: 'user', content, timestamp: Date.now() }
+    const assistantMessage: Message = {
+      id: nowId('assistant'),
       role: 'assistant',
       content: '',
       timestamp: Date.now(),
     }
-
     set((state) => ({
-      messages: [...state.messages, userMsg, assistantMsg],
+      messages: [...state.messages, userMessage, assistantMessage],
       streaming: true,
       currentRequestId: requestId,
       error: null,
     }))
 
-    await typedInvoke('chat-message-save', {
-      session_id: activeSessionId,
-      role: 'user',
-      content,
-    })
-    await typedInvoke('chat-memory-capture', { content, session_id: activeSessionId })
-
-    await autoRenameIfNeeded(get, activeSessionId, content)
-
-    const session = get().sessions.find((item) => item.id === activeSessionId)
-    const apiMessages = buildApiMessages(get, session, assistantMsg.id)
-
     try {
-      const enrichedMessages = await ragContextService.enrichMessages(apiMessages, {
-        query: content,
-        maxProblems: 3,
-        maxHistory: 3,
+      const currentUserMessageId = await typedInvoke<number>('chat-message-save', {
+        session_id: sessionId,
+        role: 'user',
+        content,
       })
-
+      if (!Number.isSafeInteger(currentUserMessageId) || currentUserMessageId < 1) {
+        throw new Error('消息保存未返回有效 ID')
+      }
+      // 从用户消息捕获长期记忆：开启 LLM 抽取则智能抽取，否则用本地正则规则。
+      // best-effort：抽取失败（如网络超时）不应中断本轮对话。
+      try {
+        if (llmExtract) {
+          await typedInvoke('chat-memory-extract', { content, configId, sessionId })
+        } else {
+          await typedInvoke('chat-memory-capture', { content, session_id: sessionId })
+        }
+      } catch (memErr) {
+        console.warn('[ChatStore] 记忆捕获失败，继续对话:', memErr)
+      }
+      if (session?.title === '新对话') await get().renameSession(sessionId, makeTitle(content))
+      // RAG：检索本地知识库片段与用户画像随请求发送；关闭或失败时跳过，不影响对话。
+      let rag: unknown
+      if (includeKnowledge) {
+        try {
+          rag = await typedInvoke('knowledge-rag-context', content)
+        } catch (ragErr) {
+          console.warn('[ChatStore] RAG 检索失败，跳过知识库注入:', ragErr)
+        }
+      }
+      // 实际发给模型的内容可带上下文/教学前缀（sendOverride）；显示与入库仍用原始 content。
+      const messages = [
+        ...(session?.system_prompt
+          ? [{ role: 'system' as const, content: session.system_prompt }]
+          : []),
+        { role: 'user' as const, content: sendOverride ?? content },
+      ]
       await typedInvoke('ai-chat', {
-        messages: enrichedMessages,
+        messages,
+        sessionId,
         configId,
         requestId,
-        includeMemories: true,
+        includeMemories,
+        ragContext: rag,
+        memoryCategories,
+        currentUserMessageId,
       })
-    } catch (error: unknown) {
-      const errMsg = getUserMessage(error)
-      console.error('[ChatStore.sendMessage]', toErrorMessage(error))
+    } catch (error) {
+      const msg = errorMessage(error)
+      reportError(error, 'chat.sendMessage', { showToast: true })
       set((state) => ({
-        error: errMsg,
+        error: msg,
         streaming: false,
         currentRequestId: null,
         messages: state.messages.map((message, index) =>
           index === state.messages.length - 1 && message.role === 'assistant'
-            ? { ...message, content: errMsg }
+            ? { ...message, content: msg }
             : message,
         ),
       }))
     }
   },
-
-  appendChunk: (payload) => {
-    if (payload.requestId !== get().currentRequestId) {
-      return
-    }
-
-    set((state) => {
-      const messages = [...state.messages]
-      const last = messages[messages.length - 1]
-      if (last?.role === 'assistant') {
-        messages[messages.length - 1] = { ...last, content: last.content + payload.chunk }
-      }
-      // Trim oldest messages if over limit during streaming
-      const trimmed =
-        messages.length > MAX_MESSAGES_IN_MEMORY
-          ? messages.slice(-MAX_MESSAGES_IN_MEMORY)
-          : messages
-      return { messages: trimmed }
+  appendChunk: ({ requestId, chunk }) => {
+    const state = get()
+    if (state.currentRequestId !== requestId) return
+    const last = state.messages[state.messages.length - 1]
+    if (!last || last.role !== 'assistant') return
+    set({
+      messages: state.messages.map((message, index) =>
+        index === state.messages.length - 1
+          ? { ...message, content: message.content + chunk }
+          : message,
+      ),
     })
   },
-
-  finishStream: async (payload) => {
-    if (payload.requestId !== get().currentRequestId) {
-      return
-    }
-
-    const { activeSessionId, messages } = get()
-    const last = messages[messages.length - 1]
-    const assistantContent = payload.content || (last?.role === 'assistant' ? last.content : '')
-
-    try {
-      if (assistantContent && activeSessionId) {
+  finishStream: async ({ requestId, content }) => {
+    const state = get()
+    if (state.currentRequestId !== requestId) return
+    const last = state.messages[state.messages.length - 1]
+    const finalContent = content || (last?.role === 'assistant' ? last.content : '')
+    let persistenceError: string | null = null
+    if (state.activeSessionId && finalContent) {
+      try {
         await typedInvoke('chat-message-save', {
-          session_id: activeSessionId,
+          session_id: state.activeSessionId,
           role: 'assistant',
-          content: assistantContent,
+          content: finalContent,
         })
+      } catch (error) {
+        persistenceError = errorMessage(error)
+        reportError(error, 'chat.finishStream', { showToast: true })
       }
-
-      set({ streaming: false, currentRequestId: null })
-      await get().loadSessions()
-    } catch (error) {
-      console.error('[ChatStore.finishStream]', toErrorMessage(error))
-      set({ streaming: false, currentRequestId: null })
     }
+    if (get().currentRequestId !== requestId) return
+    await Promise.allSettled([get().loadSessions(), get().loadMemories()])
+    if (get().currentRequestId !== requestId) return
+    set({
+      streaming: false,
+      currentRequestId: null,
+      ...(persistenceError ? { error: persistenceError } : {}),
+    })
   },
-
   loadPresets: async () => {
-    try {
-      const presets = await typedInvoke('chat-presets-list')
-      set({ presets })
-    } catch (error) {
-      console.error('[ChatStore.loadPresets]', toErrorMessage(error))
-    }
+    const presets = await typedInvoke<Preset[]>('chat-presets-list')
+    set({ presets })
   },
-
-  loadMemories: async (search?: string) => {
-    try {
-      const memories = await typedInvoke('chat-memories-list', search)
-      set({ memories })
-    } catch (error) {
-      console.error('[ChatStore.loadMemories]', toErrorMessage(error))
-    }
+  loadMemories: async (query) => {
+    const memories = await typedInvoke<Memory[]>('chat-memories-list', query)
+    set({ memories })
   },
-
   saveMemory: async (memory) => {
-    try {
-      await typedInvoke('chat-memory-save', memory)
-      invalidateCache('chat-memories-list')
-      await get().loadMemories()
-    } catch (error) {
-      console.error('[ChatStore.saveMemory]', toErrorMessage(error))
-      throw error
-    }
+    await typedInvoke('chat-memory-save', memory)
+    await get().loadMemories()
   },
-
   deleteMemory: async (id) => {
-    try {
-      await typedInvoke('chat-memory-delete', id)
-      invalidateCache('chat-memories-list')
-      await get().loadMemories()
-    } catch (error) {
-      console.error('[ChatStore.deleteMemory]', toErrorMessage(error))
-    }
+    await typedInvoke('chat-memory-delete', id)
+    await get().loadMemories()
   },
 }))
+
+// ---------------------------------------------------------------------------
+// 流式事件桥接
+// ---------------------------------------------------------------------------
+
+let streamingBridgeReady = false
+
+/**
+ * 把后端的流式事件接到 store：ai-chat-chunk → appendChunk，ai-chat-done → finishStream。
+ * 幂等且常驻整个应用生命周期——多个聊天视图（AITutorView / AITutorPanel）可重复调用，
+ * 首次之后即为 no-op，避免某个视图卸载时误拆掉另一视图仍依赖的订阅。
+ * 在非 Electron 环境（如单测）下 window.api 不存在，直接跳过。
+ */
+export function initChatStreaming(): void {
+  if (streamingBridgeReady) return
+  const api = (
+    globalThis as unknown as {
+      api?: { on?: (channel: string, cb: (...args: unknown[]) => void) => () => void }
+    }
+  ).api
+  if (!api?.on) return
+  streamingBridgeReady = true
+
+  api.on('ai-chat-chunk', (...args: unknown[]) => {
+    const data = args[0] as { requestId?: string; chunk?: string } | undefined
+    if (data && typeof data.requestId === 'string' && typeof data.chunk === 'string') {
+      useChatStore.getState().appendChunk({ requestId: data.requestId, chunk: data.chunk })
+    }
+  })
+  api.on('ai-chat-done', (...args: unknown[]) => {
+    const data = args[0] as { requestId?: string; content?: string } | undefined
+    if (data && typeof data.requestId === 'string' && typeof data.content === 'string') {
+      void useChatStore
+        .getState()
+        .finishStream({ requestId: data.requestId, content: data.content })
+    }
+  })
+}

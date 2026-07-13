@@ -1,6 +1,8 @@
 import { contextBridge, ipcRenderer } from 'electron'
 
-const allowedInvokeChannels = new Set([
+console.log('[STARTUP] Preload script executing...')
+
+export const allowedInvokeChannels = new Set([
   'run-code',
   'db-get-setting',
   'db-set-setting',
@@ -20,6 +22,7 @@ const allowedInvokeChannels = new Set([
   'mistakes-delete',
   'knowledge-upload',
   'knowledge-list',
+  'knowledge-get',
   'knowledge-delete',
   'knowledge-search',
   // Advanced knowledge features
@@ -45,11 +48,15 @@ const allowedInvokeChannels = new Set([
   'chat-memory-save',
   'chat-memory-delete',
   'chat-memory-capture',
+  'chat-context-preview',
+  'chat-memories-batch',
+  'chat-memory-extract',
   'platform-info',
   // Analytics
   'analytics-track',
   'analytics-get-events',
   'analytics-get-summary',
+  'analytics-get-streak',
   'analytics-get-weekly-report',
   'analytics-clear',
   // Demo data
@@ -62,11 +69,56 @@ const allowedInvokeChannels = new Set([
   'export-get-counts',
   // Performance
   'perf-get-ipc-stats',
+  // Lessons
+  'lessons-list',
+  'lessons-get',
+  'lessons-progress',
+  'lessons-mark-opened',
+  'lessons-mark-completed',
+  'lessons-notes-get',
+  'lessons-notes-save',
+  'lessons-search',
+  'lesson-get-progress',
+  // Review (spaced repetition)
+  'review-due',
+  'review-update',
+  'review-stats',
+  'review-schedule',
+  // Home overview
+  'home-get-overview',
+  // Exercises
+  'exercises-list',
+  'exercises-get',
+  'exercises-draft-get',
+  'exercises-draft-save',
+  'exercises-draft-clear',
+  'exercises-evaluate',
+  // Versioned editor workspace
+  'editor-workspace-load',
+  'editor-tab-save',
+  'editor-tab-update-view-state',
+  'editor-tab-close',
+  'editor-tab-reopen',
+  'editor-tab-delete',
+  'editor-workspace-set-active',
+  // Codex Pet desktop companions
+  'pets-list',
+  'pets-install-slug',
+  'pets-import-file',
+  'pets-import-directory',
+  // Import-ready external learning resource packs
+  'resource-pack-import',
+  // Learning records
+  'learning-records-clear',
 ])
 
-const allowedEventChannels = new Set(['ai-chat-chunk', 'ai-chat-done'])
+export const allowedEventChannels = new Set([
+  'ai-chat-chunk',
+  'ai-chat-done',
+  'editor-workspace-changed',
+])
 
-function isSerializable(value: unknown, depth = 0): boolean {
+export function isSerializable(value: unknown, depth = 0): boolean {
   if (depth > 10) return false
   if (value === null || value === undefined) return true
   const t = typeof value
@@ -84,25 +136,37 @@ function isSerializable(value: unknown, depth = 0): boolean {
 const api = {
   invoke: (channel: string, ...args: unknown[]) => {
     if (typeof channel !== 'string') {
-      throw new Error('IPC channel 必须是字符串')
+      const err = 'IPC channel 必须是字符串'
+      console.error('[IPC][ERROR] Preload invoke rejected:', err)
+      throw new Error(err)
     }
     if (!allowedInvokeChannels.has(channel)) {
-      throw new Error(`不允许的 IPC 调用: ${channel}`)
+      const err = `不允许的 IPC 调用: ${channel}`
+      console.error('[IPC][ERROR] Preload invoke rejected:', err)
+      throw new Error(err)
     }
     if (!args.every((a) => isSerializable(a))) {
-      throw new Error('IPC 参数包含不可序列化的值')
+      const err = 'IPC 参数包含不可序列化的值'
+      console.error(`[IPC][ERROR] Preload invoke rejected for "${channel}":`, err)
+      throw new Error(err)
     }
     return ipcRenderer.invoke(channel, ...args)
   },
   on: (channel: string, callback: (...args: unknown[]) => void) => {
     if (typeof channel !== 'string') {
-      throw new Error('IPC channel 必须是字符串')
+      const err = 'IPC channel 必须是字符串'
+      console.error('[IPC][ERROR] Preload on() rejected:', err)
+      throw new Error(err)
     }
     if (!allowedEventChannels.has(channel)) {
-      throw new Error(`不允许的 IPC 事件监听: ${channel}`)
+      const err = `不允许的 IPC 事件监听: ${channel}`
+      console.error('[IPC][ERROR] Preload on() rejected:', err)
+      throw new Error(err)
     }
     if (typeof callback !== 'function') {
-      throw new Error('IPC 事件回调必须是函数')
+      const err = 'IPC 事件回调必须是函数'
+      console.error(`[IPC][ERROR] Preload on("${channel}") rejected:`, err)
+      throw new Error(err)
     }
     const subscription = (_event: Electron.IpcRendererEvent, ...args: unknown[]) =>
       callback(...args)
@@ -112,3 +176,6 @@ const api = {
 }
 
 contextBridge.exposeInMainWorld('api', api)
+console.log(
+  `[STARTUP] Preload complete — exposed ${allowedInvokeChannels.size} invoke channels, ${allowedEventChannels.size} event channels`,
+)

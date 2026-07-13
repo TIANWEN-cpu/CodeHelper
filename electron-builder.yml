@@ -2,13 +2,6 @@ appId: com.codehelper.app
 productName: CodeHelper
 copyright: Copyright (c) 2026 TIANWEN-cpu
 
-# App metadata
-description: 'AI 驱动的桌面编程助手 — 集成代码编辑器、AI 对话、题库系统、知识库检索与错题追踪'
-homepage: 'https://github.com/TIANWEN-cpu/CodeHelper'
-author:
-  name: TIANWEN-cpu
-  email: 'noreply@github.com'
-
 directories:
   output: dist-release
   buildResources: resources
@@ -17,7 +10,7 @@ directories:
 publish:
   provider: github
   owner: TIANWEN-cpu
-  repo: CodeHelper
+  repo: CodeHelper-Studio
   releaseType: release
 
 # Windows build configuration
@@ -29,7 +22,7 @@ win:
     - target: portable
       arch:
         - x64
-  icon: resources/icons/icon.png
+  icon: resources/icons/icon.ico
   signAndEditExecutable: false
   # Code signing placeholder — set CSC_LINK and CSC_KEY_PASSWORD env vars on CI
   # or uncomment below for local signing:
@@ -38,13 +31,14 @@ win:
   #   rfc3161TimeStampServer: http://timestamp.digicert.com
 
 nsis:
+  artifactName: '${productName}-Installer-${version}.${ext}'
   oneClick: false
   allowToChangeInstallationDirectory: true
   createDesktopShortcut: true
   shortcutName: CodeHelper
-  installerIcon: resources/icons/icon.png
-  uninstallerIcon: resources/icons/icon.png
-  installerHeaderIcon: resources/icons/icon.png
+  installerIcon: resources/icons/icon.ico
+  uninstallerIcon: resources/icons/icon.ico
+  installerHeaderIcon: resources/icons/icon.ico
   deleteAppDataOnUninstall: false
 
 # macOS build configuration
@@ -83,9 +77,6 @@ linux:
     - target: deb
       arch:
         - x64
-    - target: rpm
-      arch:
-        - x64
   icon: resources/icons/icon.png
   category: Development
   synopsis: 'AI-powered desktop programming assistant'
@@ -98,8 +89,16 @@ files:
   - node_modules/better-sqlite3/**
 
 extraResources:
+  - from: resources/icons
+    to: icons
   - from: resources/problems
     to: problems
+  - from: resources/demo
+    to: demo
+  - from: resources/resource-catalogs
+    to: resource-catalogs
+  - from: content
+    to: content
   - from: electron/db/schema.sql
     to: db/schema.sql
 

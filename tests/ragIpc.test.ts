@@ -21,6 +21,12 @@ const mockDB = {
   exec: vi.fn(),
   pragma: vi.fn(),
   close: vi.fn(),
+  // better-sqlite3 transaction(fn) 返回一个调用 fn 的函数；测试里同步直通即可。
+  transaction: vi.fn(
+    (fn: (...args: unknown[]) => unknown) =>
+      (...args: unknown[]) =>
+        fn(...args),
+  ),
 }
 
 vi.mock('../electron/db/index', () => ({
@@ -48,6 +54,11 @@ function makeStmt(result: unknown = undefined) {
   }
 }
 
+/** Flush microtask queue so the deferred DB init (Promise.resolve().then) completes. */
+async function flushMicrotasks() {
+  await new Promise((resolve) => setTimeout(resolve, 0))
+}
+
 describe('registerRAGIPC', () => {
   beforeEach(() => {
     Object.keys(handlers).forEach((k) => delete handlers[k])
@@ -65,6 +76,14 @@ describe('registerRAGIPC', () => {
     expect(handlers['knowledge-list']).toBeDefined()
     expect(handlers['knowledge-delete']).toBeDefined()
     expect(handlers['knowledge-search']).toBeDefined()
+    expect(handlers['knowledge-semantic-search']).toBeDefined()
+    expect(handlers['knowledge-summarize']).toBeDefined()
+    expect(handlers['knowledge-concept-graph']).toBeDefined()
+    expect(handlers['knowledge-concept-detail']).toBeDefined()
+    expect(handlers['knowledge-auto-tag']).toBeDefined()
+    expect(handlers['knowledge-tags']).toBeDefined()
+    expect(handlers['knowledge-tag-documents']).toBeDefined()
+    expect(handlers['knowledge-rag-context']).toBeDefined()
   })
 
   describe('knowledge-upload', () => {
@@ -123,6 +142,8 @@ describe('registerRAGIPC', () => {
 
       const result = await handlers['knowledge-upload']()
       expect(result).toEqual(['doc.txt'])
+      // doc + chunks 写入必须在事务内，保证不留半截文档。
+      expect(mockDB.transaction).toHaveBeenCalled()
     })
 
     it('uploads md file successfully', async () => {
@@ -199,8 +220,9 @@ describe('registerRAGIPC', () => {
 
       const { registerRAGIPC } = await import('../electron/ipc/rag')
       registerRAGIPC()
+      await flushMicrotasks() // allow deferred DB init to complete
 
-      const result = handlers['knowledge-list']()
+      const result = await handlers['knowledge-list']()
       expect(result).toEqual(docs)
     })
   })
@@ -210,15 +232,16 @@ describe('registerRAGIPC', () => {
       mockDB.prepare.mockReturnValue(makeStmt(undefined))
       const { registerRAGIPC } = await import('../electron/ipc/rag')
       registerRAGIPC()
+      await flushMicrotasks() // allow deferred DB init to complete
     })
 
-    it('validates id', () => {
-      expect(() => handlers['knowledge-delete'](null, -1)).toThrow('参数无效: id')
-      expect(() => handlers['knowledge-delete'](null, NaN)).toThrow('参数无效: id')
-      expect(() => handlers['knowledge-delete'](null, 0)).toThrow('参数无效: id')
+    it('validates id', async () => {
+      await expect(handlers['knowledge-delete'](null, -1)).rejects.toThrow('参数无效: id')
+      await expect(handlers['knowledge-delete'](null, NaN)).rejects.toThrow('参数无效: id')
+      await expect(handlers['knowledge-delete'](null, 0)).rejects.toThrow('参数无效: id')
     })
 
-    it('deletes knowledge doc', () => {
+    it('deletes knowledge doc', async () => {
       const runFn = vi.fn()
       mockDB.prepare.mockImplementation(() => ({
         get: vi.fn(),
@@ -226,7 +249,7 @@ describe('registerRAGIPC', () => {
         run: runFn,
       }))
 
-      handlers['knowledge-delete'](null, 5)
+      await handlers['knowledge-delete'](null, 5)
       expect(runFn).toHaveBeenCalled()
     })
   })
@@ -236,6 +259,7 @@ describe('registerRAGIPC', () => {
       mockDB.prepare.mockReturnValue(makeStmt(undefined))
       const { registerRAGIPC } = await import('../electron/ipc/rag')
       registerRAGIPC()
+      await flushMicrotasks() // allow deferred DB init to complete
     })
 
     it('validates query', async () => {

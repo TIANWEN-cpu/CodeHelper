@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS ai_configs (
 
 CREATE TABLE IF NOT EXISTS chat_history (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  session_id TEXT NOT NULL,
+  session_id TEXT NOT NULL REFERENCES chat_sessions(id) ON DELETE CASCADE,
   role TEXT CHECK(role IN ('user','assistant','system')),
   content TEXT NOT NULL,
   model TEXT,
@@ -142,3 +142,118 @@ CREATE INDEX IF NOT EXISTS idx_memories_category ON memories(category);
 CREATE INDEX IF NOT EXISTS idx_memories_content_lower ON memories(lower(content));
 CREATE INDEX IF NOT EXISTS idx_analytics_events_type ON analytics_events(event_type, timestamp);
 CREATE INDEX IF NOT EXISTS idx_analytics_events_timestamp ON analytics_events(timestamp);
+
+---------------------------------------------------------------------------
+-- DevLearnerAI tables (course / lesson / achievement / review tracking)
+---------------------------------------------------------------------------
+
+-- Course/Lesson progress tracking
+CREATE TABLE IF NOT EXISTS lesson_progress (
+  lesson_id TEXT PRIMARY KEY,
+  track_id TEXT NOT NULL,
+  module_id TEXT,
+  status TEXT DEFAULT 'not_started' CHECK(status IN ('not_started','in_progress','completed')),
+  completed INTEGER DEFAULT 0,
+  last_opened TEXT,
+  completed_at TEXT
+);
+
+-- Lesson notes with tags and code snippets
+CREATE TABLE IF NOT EXISTS lesson_notes (
+  lesson_id TEXT PRIMARY KEY,
+  content TEXT DEFAULT '',
+  tags TEXT DEFAULT '[]',
+  code_snippets TEXT DEFAULT '[]',
+  updated_at TEXT
+);
+
+-- Achievement definitions
+CREATE TABLE IF NOT EXISTS achievements (
+  id TEXT PRIMARY KEY,
+  title TEXT NOT NULL,
+  description TEXT,
+  icon TEXT,
+  category TEXT,
+  threshold INTEGER DEFAULT 1
+);
+
+-- Achievement progress tracking
+CREATE TABLE IF NOT EXISTS achievement_progress (
+  achievement_id TEXT PRIMARY KEY REFERENCES achievements(id),
+  current_value INTEGER DEFAULT 0,
+  unlocked INTEGER DEFAULT 0,
+  unlocked_at TEXT
+);
+
+-- Spaced repetition schedule (SM-2 algorithm)
+CREATE TABLE IF NOT EXISTS review_schedule (
+  exercise_id TEXT PRIMARY KEY,
+  interval_days REAL DEFAULT 1,
+  ease_factor REAL DEFAULT 2.5,
+  repetitions INTEGER DEFAULT 0,
+  next_review TEXT,
+  last_reviewed TEXT
+);
+
+-- Exercise drafts (auto-save)
+CREATE TABLE IF NOT EXISTS exercise_drafts (
+  exercise_id TEXT PRIMARY KEY,
+  title TEXT,
+  code TEXT NOT NULL DEFAULT '',
+  language TEXT,
+  revision INTEGER NOT NULL DEFAULT 1,
+  updated_at TEXT,
+  deleted INTEGER NOT NULL DEFAULT 0
+);
+
+-- Versioned editor workspaces. Runtime initialization also migrates the earlier draft schema.
+CREATE TABLE IF NOT EXISTS editor_workspaces (
+  workspace_id TEXT PRIMARY KEY,
+  last_active_tab_id TEXT,
+  generation INTEGER NOT NULL DEFAULT 0 CHECK(generation >= 0),
+  legacy_storage_version INTEGER NOT NULL DEFAULT 0 CHECK(legacy_storage_version >= 0),
+  updated_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))
+);
+
+CREATE TABLE IF NOT EXISTS editor_tabs (
+  workspace_id TEXT NOT NULL REFERENCES editor_workspaces(workspace_id) ON DELETE CASCADE,
+  tab_id TEXT NOT NULL,
+  filename TEXT NOT NULL,
+  language TEXT NOT NULL,
+  content TEXT NOT NULL DEFAULT '',
+  problem_id TEXT,
+  cursor_line INTEGER,
+  cursor_column INTEGER,
+  scroll_top REAL NOT NULL DEFAULT 0 CHECK(scroll_top >= 0),
+  tab_position INTEGER NOT NULL DEFAULT 0 CHECK(tab_position >= 0),
+  status TEXT NOT NULL DEFAULT 'open' CHECK(status IN ('open', 'closed', 'deleted')),
+  revision INTEGER NOT NULL DEFAULT 1 CHECK(revision >= 1),
+  last_mutation_id TEXT,
+  last_mutation_kind TEXT CHECK(last_mutation_kind IN ('save', 'close', 'reopen', 'delete')),
+  last_mutation_fingerprint TEXT,
+  client_id TEXT,
+  last_view_mutation_id TEXT,
+  last_view_mutation_fingerprint TEXT,
+  view_client_id TEXT,
+  created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),
+  updated_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),
+  view_updated_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now')),
+  closed_at TEXT,
+  deleted_at TEXT,
+  PRIMARY KEY (workspace_id, tab_id)
+);
+
+-- Exercise timer/hint tracking
+CREATE TABLE IF NOT EXISTS exercise_timers (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  exercise_id TEXT NOT NULL,
+  duration_sec REAL,
+  difficulty TEXT,
+  recorded_at TEXT DEFAULT (datetime('now'))
+);
+
+-- Indexes for DevLearnerAI tables
+CREATE INDEX IF NOT EXISTS idx_lesson_progress_track ON lesson_progress(track_id, completed);
+CREATE INDEX IF NOT EXISTS idx_review_schedule_next ON review_schedule(next_review);
+CREATE INDEX IF NOT EXISTS idx_achievement_progress_unlocked ON achievement_progress(unlocked);
+CREATE INDEX IF NOT EXISTS idx_exercise_timers_exercise ON exercise_timers(exercise_id);

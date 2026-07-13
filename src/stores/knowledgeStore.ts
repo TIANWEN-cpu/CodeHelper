@@ -1,81 +1,40 @@
-/**
- * Knowledge store — manages knowledge base state with AI-enhanced features.
- *
- * Extends the basic document list with:
- * - Semantic search + AI summarization
- * - Concept graph for knowledge exploration
- * - Auto-tagging of documents
- * - RAG context assembly for personalized AI responses
- */
-
 import { create } from 'zustand'
-import type {
-  Document,
-  SearchResult,
-  SemanticSearchResult,
-  SearchSummary,
-  ConceptGraph,
-  ConceptDetail,
-  Tag,
-  TagSuggestion,
-  RAGContext,
-} from '../types/knowledge'
-import { toErrorMessage } from '../utils/errors'
-import { typedInvoke, invalidateCache } from '../api/ipc'
+import { typedInvoke } from '@/api/ipc'
 
-// ---------------------------------------------------------------------------
-// State interface
-// ---------------------------------------------------------------------------
-
-interface KnowledgeState {
-  // Documents
-  documents: Document[]
+type KnowledgeStore = {
+  documents: unknown[]
   loadingDocs: boolean
-
-  // Keyword search (legacy)
-  searchResults: SearchResult[]
+  searchResults: unknown[]
   searching: boolean
-
-  // Semantic search (AI-powered)
-  semanticResults: SemanticSearchResult[]
+  semanticResults: unknown[]
   semanticSearching: boolean
-  searchSummary: SearchSummary | null
+  searchSummary: unknown
   summarizing: boolean
-
-  // Concept graph
-  conceptGraph: ConceptGraph | null
+  conceptGraph: unknown
   loadingGraph: boolean
   selectedConcept: string | null
-  conceptDetail: ConceptDetail | null
+  conceptDetail: unknown
   loadingConceptDetail: boolean
-
-  // Tags
-  tags: Tag[]
+  tags: unknown[]
   loadingTags: boolean
-  tagSuggestions: TagSuggestion[]
+  tagSuggestions: unknown[]
   suggestingTags: boolean
   activeTagFilter: string | null
-  tagDocuments: Document[]
+  tagDocuments: unknown[]
   loadingTagDocuments: boolean
-
-  // RAG context
-  ragContext: RAGContext | null
+  ragContext: unknown
   loadingRAGContext: boolean
-
-  // Shared
   error: string | null
-
-  // Actions
   loadDocuments: () => Promise<void>
   search: (query: string) => Promise<void>
   semanticSearch: (query: string) => Promise<void>
   summarizeResults: (query: string) => Promise<void>
   loadConceptGraph: () => Promise<void>
   evictConceptGraph: () => void
-  selectConcept: (conceptId: string) => Promise<void>
+  selectConcept: (id: string) => Promise<void>
   clearConceptSelection: () => void
   loadTags: () => Promise<void>
-  autoTagDocument: (docId: number) => Promise<TagSuggestion[]>
+  autoTagDocument: (id: number) => Promise<unknown[]>
   setActiveTagFilter: (tag: string | null) => Promise<void>
   loadRAGContext: (query?: string) => Promise<void>
   deleteDocument: (id: number) => Promise<void>
@@ -83,29 +42,24 @@ interface KnowledgeState {
   clearSearch: () => void
 }
 
-// ---------------------------------------------------------------------------
-// Store
-// ---------------------------------------------------------------------------
+function message(error: unknown) {
+  return error instanceof Error ? error.message : String(error)
+}
 
-export const useKnowledgeStore = create<KnowledgeState>((set, get) => ({
-  // Initial state
+export const useKnowledgeStore = create<KnowledgeStore>((set, get) => ({
   documents: [],
   loadingDocs: false,
-
   searchResults: [],
   searching: false,
-
   semanticResults: [],
   semanticSearching: false,
   searchSummary: null,
   summarizing: false,
-
   conceptGraph: null,
   loadingGraph: false,
   selectedConcept: null,
   conceptDetail: null,
   loadingConceptDetail: false,
-
   tags: [],
   loadingTags: false,
   tagSuggestions: [],
@@ -113,171 +67,129 @@ export const useKnowledgeStore = create<KnowledgeState>((set, get) => ({
   activeTagFilter: null,
   tagDocuments: [],
   loadingTagDocuments: false,
-
   ragContext: null,
   loadingRAGContext: false,
-
   error: null,
-
-  // ---------------------------------------------------------------------------
-  // Actions
-  // ---------------------------------------------------------------------------
-
   loadDocuments: async () => {
     set({ loadingDocs: true, error: null })
     try {
-      const docs = await typedInvoke('knowledge-list')
-      set({ documents: docs })
-    } catch (err) {
-      set({ error: toErrorMessage(err) })
+      set({ documents: await typedInvoke<unknown[]>('knowledge-list') })
+    } catch (error) {
+      set({ error: message(error) })
     } finally {
       set({ loadingDocs: false })
     }
   },
-
-  search: async (query: string) => {
+  search: async (query) => {
     if (!query.trim()) return
     set({ searching: true, error: null })
     try {
-      const results = await typedInvoke('knowledge-search', query)
-      set({ searchResults: results })
-    } catch (err) {
-      set({ error: toErrorMessage(err) })
+      set({ searchResults: await typedInvoke<unknown[]>('knowledge-search', query) })
+    } catch (error) {
+      set({ error: message(error) })
     } finally {
       set({ searching: false })
     }
   },
-
-  semanticSearch: async (query: string) => {
+  semanticSearch: async (query) => {
     if (!query.trim()) return
-    set({ semanticSearching: true, error: null, searchSummary: null })
+    set({ semanticSearching: true, searchSummary: null, error: null })
     try {
-      const results = await typedInvoke('knowledge-semantic-search', query)
-      set({ semanticResults: results })
-    } catch (err) {
-      set({ error: toErrorMessage(err) })
+      set({ semanticResults: await typedInvoke<unknown[]>('knowledge-semantic-search', query) })
+    } catch (error) {
+      set({ error: message(error) })
     } finally {
       set({ semanticSearching: false })
     }
   },
-
-  summarizeResults: async (query: string) => {
+  summarizeResults: async (query) => {
     if (!query.trim()) return
     set({ summarizing: true, error: null })
     try {
-      const summary = await typedInvoke('knowledge-summarize', query)
-      set({ searchSummary: summary })
-    } catch (err) {
-      set({ error: toErrorMessage(err) })
+      set({ searchSummary: await typedInvoke('knowledge-summarize', query) })
+    } catch (error) {
+      set({ error: message(error) })
     } finally {
       set({ summarizing: false })
     }
   },
-
   loadConceptGraph: async () => {
-    // Return cached graph if available
     if (get().conceptGraph) return
     set({ loadingGraph: true, error: null })
     try {
-      const graph = await typedInvoke('knowledge-concept-graph')
-      set({ conceptGraph: graph })
-    } catch (err) {
-      set({ error: toErrorMessage(err) })
+      set({ conceptGraph: await typedInvoke('knowledge-concept-graph') })
+    } catch (error) {
+      set({ error: message(error) })
     } finally {
       set({ loadingGraph: false })
     }
   },
-
-  /**
-   * Evict the cached concept graph to free memory.
-   * Call when navigating away from the knowledge view.
-   */
-  evictConceptGraph: () => {
-    set({ conceptGraph: null })
-  },
-
-  selectConcept: async (conceptId: string) => {
-    set({ selectedConcept: conceptId, loadingConceptDetail: true, error: null })
+  evictConceptGraph: () => set({ conceptGraph: null }),
+  selectConcept: async (id) => {
+    set({ selectedConcept: id, loadingConceptDetail: true, error: null })
     try {
-      const detail = await typedInvoke('knowledge-concept-detail', conceptId)
-      set({ conceptDetail: detail })
-    } catch (err) {
-      set({ error: toErrorMessage(err) })
+      set({ conceptDetail: await typedInvoke('knowledge-concept-detail', id) })
+    } catch (error) {
+      set({ error: message(error) })
     } finally {
       set({ loadingConceptDetail: false })
     }
   },
-
-  clearConceptSelection: () => {
-    set({ selectedConcept: null, conceptDetail: null })
-  },
-
+  clearConceptSelection: () => set({ selectedConcept: null, conceptDetail: null }),
   loadTags: async () => {
     set({ loadingTags: true, error: null })
     try {
-      const tags = await typedInvoke('knowledge-tags')
-      set({ tags })
-    } catch (err) {
-      set({ error: toErrorMessage(err) })
+      set({ tags: await typedInvoke<unknown[]>('knowledge-tags') })
+    } catch (error) {
+      set({ error: message(error) })
     } finally {
       set({ loadingTags: false })
     }
   },
-
-  autoTagDocument: async (docId: number) => {
+  autoTagDocument: async (id) => {
     set({ suggestingTags: true, error: null })
     try {
-      const suggestions = await typedInvoke('knowledge-auto-tag', docId)
-      set({ tagSuggestions: suggestions })
-      return suggestions
-    } catch (err) {
-      set({ error: toErrorMessage(err) })
+      const tagSuggestions = await typedInvoke<unknown[]>('knowledge-auto-tag', id)
+      set({ tagSuggestions })
+      return tagSuggestions
+    } catch (error) {
+      set({ error: message(error), tagSuggestions: [] })
       return []
     } finally {
       set({ suggestingTags: false })
     }
   },
-
-  setActiveTagFilter: async (tag: string | null) => {
-    set({ activeTagFilter: tag, loadingTagDocuments: !!tag, tagDocuments: [] })
+  setActiveTagFilter: async (tag) => {
+    set({ activeTagFilter: tag, error: null })
     if (!tag) return
+    set({ loadingTagDocuments: true })
     try {
-      const docs = await typedInvoke('knowledge-tag-documents', tag)
-      set({ tagDocuments: docs })
-    } catch (err) {
-      set({ error: toErrorMessage(err) })
+      set({ tagDocuments: await typedInvoke<unknown[]>('knowledge-tag-documents', tag) })
+    } catch (error) {
+      set({ error: message(error) })
     } finally {
       set({ loadingTagDocuments: false })
     }
   },
-
-  loadRAGContext: async (query?: string) => {
+  loadRAGContext: async (query) => {
     set({ loadingRAGContext: true, error: null })
     try {
-      const context = await typedInvoke('knowledge-rag-context', query)
-      set({ ragContext: context })
-    } catch (err) {
-      set({ error: toErrorMessage(err) })
+      set({ ragContext: await typedInvoke('knowledge-rag-context', query) })
+    } catch (error) {
+      set({ error: message(error) })
     } finally {
       set({ loadingRAGContext: false })
     }
   },
-
-  deleteDocument: async (id: number) => {
+  deleteDocument: async (id) => {
+    set({ error: null })
     try {
       await typedInvoke('knowledge-delete', id)
-      invalidateCache('knowledge-list')
       await get().loadDocuments()
-    } catch (err) {
-      set({ error: toErrorMessage(err) })
+    } catch (error) {
+      set({ error: message(error) })
     }
   },
-
   clearError: () => set({ error: null }),
-  clearSearch: () =>
-    set({
-      searchResults: [],
-      semanticResults: [],
-      searchSummary: null,
-    }),
+  clearSearch: () => set({ searchResults: [], semanticResults: [], searchSummary: null }),
 }))

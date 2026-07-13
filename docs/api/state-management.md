@@ -218,26 +218,27 @@ const error = useChatStore((s) => s.error)
 interface EditorTab {
   id: string // 标签页唯一 ID
   filename: string // 文件名（用于显示和语言推断）
-  language: string // 编程语言（Monaco 语法高亮）
+  language: string // 编程语言（CodeMirror 语法高亮）
   content: string // 编辑器内容
-  cursorPosition?: { lineNumber: number; column: number } // 光标位置（持久化恢复用）
-  scrollTop?: number // 滚动位置（持久化恢复用）
+  cursorPosition?: { lineNumber: number; column: number } // 光标位置（Store 预留字段）
+  scrollTop?: number // 滚动位置（Store 预留字段）
 }
 ```
 
-**默认标签页：** 应用启动时包含一个 `welcome.py` 标签页，内容为示例代码。标签页状态通过 localStorage 持久化，写入时有 500ms 防抖。页面 `beforeunload` 时通过 `flushPersistTabs()` 强制同步写入。
+**默认标签页：** 应用启动时包含一个 `welcome.py` 标签页，内容为示例代码。标签页状态通过版本化 localStorage 快照（`codehelper-editor-workspace`）持久化，写入时有 500ms 防抖，同时兼容旧的 `codehelper-editor-tabs` 数组格式。页面 `pagehide` / `beforeunload` 时通过 `flushPersistTabs()` 强制同步写入。内容超过 5 MB 或存储配额不足时会保留内存内容并显示保存失败状态。工作区最多保留 50 个标签；关闭的标签会进入最近关闭列表，最多保留 10 个，可通过编辑器标签栏的恢复按钮重新打开。
 
 ### 操作 (Actions)
 
 | 操作                   | 参数                                             | 返回值 | 说明                                             |
 | ---------------------- | ------------------------------------------------ | ------ | ------------------------------------------------ |
 | `addTab`               | `tab: EditorTab`                                 | `void` | 添加新标签页并自动切换到它                       |
-| `closeTab`             | `id: string`                                     | `void` | 关闭标签页。若关闭的是当前标签，自动切换到第一个 |
-| `setActiveTab`         | `id: string`                                     | `void` | 切换到指定标签页                                 |
+| `closeTab`             | `id: string`                                     | `void` | 关闭标签页。若关闭的是当前标签，优先切换到前一个 |
+| `reopenLastClosed`     | 无                                               | `void` | 恢复最近关闭列表中的第一个标签页                 |
+| `setActiveTab`         | `id: string`                                     | `void` | 只允许切换到当前存在的标签页                     |
 | `updateContent`        | `id: string, content: string`                    | `void` | 更新指定标签页的编辑器内容                       |
-| `updateCursorPosition` | `id: string, lineNumber: number, column: number` | `void` | 更新光标位置（持久化）                           |
-| `updateScrollTop`      | `id: string, scrollTop: number`                  | `void` | 更新滚动位置（持久化）                           |
-| `restoreTabs`          | 无                                               | `void` | 从 localStorage 恢复标签页状态                   |
+| `updateCursorPosition` | `id: string, lineNumber: number, column: number` | `void` | 更新 Store 中的光标位置预留字段                  |
+| `updateScrollTop`      | `id: string, scrollTop: number`                  | `void` | 更新 Store 中的滚动位置预留字段                  |
+| `restoreTabs`          | 无                                               | `void` | 校验并从版本化 localStorage 恢复标签页状态       |
 
 **导出函数：**
 
@@ -384,13 +385,13 @@ const saving = useSettingsStore((s) => s.saving)
 
 Store 之间通过直接引用其他 Store 的 `getState()` 方法进行协作，无需事件总线：
 
-| 场景       | 协作方式                                                                           |
-| ---------- | ---------------------------------------------------------------------------------- |
-| 主题切换   | `appStore.setTheme` 同时更新 DOM 和数据库                                          |
-| 发送消息   | `chatStore.sendMessage` 自动创建会话、保存消息、提取记忆                           |
-| 提交代码   | `problemStore.submit` 完成后刷新题目列表以更新 `solved` 计数                       |
-| 编辑器主题 | `monacoConfig.ts` 中的 `useMonacoTheme` 从 `appStore` 读取主题并映射到 Monaco 主题 |
-| 编辑器标签 | `monacoConfig.ts` 中的 `useActiveTab` 从 `editorStore` 读取当前标签页              |
+| 场景       | 协作方式                                                             |
+| ---------- | -------------------------------------------------------------------- |
+| 主题切换   | `appStore.setTheme` 同时更新 DOM 和数据库                            |
+| 发送消息   | `chatStore.sendMessage` 自动创建会话、保存消息、提取记忆             |
+| 提交代码   | `problemStore.submit` 完成后刷新题目列表以更新 `solved` 计数         |
+| 编辑器主题 | 应用主题经 `appStore` 持有，编辑器（CodeMirror）据其应用对应代码主题 |
+| 编辑器标签 | `editorStore` 持有标签页状态，编辑器组件读取当前标签页代码           |
 
 ---
 
