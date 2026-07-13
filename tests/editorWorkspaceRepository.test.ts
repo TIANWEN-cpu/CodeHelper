@@ -34,7 +34,14 @@ function canLoadNativeDatabase(): boolean {
     probe.close()
     return true
   } catch (error) {
-    if (error instanceof Error && error.message.includes('NODE_MODULE_VERSION')) return false
+    if (
+      error instanceof Error &&
+      (error.message.includes('NODE_MODULE_VERSION') ||
+        error.message.includes('Could not locate the bindings file') ||
+        error.message.includes('bindings.node'))
+    ) {
+      return false
+    }
     throw error
   }
 }

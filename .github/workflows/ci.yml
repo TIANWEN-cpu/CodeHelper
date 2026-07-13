@@ -233,4 +233,4 @@ jobs:
 
       - name: Verify SQL utility process (Linux)
         if: runner.os == 'Linux'
-        run: xvfb-run -a npm run test:electron-sql
+        run: xvfb-run -a npx electron --no-sandbox tests/electronSqlUtilitySmoke.cjs
