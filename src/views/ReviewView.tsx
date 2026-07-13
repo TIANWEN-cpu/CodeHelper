@@ -69,10 +69,11 @@ export function ReviewView() {
   }, [loadMistakes, loadDueReviews, getStats])
 
   // Derive display values
-  const totalCount = filteredMistakes.length
+  const totalCount = mistakes.length
   const dueCount = stats?.totalDue ?? dueReviews.length
   const masteredCount = stats?.mastered ?? 0
-  const reviewRate = totalCount > 0 ? Math.round((masteredCount / totalCount) * 100) : 0
+  const reviewRate =
+    totalCount > 0 ? Math.min(100, Math.round((masteredCount / totalCount) * 100)) : 0
 
   // 错题列表真实排序：最近/最早添加，或按错误类型数量多到少。
   const sortedMistakes = React.useMemo(() => {
@@ -557,7 +558,9 @@ export function ReviewView() {
                     )}
                     {sortedMistakes.map((item, index) => {
                       const isActive = currentMistake?.id === item.id
-                      const isDue = dueReviews.some((r) => r.exercise_id === item.problem_id)
+                      const isDue = dueReviews.some(
+                        (r) => r.exercise_id === String(item.problem_id),
+                      )
                       const statusLabel = isDue ? '待复习' : '已掌握'
                       const formattedDate = formatDate(item.created_at, dateRegion, {
                         month: 'short',
@@ -716,7 +719,7 @@ export function ReviewView() {
                 <button
                   onClick={handleRedoPractice}
                   disabled={!selected}
-                  className="flex items-center gap-1.5 px-4 py-2 bg-[var(--color-accent-purple)] hover:bg-[#7C3AED] text-white rounded-lg text-sm font-medium transition-colors disabled:opacity-40"
+                  className="flex items-center gap-1.5 px-4 py-2 bg-[var(--color-accent-secondary-solid)] hover:bg-[var(--color-accent-secondary-solid-hover)] text-[var(--color-on-accent)] rounded-lg text-sm font-medium transition-colors disabled:opacity-40"
                 >
                   <Play size={14} /> 重新练习
                 </button>

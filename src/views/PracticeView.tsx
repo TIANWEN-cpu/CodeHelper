@@ -19,6 +19,7 @@ import { motion, AnimatePresence } from 'motion/react'
 import { usePracticeData } from '@/hooks/usePracticeData'
 import { consumePendingDeepLink, subscribeDeepLink } from '@/lib/deepLink'
 import { recordRecent } from '@/lib/recentItems'
+import { readPracticeSession, writePracticeSession } from '@/utils/practiceSession'
 
 // ---- Difficulty helpers ----
 
@@ -103,13 +104,20 @@ export function PracticeView() {
     submitting,
     submitCode,
     draftSaving,
+    draftDirty,
+    draftError,
+    draftConflict,
+    keepLocalDraft,
+    reloadPersistedDraft,
   } = usePracticeData()
 
   // When exercise is selected, switch to detail view
   const handleSelectExercise = React.useCallback(
     async (id: string) => {
-      await selectExercise(id)
+      const selected = await selectExercise(id)
+      if (!selected) return
       recordRecent({ kind: 'exercise', id })
+      writePracticeSession(id)
       setDetailTab('desc')
       setViewMode('detail')
     },
@@ -119,7 +127,8 @@ export function PracticeView() {
   // 命令面板深链：挂载时领取待处理目标，并订阅后续实时事件。
   React.useEffect(() => {
     const pending = consumePendingDeepLink('exercise')
-    if (pending) void handleSelectExercise(pending)
+    const target = pending ?? readPracticeSession()?.exerciseId
+    if (target) void handleSelectExercise(target)
     return subscribeDeepLink('exercise', (id) => void handleSelectExercise(id))
   }, [handleSelectExercise])
 
@@ -275,7 +284,7 @@ export function PracticeView() {
                           className={cn(
                             'flex shrink-0 items-center gap-1.5 rounded-lg border px-3 py-2 text-xs font-semibold transition-all',
                             trackFilter === 'ai-tutor'
-                              ? 'border-[var(--color-accent-purple)] bg-gradient-to-r from-[var(--color-accent-primary)] to-[var(--color-accent-purple)] text-white shadow-lg shadow-[var(--color-accent-purple)]/20'
+                              ? 'border-[var(--color-accent-secondary-solid)] bg-gradient-to-r from-[var(--color-accent-solid)] to-[var(--color-accent-secondary-solid)] text-[var(--color-on-accent)] shadow-lg shadow-[var(--color-accent-purple)]/20'
                               : 'border-[var(--color-accent-purple)]/40 bg-[var(--color-accent-purple)]/10 text-[var(--color-accent-purple)] hover:bg-[var(--color-accent-purple)]/16',
                           )}
                           aria-pressed={trackFilter === 'ai-tutor'}
@@ -557,6 +566,11 @@ export function PracticeView() {
                   isSubmitting: submitting,
                   submitCode,
                   draftSaving,
+                  draftDirty,
+                  draftError,
+                  draftConflict,
+                  keepLocalDraft,
+                  reloadPersistedDraft,
                 }
               : null
           }

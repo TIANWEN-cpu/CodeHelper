@@ -27,6 +27,15 @@ vi.mock('../electron/utils/codeRunner', () => ({
   runCodeSnippet: (...args: unknown[]) => mockRunCodeSnippet(...args),
 }))
 
+const mockGetExerciseDraft = vi.fn()
+const mockSaveExerciseDraft = vi.fn()
+const mockClearExerciseDraft = vi.fn()
+vi.mock('../electron/db/exerciseDraftRepository', () => ({
+  getExerciseDraft: (...args: unknown[]) => mockGetExerciseDraft(...args),
+  saveExerciseDraft: (...args: unknown[]) => mockSaveExerciseDraft(...args),
+  clearExerciseDraft: (...args: unknown[]) => mockClearExerciseDraft(...args),
+}))
+
 const problemRows = [
   {
     id: 1,
@@ -143,6 +152,9 @@ describe('registerExercisesIPC imported problems', () => {
     writes.correctUpdates.length = 0
     mockDB.prepare.mockClear()
     mockRunCodeSnippet.mockReset()
+    mockGetExerciseDraft.mockReset()
+    mockSaveExerciseDraft.mockReset()
+    mockClearExerciseDraft.mockReset()
     vi.resetModules()
     const { registerExercisesIPC } = await import('../electron/ipc/exercises')
     registerExercisesIPC()
@@ -165,6 +177,75 @@ describe('registerExercisesIPC imported problems', () => {
     })
   })
 
+  it('returns the complete versioned draft record', async () => {
+    mockGetExerciseDraft.mockReturnValue({
+      exerciseId: 'problem:1',
+      title: null,
+      code: 'saved code',
+      language: 'python',
+      revision: 4,
+      updatedAt: '2026-01-01',
+      deleted: false,
+    })
+
+    await expect(handlers['exercises-draft-get'](null, 'problem:1')).resolves.toMatchObject({
+      code: 'saved code',
+      language: 'python',
+      revision: 4,
+    })
+    expect(mockGetExerciseDraft).toHaveBeenCalledWith(mockDB, 'problem:1')
+  })
+
+  it('passes language and base revision to the atomic draft repository', async () => {
+    mockSaveExerciseDraft.mockReturnValue({
+      status: 'saved',
+      draft: { revision: 5 },
+    })
+
+    await handlers['exercises-draft-save'](null, {
+      exerciseId: 'problem:1',
+      code: 'print(1)',
+      language: 'python',
+      baseRevision: 4,
+    })
+
+    expect(mockSaveExerciseDraft).toHaveBeenCalledWith(mockDB, {
+      exerciseId: 'problem:1',
+      title: undefined,
+      code: 'print(1)',
+      language: 'python',
+      baseRevision: 4,
+    })
+  })
+
+  it('rejects oversized drafts instead of silently truncating them', async () => {
+    await expect(
+      handlers['exercises-draft-save'](null, {
+        exerciseId: 'problem:1',
+        code: 'x'.repeat(100_001),
+        language: 'python',
+        baseRevision: 0,
+      }),
+    ).rejects.toThrow('草稿超过 100000 字符')
+  })
+
+  it('requires a safe base revision for save and clear', async () => {
+    await expect(
+      handlers['exercises-draft-save'](null, {
+        exerciseId: 'problem:1',
+        code: 'print(1)',
+        language: 'python',
+        baseRevision: -1,
+      }),
+    ).rejects.toThrow('baseRevision')
+    await expect(
+      handlers['exercises-draft-clear'](null, {
+        exerciseId: 'problem:1',
+        baseRevision: Number.NaN,
+      }),
+    ).rejects.toThrow('baseRevision')
+  })
+
   it('evaluates imported Python problems and records accepted submissions', async () => {
     mockRunCodeSnippet
       .mockResolvedValueOnce({ stdout: '1\n', stderr: '', exitCode: 0, stage: 'run' })
@@ -177,13 +258,26 @@ describe('registerExercisesIPC imported problems', () => {
     })) as { passed: boolean; score: number }
 
     expect(result).toEqual(expect.objectContaining({ passed: true, score: 1 }))
-    expect(writes.submissions[0]).toEqual([1, 'python', 'print(input())', 'accepted', 2, 2, expect.any(Number)])
+    expect(writes.submissions[0]).toEqual([
+      1,
+      'python',
+      'print(input())',
+      'accepted',
+      2,
+      2,
+      expect.any(Number),
+    ])
     expect(writes.mistakes).toEqual([])
     expect(writes.correctUpdates[0]).toEqual(['print(input())', 1])
   })
 
   it('records failed imported problem attempts into mistakes and review queue', async () => {
-    mockRunCodeSnippet.mockResolvedValueOnce({ stdout: '0\n', stderr: '', exitCode: 0, stage: 'run' })
+    mockRunCodeSnippet.mockResolvedValueOnce({
+      stdout: '0\n',
+      stderr: '',
+      exitCode: 0,
+      stage: 'run',
+    })
 
     const result = (await handlers['exercises-evaluate'](null, {
       exerciseId: 'problem:1',
@@ -192,7 +286,15 @@ describe('registerExercisesIPC imported problems', () => {
     })) as { passed: boolean; score: number }
 
     expect(result.passed).toBe(false)
-    expect(writes.submissions[0]).toEqual([1, 'python', 'print(0)', 'wrong_answer', 0, 2, expect.any(Number)])
+    expect(writes.submissions[0]).toEqual([
+      1,
+      'python',
+      'print(0)',
+      'wrong_answer',
+      0,
+      2,
+      expect.any(Number),
+    ])
     expect(writes.mistakes[0]).toEqual([1, 'print(0)', '["wrong_answer"]'])
     expect(writes.reviews[0]).toEqual(['1'])
   })
@@ -206,6 +308,14 @@ describe('registerExercisesIPC imported problems', () => {
 
     expect(result).toEqual(expect.objectContaining({ passed: true, score: 1 }))
     expect(mockRunCodeSnippet).not.toHaveBeenCalled()
-    expect(writes.submissions[0]).toEqual([2, 'sql', 'SELECT * FROM users;', 'accepted', 1, 1, expect.any(Number)])
+    expect(writes.submissions[0]).toEqual([
+      2,
+      'sql',
+      'SELECT * FROM users;',
+      'accepted',
+      1,
+      1,
+      expect.any(Number),
+    ])
   })
 })

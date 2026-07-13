@@ -2,7 +2,7 @@ import { contextBridge, ipcRenderer } from 'electron'
 
 console.log('[STARTUP] Preload script executing...')
 
-const allowedInvokeChannels = new Set([
+export const allowedInvokeChannels = new Set([
   'run-code',
   'db-get-setting',
   'db-set-setting',
@@ -93,6 +93,14 @@ const allowedInvokeChannels = new Set([
   'exercises-draft-save',
   'exercises-draft-clear',
   'exercises-evaluate',
+  // Versioned editor workspace
+  'editor-workspace-load',
+  'editor-tab-save',
+  'editor-tab-update-view-state',
+  'editor-tab-close',
+  'editor-tab-reopen',
+  'editor-tab-delete',
+  'editor-workspace-set-active',
   // Codex Pet desktop companions
   'pets-list',
   'pets-install-slug',
@@ -104,9 +112,13 @@ const allowedInvokeChannels = new Set([
   'learning-records-clear',
 ])
 
-const allowedEventChannels = new Set(['ai-chat-chunk', 'ai-chat-done'])
+export const allowedEventChannels = new Set([
+  'ai-chat-chunk',
+  'ai-chat-done',
+  'editor-workspace-changed',
+])
 
-function isSerializable(value: unknown, depth = 0): boolean {
+export function isSerializable(value: unknown, depth = 0): boolean {
   if (depth > 10) return false
   if (value === null || value === undefined) return true
   const t = typeof value

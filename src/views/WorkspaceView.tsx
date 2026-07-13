@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import {
   Play,
   Save,
@@ -9,13 +9,20 @@ import {
   PanelLeftClose,
   PanelLeft,
   Sparkles,
+  Copy,
+  Plus,
+  Undo2,
+  RefreshCw,
+  Upload,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { motion, AnimatePresence } from 'motion/react'
 import { useWorkspaceData } from '@/hooks/useWorkspaceData'
 import { useAppStore } from '@/store'
+import { toast } from '@/stores/toastStore'
 import { CodeEditor } from '@/components/editor/CodeEditor'
 import type { SubmitResult as ExerciseSubmitResult } from '@/services/practiceService'
+import { MAX_EDITOR_TABS, useEditorStore, WELCOME_TAB_CONTENT } from '@/stores/editorStore'
 
 const DEFAULT_WORKSPACE_CODE = `# 从左侧题库或工作区题目加载 starter code 后开始编码
 print("Hello, CodeHelper")`
@@ -75,6 +82,11 @@ interface WorkspaceExerciseContext {
   isSubmitting: boolean
   submitCode: (exerciseId: string, code: string, language: string) => Promise<void>
   draftSaving?: boolean
+  draftDirty?: boolean
+  draftError?: string | null
+  draftConflict?: boolean
+  keepLocalDraft?: () => void
+  reloadPersistedDraft?: () => void
 }
 
 interface WorkspaceViewProps {
@@ -87,10 +99,6 @@ export function WorkspaceView({
   exerciseContext = null,
 }: WorkspaceViewProps) {
   const {
-    code: workspaceCode,
-    setCode: setWorkspaceCode,
-    language: workspaceLanguage,
-    setLanguage: setWorkspaceLanguage,
     runResult,
     isRunning,
     runCode,
@@ -100,9 +108,61 @@ export function WorkspaceView({
     getProblems,
     error,
     clearError,
+    clearExecutionState,
   } = useWorkspaceData(DEFAULT_WORKSPACE_CODE, 'python')
 
   const isExerciseMode = Boolean(exerciseContext)
+  const tabs = useEditorStore((state) => state.tabs)
+  const activeTabId = useEditorStore((state) => state.activeTabId)
+  const editorHydrated = useEditorStore((state) => state.hydrated)
+  const editorDirty = useEditorStore((state) => state.dirty)
+  const editorPersistenceError = useEditorStore((state) => state.persistenceError)
+  const addTab = useEditorStore((state) => state.addTab)
+  const closeTab = useEditorStore((state) => state.closeTab)
+  const setActiveTab = useEditorStore((state) => state.setActiveTab)
+  const updateTab = useEditorStore((state) => state.updateTab)
+  const updateContent = useEditorStore((state) => state.updateContent)
+  const updateCursorPosition = useEditorStore((state) => state.updateCursorPosition)
+  const updateScrollTop = useEditorStore((state) => state.updateScrollTop)
+  const restoreTabs = useEditorStore((state) => state.restoreTabs)
+  const recentlyClosedTabs = useEditorStore((state) => state.recentlyClosedTabs)
+  const reopenLastClosed = useEditorStore((state) => state.reopenLastClosed)
+  const activeTab = tabs.find((tab) => tab.id === activeTabId) ?? null
+  const workspaceLanguage = activeTab?.language ?? 'python'
+  const workspaceCode = activeTab?.content ?? ''
+
+  const setWorkspaceCode = useCallback(
+    (nextCode: string) => {
+      if (activeTabId) updateContent(activeTabId, nextCode)
+    },
+    [activeTabId, updateContent],
+  )
+  const setWorkspaceLanguage = useCallback(
+    (nextLanguage: string) => {
+      if (!activeTabId || !activeTab) return
+      const base = activeTab.filename.replace(/\.[^.]+$/, '') || 'main'
+      updateTab(activeTabId, {
+        language: nextLanguage,
+        filename: `${base}.${languageMeta(nextLanguage).ext}`,
+      })
+    },
+    [activeTab, activeTabId, updateTab],
+  )
+  const handleCursorPositionChange = useCallback(
+    ({ lineNumber, column }: { lineNumber: number; column: number }) => {
+      if (!isExerciseMode && activeTabId) {
+        updateCursorPosition(activeTabId, lineNumber, column)
+      }
+    },
+    [activeTabId, isExerciseMode, updateCursorPosition],
+  )
+  const handleScrollTopChange = useCallback(
+    (nextScrollTop: number) => {
+      if (!isExerciseMode && activeTabId) updateScrollTop(activeTabId, nextScrollTop)
+    },
+    [activeTabId, isExerciseMode, updateScrollTop],
+  )
+
   const code = exerciseContext?.code ?? workspaceCode
   const setCode = exerciseContext?.setCode ?? setWorkspaceCode
   const language = exerciseContext?.language ?? workspaceLanguage
@@ -118,10 +178,38 @@ export function WorkspaceView({
   const requestAIChat = useAppStore((s) => s.requestAIChat)
   const [explorerCollapsed, setExplorerCollapsed] = useState(false)
   const [terminalCollapsed, setTerminalCollapsed] = useState(bottomPanelCollapsed)
-  const [problemId, setProblemId] = useState<string>('')
-  const [workspaceFileBaseName, setWorkspaceFileBaseName] = useState('main')
-  const fileBaseName = safeFileBaseName(exerciseContext?.id ?? workspaceFileBaseName)
-  const fileName = `${fileBaseName}.${languageMeta(language).ext}`
+  const problemId = activeTab?.problemId ?? ''
+  const fileName = exerciseContext
+    ? `${safeFileBaseName(exerciseContext.id)}.${languageMeta(language).ext}`
+    : (activeTab?.filename ?? `main.${languageMeta(language).ext}`)
+  const workspaceTitle = activeTab?.filename ?? '工作区代码'
+  const executionScopeId = isExerciseMode
+    ? `exercise:${exerciseContext?.id ?? 'none'}`
+    : `workspace:${activeTabId ?? 'none'}`
+
+  const createWorkspaceTab = useCallback(() => {
+    const existing = new Set(tabs.map((tab) => tab.filename))
+    let index = 1
+    while (existing.has(`untitled_${index}.py`)) index += 1
+    addTab({
+      id: `workspace-${Date.now()}-${index}`,
+      filename: `untitled_${index}.py`,
+      language: 'python',
+      content: '',
+    })
+  }, [addTab, tabs])
+
+  useEffect(() => {
+    if (!isExerciseMode) restoreTabs()
+  }, [isExerciseMode, restoreTabs])
+
+  useEffect(() => {
+    if (!isExerciseMode && editorHydrated && tabs.length === 0) createWorkspaceTab()
+  }, [createWorkspaceTab, editorHydrated, isExerciseMode, tabs.length])
+
+  useEffect(() => {
+    clearExecutionState()
+  }, [clearExecutionState, executionScopeId])
 
   // Workspace standalone mode still uses the SQLite problems table.
   // Practice embedded mode receives its exercise id/code from PracticeView and submits via exercises-evaluate.
@@ -130,20 +218,31 @@ export function WorkspaceView({
     getProblems().then((list) => {
       if (list.length === 0) return
       const first = list[0]
-      setProblemId(first.id)
-      setWorkspaceFileBaseName(first.title || `problem_${first.id}`)
-      const starter = coerceStarterCode(first.starter_code, workspaceLanguage)
-      if (starter) setWorkspaceCode(starter)
+      const state = useEditorStore.getState()
+      const current = state.tabs.find((tab) => tab.id === state.activeTabId)
+      if (!current || current.problemId) return
+      const isPristine =
+        current.id === 'welcome' &&
+        (!current.content.trim() ||
+          current.content === WELCOME_TAB_CONTENT ||
+          current.content === DEFAULT_WORKSPACE_CODE)
+      if (!isPristine) return
+      const starter = coerceStarterCode(first.starter_code, current.language)
+      state.updateTab(current.id, {
+        filename: `${safeFileBaseName(first.title || `problem_${first.id}`)}.${languageMeta(current.language).ext}`,
+        problemId: first.id,
+        ...(starter ? { content: starter } : {}),
+      })
     })
-  }, [getProblems, isExerciseMode, setWorkspaceCode, workspaceLanguage])
+  }, [getProblems, isExerciseMode])
 
-  const handleRun = async () => {
+  const handleRun = useCallback(async () => {
     setTerminalCollapsed(false)
     clearError()
     await runCode(code, language)
-  }
+  }, [clearError, runCode, code, language])
 
-  const handleSubmit = async () => {
+  const handleSubmit = useCallback(async () => {
     setTerminalCollapsed(false)
     clearError()
     if (exerciseContext) {
@@ -152,16 +251,43 @@ export function WorkspaceView({
     }
     if (!problemId) return
     await submitToProblem(problemId, code, language)
-  }
+  }, [clearError, exerciseContext, problemId, submitToProblem, code, language])
+
+  // 复制运行输出（stdout + stderr）到剪贴板，失败时给 toast 反馈。
+  const copyRunOutput = useCallback(async () => {
+    if (!runResult) return
+    const text = [runResult.stdout, runResult.stderr].filter(Boolean).join('\n')
+    try {
+      await navigator.clipboard.writeText(text)
+      toast.success('已复制运行输出')
+    } catch {
+      toast.error('复制失败，请手动选择文本复制')
+    }
+  }, [runResult])
 
   // 把当前题目/练习与编辑器代码写入 AI 上下文，使 AI 面板提问时自动带入。
   useEffect(() => {
-    const title = isExerciseMode
-      ? (exerciseContext?.title ?? '练习')
-      : workspaceFileBaseName || '工作区代码'
+    const title = isExerciseMode ? (exerciseContext?.title ?? '练习') : workspaceTitle
     setAIContext({ kind: isExerciseMode ? 'exercise' : 'problem', title, language, code })
-  }, [isExerciseMode, exerciseContext?.title, workspaceFileBaseName, language, code, setAIContext])
+  }, [isExerciseMode, exerciseContext?.title, workspaceTitle, language, code, setAIContext])
   useEffect(() => () => setAIContext(null), [setAIContext])
+
+  // 全局快捷键：Ctrl/Cmd+Enter 运行代码；Ctrl/Cmd+Shift+Enter 提交（练习/题目模式）。
+  // 在编辑器内输入时同样生效（这是它的主要价值），故不像视图切换那样让位输入框。
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (!(e.ctrlKey || e.metaKey) || e.altKey) return
+      if (e.key !== 'Enter') return
+      e.preventDefault()
+      if (e.shiftKey) {
+        void handleSubmit()
+      } else {
+        void handleRun()
+      }
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [handleRun, handleSubmit])
 
   // 运行/提交报错时，一键把代码与报错交给 AI 诊断（打开 AI 面板并发送）。
   const runStderr = runResult && runResult.exitCode !== 0 ? runResult.stderr : ''
@@ -223,13 +349,31 @@ export function WorkspaceView({
                       <ChevronDown size={14} className="text-[var(--color-text-muted)]" /> src
                     </div>
                     <div className="pl-6 space-y-0.5">
-                      <div className="text-xs p-1.5 bg-[var(--color-accent-primary)]/10 text-[var(--color-accent-primary)] rounded flex items-center gap-2 border border-[var(--color-accent-primary)]/20">
-                        <FileCode2 size={14} /> {fileName}
-                      </div>
+                      {(isExerciseMode
+                        ? [{ id: 'exercise', filename: fileName }]
+                        : tabs.map((tab) => ({ id: tab.id, filename: tab.filename }))
+                      ).map((item) => (
+                        <button
+                          key={item.id}
+                          type="button"
+                          onClick={() => !isExerciseMode && setActiveTab(item.id)}
+                          className={cn(
+                            'w-full text-xs p-1.5 rounded flex items-center gap-2 border text-left transition-colors',
+                            isExerciseMode || item.id === activeTabId
+                              ? 'bg-[var(--color-accent-primary)]/10 text-[var(--color-accent-primary)] border-[var(--color-accent-primary)]/20'
+                              : 'border-transparent text-[var(--color-text-secondary)] hover:bg-[var(--color-bg-hover)]',
+                          )}
+                        >
+                          <FileCode2 size={14} />
+                          <span className="truncate">{item.filename}</span>
+                        </button>
+                      ))}
                     </div>
                   </div>
                   <p className="px-2 pt-3 text-[10px] leading-relaxed text-[var(--color-text-muted)]">
-                    单文件运行环境：当前仅编辑并运行此文件。
+                    {isExerciseMode
+                      ? '练习运行环境：当前代码会用于运行与提交测试。'
+                      : '工作区标签会自动保存，并在下次启动时恢复。'}
                   </p>
                 </div>
 
@@ -248,21 +392,83 @@ export function WorkspaceView({
       <div className="flex-1 flex flex-col min-w-0 bg-[#0F111A]">
         {/* Editor Tabs ... */}
         <div className="flex items-center bg-[var(--color-bg-panel)] overflow-x-auto hide-scrollbar border-b border-[#2A2F45]">
-          <div
-            className={cn(
-              'flex bg-[#0F111A] text-[#E5E7EB] border-t-2 border-[var(--color-accent-primary)] text-xs font-medium min-w-max rounded-t-md mx-1 border-r border-l border-[#2A2F45] px-4',
-              doubleLineTabs ? 'flex-col items-start py-1.5 gap-0.5' : 'items-center py-2 gap-2',
-            )}
-          >
-            <span className="flex items-center gap-2">
-              <FileCode2 size={14} className="text-[#38BDF8]" /> {fileName}
-            </span>
-            {doubleLineTabs && (
-              <span className="text-[10px] font-normal text-[var(--color-text-muted)] pl-[22px]">
-                {language.toUpperCase()} · {isExerciseMode ? '练习模式' : '工作区'}
-              </span>
-            )}
-          </div>
+          {(isExerciseMode
+            ? [{ id: 'exercise', filename: fileName, language }]
+            : tabs.map((tab) => ({ id: tab.id, filename: tab.filename, language: tab.language }))
+          ).map((tab) => {
+            const selected = isExerciseMode || tab.id === activeTabId
+            return (
+              <div
+                key={tab.id}
+                className={cn(
+                  'group flex text-xs font-medium min-w-max rounded-t-md mx-1 border-r border-l border-[#2A2F45] px-3 transition-colors',
+                  selected
+                    ? 'bg-[#0F111A] text-[#E5E7EB] border-t-2 border-[var(--color-accent-primary)]'
+                    : 'text-[var(--color-text-muted)] border-t-2 border-transparent hover:bg-[#171A26]',
+                  doubleLineTabs
+                    ? 'flex-col items-start py-1.5 gap-0.5'
+                    : 'items-center py-2 gap-2',
+                )}
+              >
+                <div className="flex items-center gap-1">
+                  <button
+                    type="button"
+                    onClick={() => !isExerciseMode && setActiveTab(tab.id)}
+                    className="flex items-center gap-2"
+                    aria-pressed={selected}
+                  >
+                    <FileCode2 size={14} className="text-[#38BDF8]" /> {tab.filename}
+                  </button>
+                  {!isExerciseMode && (
+                    <button
+                      type="button"
+                      title={`关闭 ${tab.filename}`}
+                      aria-label={`关闭 ${tab.filename}`}
+                      onClick={() => closeTab(tab.id)}
+                      className="rounded p-0.5 opacity-60 hover:bg-white/10 hover:opacity-100"
+                    >
+                      <X size={12} />
+                    </button>
+                  )}
+                </div>
+                {doubleLineTabs && (
+                  <span className="text-[10px] font-normal text-[var(--color-text-muted)] pl-[22px]">
+                    {tab.language.toUpperCase()} · {isExerciseMode ? '练习模式' : '工作区'}
+                  </span>
+                )}
+              </div>
+            )
+          })}
+
+          {!isExerciseMode && (
+            <div className="flex shrink-0 items-center">
+              {recentlyClosedTabs.length > 0 && (
+                <button
+                  type="button"
+                  onClick={reopenLastClosed}
+                  title="重新打开最近关闭的标签"
+                  aria-label="重新打开最近关闭的标签"
+                  className="mx-1 rounded p-1.5 text-[var(--color-text-muted)] hover:bg-white/10 hover:text-white"
+                >
+                  <Undo2 size={14} />
+                </button>
+              )}
+              <button
+                type="button"
+                onClick={createWorkspaceTab}
+                disabled={tabs.length >= MAX_EDITOR_TABS}
+                title={
+                  tabs.length >= MAX_EDITOR_TABS
+                    ? `最多支持 ${MAX_EDITOR_TABS} 个标签`
+                    : '新建工作区标签'
+                }
+                aria-label="新建工作区标签"
+                className="mx-1 rounded p-1.5 text-[var(--color-text-muted)] hover:bg-white/10 hover:text-white disabled:pointer-events-none disabled:opacity-30"
+              >
+                <Plus size={14} />
+              </button>
+            </div>
+          )}
 
           <div className="ml-auto flex items-center px-3 gap-2">
             <button
@@ -279,11 +485,16 @@ export function WorkspaceView({
         {/* Editor：CodeMirror 语法高亮，含行号；code_theme 驱动配色，Ctrl/Cmd+Enter 运行 */}
         <div className="flex-1 overflow-hidden relative">
           <CodeEditor
+            key={executionScopeId}
             value={code}
             onChange={setCode}
             language={language}
             themeId={codeTheme}
             onRun={handleRun}
+            initialCursorPosition={isExerciseMode ? undefined : activeTab?.cursorPosition}
+            initialScrollTop={isExerciseMode ? 0 : (activeTab?.scrollTop ?? 0)}
+            onCursorPositionChange={isExerciseMode ? undefined : handleCursorPositionChange}
+            onScrollTopChange={isExerciseMode ? undefined : handleScrollTopChange}
           />
         </div>
 
@@ -383,6 +594,14 @@ export function WorkspaceView({
                           <span className="text-[var(--color-text-muted)]">
                             耗时 {runResult.duration_ms}ms
                           </span>
+                          <button
+                            type="button"
+                            onClick={copyRunOutput}
+                            className="ml-auto flex items-center gap-1 text-[var(--color-text-muted)] hover:text-[var(--color-text-primary)] transition-colors"
+                            title="复制运行输出"
+                          >
+                            <Copy size={12} /> 复制
+                          </button>
                         </div>
                       </motion.div>
                     ) : null}
@@ -527,7 +746,7 @@ export function WorkspaceView({
                       <button
                         onClick={handleRun}
                         disabled={isRunning || !code.trim()}
-                        className="w-full bg-[var(--color-accent-primary)] hover:bg-[#4F46E5] active:scale-95 text-white py-2 rounded-lg text-sm font-medium transition-all flex items-center justify-center gap-2 shadow-sm disabled:opacity-70 disabled:pointer-events-none"
+                        className="w-full bg-[var(--color-accent-solid)] hover:bg-[var(--color-accent-solid-hover)] active:scale-95 text-[var(--color-on-accent)] py-2 rounded-lg text-sm font-medium transition-all flex items-center justify-center gap-2 shadow-sm disabled:opacity-70 disabled:pointer-events-none"
                       >
                         {isRunning ? (
                           <div className="w-3.5 h-3.5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -557,7 +776,7 @@ export function WorkspaceView({
         </AnimatePresence>
 
         {/* Status Bar */}
-        <div className="h-6 bg-[var(--color-accent-primary)] flex items-center justify-between px-3 text-[11px] text-white/90 font-medium tracking-wide z-10 shrink-0">
+        <div className="h-6 bg-[var(--color-accent-solid)] flex items-center justify-between px-3 text-[11px] text-[var(--color-on-accent)] font-medium tracking-wide z-10 shrink-0">
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1">
               <X size={12} className="text-white" />{' '}
@@ -584,7 +803,46 @@ export function WorkspaceView({
             <span>{languageMeta(language).label} ready</span>
           </div>
           <div className="flex items-center gap-4">
-            <span>{fileName}</span>
+            {exerciseContext?.draftConflict && (
+              <div className="flex items-center gap-1">
+                <button
+                  type="button"
+                  onClick={exerciseContext.reloadPersistedDraft}
+                  title="重新加载已保存草稿"
+                  aria-label="重新加载已保存草稿"
+                  className="rounded p-1 text-[var(--color-text-muted)] hover:bg-white/10 hover:text-white"
+                >
+                  <RefreshCw size={12} />
+                </button>
+                <button
+                  type="button"
+                  onClick={exerciseContext.keepLocalDraft}
+                  title="保留本地草稿并覆盖已保存版本"
+                  aria-label="保留本地草稿并覆盖已保存版本"
+                  className="rounded p-1 text-[var(--color-text-muted)] hover:bg-white/10 hover:text-white"
+                >
+                  <Upload size={12} />
+                </button>
+              </div>
+            )}
+            <span title={editorPersistenceError ?? undefined}>
+              {isExerciseMode
+                ? exerciseContext?.draftSaving
+                  ? '草稿保存中'
+                  : exerciseContext?.draftConflict
+                    ? '草稿版本冲突'
+                    : exerciseContext?.draftError
+                      ? '草稿保存失败'
+                      : exerciseContext?.draftDirty
+                        ? '草稿待保存'
+                        : '草稿已同步'
+                : editorPersistenceError
+                  ? '工作区保存失败'
+                  : editorDirty
+                    ? '工作区保存中'
+                    : '工作区已保存'}
+            </span>
+            <span title={exerciseContext?.draftError ?? undefined}>{fileName}</span>
             <span>{code.split('\n').length} 行</span>
           </div>
         </div>

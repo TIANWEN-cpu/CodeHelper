@@ -1,9 +1,31 @@
 import { ipcMain, BrowserWindow } from 'electron'
 import { getDB } from '../db/index'
 import { getRelevantMemories, markMemoriesUsed } from './chat'
-import { assertAllowedProviderBaseUrl } from '../utils/providerSecurity'
-import { friendlyUpstreamError, redirectBlockedError, isRedirect } from '../utils/httpErrors'
+import { resolveAllowedProviderTarget } from '../utils/providerSecurity'
+import { fetchResolvedProvider } from '../utils/providerFetch'
+import {
+  discardResponseBody,
+  friendlyUpstreamError,
+  redirectBlockedError,
+  isRedirect,
+} from '../utils/httpErrors'
 import type { AIConfigForChat, ChatMessage } from '../types/db'
+import { decryptApiKey } from '../utils/apiKeyStorage'
+
+export function parseSseContentLine(line: string): string | null {
+  const trimmed = line.trim()
+  if (!trimmed.startsWith('data:')) return null
+  const data = trimmed.slice(5).trimStart()
+  if (!data || data === '[DONE]') return null
+  try {
+    const parsed = JSON.parse(data)
+    const content = parsed.choices?.[0]?.delta?.content
+    return typeof content === 'string' && content ? content : null
+  } catch {
+    console.debug('[ai] Skipping malformed SSE chunk:', data.slice(0, 100))
+    return null
+  }
+}
 
 export function registerAIIPC(): void {
   const activeRequests = new Map<string, AbortController>()
@@ -19,6 +41,7 @@ export function registerAIIPC(): void {
         requestId?: string
         includeMemories?: boolean
         sessionId?: string
+        currentUserMessageId?: number
         ragContext?: RagContext
         memoryCategories?: string[]
       },
@@ -50,6 +73,12 @@ export function registerAIIPC(): void {
       if (args.sessionId !== undefined) {
         if (typeof args.sessionId !== 'string') throw new Error('参数无效: sessionId')
         args.sessionId = args.sessionId.trim().slice(0, 200)
+      }
+      if (
+        args.currentUserMessageId !== undefined &&
+        (!Number.isSafeInteger(args.currentUserMessageId) || args.currentUserMessageId < 1)
+      ) {
+        throw new Error('参数无效: currentUserMessageId')
       }
 
       const requestId = args.requestId ?? `req-${Date.now()}`
@@ -89,9 +118,17 @@ export function registerAIIPC(): void {
           throw new Error('未配置AI模型，请先在设置中添加')
         }
 
-        const url = `${assertAllowedProviderBaseUrl(config.base_url)}/chat/completions`
+        config = { ...config, api_key: decryptApiKey(config.api_key) }
+        if (!config.api_key) throw new Error('API key could not be decrypted')
+        const provider = await resolveAllowedProviderTarget(config.base_url)
+        const requestTarget = { ...provider, url: `${provider.url}/chat/completions` }
         const win = BrowserWindow.fromWebContents(event.sender)
-        const withHistory = buildSessionMessages(db, args.sessionId, args.messages)
+        const withHistory = buildSessionMessages(
+          db,
+          args.sessionId,
+          args.messages,
+          args.currentUserMessageId,
+        )
         const memoryCategories = Array.isArray(args.memoryCategories)
           ? args.memoryCategories.filter((c): c is string => typeof c === 'string')
           : undefined
@@ -104,7 +141,7 @@ export function registerAIIPC(): void {
 
         let response: Response
         try {
-          response = await fetch(url, {
+          response = await fetchResolvedProvider(requestTarget, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -129,12 +166,13 @@ export function registerAIIPC(): void {
 
         // 出于 SSRF 防护，拒绝跟随上游重定向（可能指向内网/元数据地址）
         if (isRedirect(response.status)) {
+          await discardResponseBody(response)
           throw redirectBlockedError('chat')
         }
 
         if (!response.ok) {
-          const text = await response.text().catch(() => '')
-          console.warn(`[ai] upstream chat error ${response.status}: ${text.slice(0, 500)}`)
+          await discardResponseBody(response)
+          console.warn(`[ai] upstream chat error ${response.status}`)
           throw new Error(friendlyUpstreamError(response.status, 'chat'))
         }
 
@@ -155,23 +193,19 @@ export function registerAIIPC(): void {
           buffer = lines.pop() || ''
 
           for (const line of lines) {
-            const trimmed = line.trim()
-            if (!trimmed.startsWith('data: ')) continue
-            const data = trimmed.slice(6)
-            if (data === '[DONE]') continue
-
-            try {
-              const json = JSON.parse(data)
-              const content = json.choices?.[0]?.delta?.content
-              if (content && win) {
-                fullContent += content
-                win.webContents.send('ai-chat-chunk', { requestId, chunk: content })
-              }
-            } catch {
-              // Malformed SSE JSON chunk — log at debug level for diagnostics
-              console.debug('[ai] Skipping malformed SSE chunk:', data.slice(0, 100))
+            const content = parseSseContentLine(line)
+            if (content) {
+              fullContent += content
+              if (win) win.webContents.send('ai-chat-chunk', { requestId, chunk: content })
             }
           }
+        }
+
+        buffer += decoder.decode()
+        const finalContent = parseSseContentLine(buffer)
+        if (finalContent) {
+          fullContent += finalContent
+          if (win) win.webContents.send('ai-chat-chunk', { requestId, chunk: finalContent })
         }
 
         if (win) {
@@ -195,13 +229,14 @@ const MAX_HISTORY_MESSAGES = 20
 
 /**
  * 按 sessionId 组装发给模型的消息：[会话人设 system?] + [最近历史] + [本轮新消息]。
- * 注意：渲染层在收到回复后才持久化本轮 user 消息，故此时 chat_history 尚不含本轮
- * user，拼接后不会重复。无 sessionId 时按原样返回。
+ * 渲染层会在请求前持久化当前 user 消息；通过数据库行 ID 从历史中精确排除它，
+ * 再使用 outgoing 版本（可能包含 sendOverride 上下文）。无 sessionId 时按原样返回。
  */
-function buildSessionMessages(
+export function buildSessionMessages(
   db: ReturnType<typeof getDB>,
   sessionId: string | undefined,
   outgoing: ChatMessage[],
+  currentUserMessageId?: number,
 ): ChatMessage[] {
   if (!sessionId) return outgoing
   try {
@@ -214,15 +249,23 @@ function buildSessionMessages(
 
     const rows = db
       .prepare(
-        'SELECT role, content FROM chat_history WHERE session_id = ? ORDER BY created_at ASC, id ASC',
+        'SELECT id, role, content FROM chat_history WHERE session_id = ? ORDER BY created_at DESC, id DESC LIMIT ?',
       )
-      .all(sessionId) as { role: string; content: string }[]
-    for (const row of rows.slice(-MAX_HISTORY_MESSAGES)) {
+      .all(sessionId, MAX_HISTORY_MESSAGES + 1) as { id: number; role: string; content: string }[]
+    const history = [...rows]
+      .reverse()
+      .filter((row) => row.id !== currentUserMessageId)
+      .slice(-MAX_HISTORY_MESSAGES)
+    const outgoingWithoutPersona =
+      persona && outgoing[0]?.role === 'system' && outgoing[0].content.trim() === persona
+        ? outgoing.slice(1)
+        : outgoing
+    for (const row of history) {
       if (row.role === 'user' || row.role === 'assistant' || row.role === 'system') {
         prefix.push({ role: row.role, content: row.content })
       }
     }
-    return [...prefix, ...outgoing]
+    return [...prefix, ...outgoingWithoutPersona]
   } catch (error) {
     console.warn('[ai] Failed to build session history, sending outgoing only:', error)
     return outgoing

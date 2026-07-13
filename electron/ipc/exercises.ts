@@ -2,6 +2,11 @@ import { ipcMain } from 'electron'
 import { existsSync, readFileSync } from 'fs'
 import { join } from 'path'
 import { getDB } from '../db/index'
+import {
+  clearExerciseDraft,
+  getExerciseDraft,
+  saveExerciseDraft,
+} from '../db/exerciseDraftRepository'
 import { runCodeSnippet } from '../utils/codeRunner'
 import { trackPerformance } from '../utils/perfMonitor'
 import { mergeErrorTypes, normalizeOutput, normalizeSql } from '../utils/problemMeta'
@@ -93,13 +98,16 @@ function isString(value: unknown): value is string {
   return typeof value === 'string'
 }
 
-function isProblemTestCase(value: unknown): value is { input: string; expected: string } {
+export function isProblemTestCase(value: unknown): value is { input: string; expected: string } {
   if (!value || typeof value !== 'object') return false
   const item = value as Record<string, unknown>
   return typeof item.input === 'string' && typeof item.expected === 'string'
 }
 
-function parseStarterCode(raw: string | null | undefined, preferredLanguage = 'python'): string {
+export function parseStarterCode(
+  raw: string | null | undefined,
+  preferredLanguage = 'python',
+): string {
   if (!raw) return ''
   try {
     const parsed = JSON.parse(raw) as unknown
@@ -115,7 +123,7 @@ function parseStarterCode(raw: string | null | undefined, preferredLanguage = 'p
   return ''
 }
 
-function difficultyLabel(difficulty: string): string {
+export function difficultyLabel(difficulty: string): string {
   if (difficulty === 'easy') return '基础'
   if (difficulty === 'medium') return '进阶'
   if (difficulty === 'hard') return '综合'
@@ -210,7 +218,7 @@ function getProblemExercise(id: string): Exercise | null {
  * Build a Python harness that imports the user's code and runs each test
  * expression, printing structured JSON results to stdout.
  */
-function buildPythonTestHarness(userCode: string, tests: ExerciseTest[]): string {
+export function buildPythonTestHarness(userCode: string, tests: ExerciseTest[]): string {
   const testJson = JSON.stringify(tests)
   return `
 import json, sys
@@ -243,7 +251,7 @@ interface TestCaseResult {
  * Check keyword constraints in the user's code (case-insensitive for
  * required_keywords, exact for forbidden_keywords).
  */
-function checkKeywords(
+export function checkKeywords(
   code: string,
   required: string[],
   forbidden: string[],
@@ -267,7 +275,7 @@ function checkKeywords(
 }
 
 /** Map difficulty to language (C# and C tracks use keyword-only evaluation). */
-function languageForTrack(trackId: string): string {
+export function languageForTrack(trackId: string): string {
   switch (trackId) {
     case 'python':
     case 'integration':
@@ -356,7 +364,7 @@ async function evaluateProblemExercise(args: {
         status =
           result.stage === 'compile'
             ? 'compile_error'
-            : result.stderr.toLowerCase().includes('timed out')
+            : result.timedOut
               ? 'timeout'
               : 'runtime_error'
         break
@@ -493,11 +501,7 @@ export function registerExercisesIPC(): void {
         throw new Error('参数无效: exerciseId')
       exerciseId = exerciseId.trim().slice(0, 200)
 
-      const row = getDB()
-        .prepare('SELECT code, updated_at FROM exercise_drafts WHERE exercise_id = ?')
-        .get(exerciseId) as { code: string; updated_at: string } | undefined
-
-      return row ?? null
+      return getExerciseDraft(getDB(), exerciseId)
     }),
   )
 
@@ -506,28 +510,41 @@ export function registerExercisesIPC(): void {
     'exercises-draft-save',
     trackPerformance(
       'exercises-draft-save',
-      (_e, args: { exerciseId: string; code: string; title?: string }) => {
+      (
+        _e,
+        args: {
+          exerciseId: string
+          code: string
+          language: string
+          baseRevision: number
+          title?: string
+        },
+      ) => {
         if (!args || typeof args !== 'object') throw new Error('参数无效')
         if (typeof args.exerciseId !== 'string' || !args.exerciseId.trim())
           throw new Error('参数无效: exerciseId')
         if (typeof args.code !== 'string') throw new Error('参数无效: code')
+        if (args.code.length > 100_000) throw new Error('草稿超过 100000 字符，无法保存')
+        if (typeof args.language !== 'string' || !args.language.trim())
+          throw new Error('参数无效: language')
+        if (args.language.length > 40) throw new Error('参数无效: language')
+        if (!Number.isSafeInteger(args.baseRevision) || args.baseRevision < 0)
+          throw new Error('参数无效: baseRevision')
 
         args.exerciseId = args.exerciseId.trim().slice(0, 200)
-        args.code = args.code.slice(0, 100_000)
+        args.language = args.language.trim()
         if (args.title !== undefined) {
           if (typeof args.title !== 'string') throw new Error('参数无效: title')
           args.title = args.title.trim().slice(0, 500)
         }
 
-        getDB()
-          .prepare(
-            `INSERT INTO exercise_drafts (exercise_id, title, code, updated_at)
-             VALUES (?, ?, ?, datetime('now'))
-             ON CONFLICT(exercise_id) DO UPDATE SET title = excluded.title, code = excluded.code, updated_at = excluded.updated_at`,
-          )
-          .run(args.exerciseId, args.title ?? null, args.code)
-
-        return { success: true }
+        return saveExerciseDraft(getDB(), {
+          exerciseId: args.exerciseId,
+          title: args.title,
+          code: args.code,
+          language: args.language,
+          baseRevision: args.baseRevision,
+        })
       },
     ),
   )
@@ -535,15 +552,18 @@ export function registerExercisesIPC(): void {
   // -- exercises-draft-clear -------------------------------------------------
   ipcMain.handle(
     'exercises-draft-clear',
-    trackPerformance('exercises-draft-clear', (_e, exerciseId: string) => {
-      if (typeof exerciseId !== 'string' || !exerciseId.trim())
-        throw new Error('参数无效: exerciseId')
-      exerciseId = exerciseId.trim().slice(0, 200)
+    trackPerformance(
+      'exercises-draft-clear',
+      (_e, args: { exerciseId: string; baseRevision: number }) => {
+        if (!args || typeof args !== 'object') throw new Error('参数无效')
+        if (typeof args.exerciseId !== 'string' || !args.exerciseId.trim())
+          throw new Error('参数无效: exerciseId')
+        if (!Number.isSafeInteger(args.baseRevision) || args.baseRevision < 0)
+          throw new Error('参数无效: baseRevision')
 
-      getDB().prepare('DELETE FROM exercise_drafts WHERE exercise_id = ?').run(exerciseId)
-
-      return { success: true }
-    }),
+        return clearExerciseDraft(getDB(), args.exerciseId.trim().slice(0, 200), args.baseRevision)
+      },
+    ),
   )
 
   // -- exercises-evaluate ----------------------------------------------------

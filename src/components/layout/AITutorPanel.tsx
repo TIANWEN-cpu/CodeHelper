@@ -368,6 +368,27 @@ export function AITutorPanel({ onClose }: { onClose?: () => void }) {
     loadPresets()
   }, [loadSessions, loadPresets])
 
+  // Esc 关闭面板（焦点在输入框/编辑器内时不拦截，留给输入行为）。
+  useEffect(() => {
+    if (!onClose) return
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return
+      const t = e.target as HTMLElement | null
+      const tag = t?.tagName
+      if (
+        tag === 'INPUT' ||
+        tag === 'TEXTAREA' ||
+        t?.isContentEditable ||
+        t?.closest('.cm-content')
+      ) {
+        return
+      }
+      onClose()
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [onClose])
+
   // 读取隐私「按类别发送」白名单与 LLM 抽取开关，传给 chatStore.sendMessage。
   const resolveMemoryFlags = useCallback(async () => {
     const [memoryCategories, llmExtract] = await Promise.all([
@@ -866,7 +887,7 @@ export function AITutorPanel({ onClose }: { onClose?: () => void }) {
                     className={cn('flex', msg.role === 'user' ? 'justify-end' : 'justify-start')}
                   >
                     {msg.role === 'user' ? (
-                      <div className="bg-[var(--color-accent-primary)] text-white px-4 py-2.5 rounded-2xl rounded-tr-sm max-w-[85%] text-sm leading-relaxed shadow-sm">
+                      <div className="bg-[var(--color-accent-solid)] text-[var(--color-on-accent)] px-4 py-2.5 rounded-2xl rounded-tr-sm max-w-[85%] text-sm leading-relaxed shadow-sm">
                         {msg.content}
                       </div>
                     ) : (
@@ -1000,7 +1021,7 @@ export function AITutorPanel({ onClose }: { onClose?: () => void }) {
                 className={cn(
                   'w-8 h-8 flex items-center justify-center rounded-lg transition-all shadow-sm',
                   inputValue.trim() && !streaming
-                    ? 'bg-[var(--color-accent-primary)] hover:bg-[#4F46E5] active:scale-90 text-white'
+                    ? 'bg-[var(--color-accent-solid)] hover:bg-[var(--color-accent-solid-hover)] active:scale-90 text-[var(--color-on-accent)]'
                     : 'bg-[var(--color-bg-card)] text-[var(--color-text-muted)] cursor-not-allowed',
                 )}
                 title="发送 (Enter)"
